@@ -1,5 +1,5 @@
 package app.Model;
-public abstract class Rule extends Rn {
+public abstract class Rule {
 
 	private String result;
 

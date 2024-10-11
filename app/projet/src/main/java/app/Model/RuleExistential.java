@@ -1,5 +1,5 @@
 package app.Model;
-public class RuleExistential {
+public class RuleExistential extends Rule {
 
 	private String Result;
 
