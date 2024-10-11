@@ -3,7 +3,7 @@ module projet.projet {
     requires javafx.fxml;
     requires junit;
 
-    opens projet.projet to javafx.fxml;
+    opens app to javafx.fxml;
     exports test to junit;
-    exports projet.projet;
+    exports app;
 }
