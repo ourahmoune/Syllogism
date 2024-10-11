@@ -12,6 +12,9 @@ public class Syllogism  extends Rule{
 	public boolean isValid() {
 		return this.valid;
 	}
+	public Map<Integer,Proposition> getProposition() {
+		return this.proposition;
+	}
 
 	public String result() {
 		// TODO - implement Syllogism.result

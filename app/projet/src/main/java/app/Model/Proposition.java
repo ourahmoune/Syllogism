@@ -7,6 +7,10 @@ public class Proposition {
 	private Quality quality;
 	private Type type;
 
+	public Quality getQuality() {
+		return quality;
+	}
+
 	public Proposition() {
 		// TODO - implement Proposition.Proposition
 		throw new UnsupportedOperationException();
