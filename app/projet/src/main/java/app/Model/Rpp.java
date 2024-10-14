@@ -8,13 +8,8 @@ public class Rpp  extends Rule{
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {
-		// TODO - implement Rlh.Launch
-		throw new UnsupportedOperationException();
-	}
+        return syllogism.getProposition().get(1).getQuantificator().getQuantity() != Quantity.Exisential || syllogism.getProposition().get(2).getQuantificator().getQuantity() != Quantity.Exisential;
+    }
 
-	public void operation() {
-		// TODO - implement Rlh.operation
-		throw new UnsupportedOperationException();
-	}
 
 }

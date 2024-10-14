@@ -10,6 +10,12 @@ public class Proposition {
 	public Quality getQuality() {
 		return quality;
 	}
+	public void setQuality(Quality quality) {
+		this.quality = quality;
+	}
+	public Quantificator getQuantificator() {
+		return quantificator;
+	}
 
 	public Proposition() {
 		// TODO - implement Proposition.Proposition
