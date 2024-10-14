@@ -8,7 +8,7 @@ public class RuleInteresting  extends Rule {
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {
-
+		return false;
 	}
 
 	public void operation() {

@@ -37,5 +37,9 @@ public class Quantificator {
 		// TODO - implement Quantificator.Quantificator
 		throw new UnsupportedOperationException();
 	}
+	public Quantificator(Quantity quantity, String name) {
+		this.quantity = quantity;
+		this.name = name;
+	}
 
 }
