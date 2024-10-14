@@ -37,10 +37,4 @@ public class Rmt  extends Rule{
 		return result ;
 
 	}
-
-	public void operation() {
-		// TODO - implement Rlh.operation
-		throw new UnsupportedOperationException();
-	}
-
 }
