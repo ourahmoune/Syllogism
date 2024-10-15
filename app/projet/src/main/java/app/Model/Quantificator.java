@@ -33,10 +33,7 @@ public class Quantificator {
 	 * @param name
 	 * @param quantity
 	 */
-	public Quantificator(int name, Quantity quantity) {
-		// TODO - implement Quantificator.Quantificator
-		throw new UnsupportedOperationException();
-	}
+
 	public Quantificator(Quantity quantity, String name) {
 		this.quantity = quantity;
 		this.name = name;

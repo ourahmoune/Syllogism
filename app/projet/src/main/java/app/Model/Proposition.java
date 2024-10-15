@@ -11,10 +11,7 @@ public class Proposition {
 		return quality;
 	}
 
-	public Proposition() {
-		// TODO - implement Proposition.Proposition
-		throw new UnsupportedOperationException();
-	}
+
 	public Proposition(Quantificator quantificator, String subject, String predicat, Quality quality, Type type) {
 		this.quantificator = quantificator;
 		this.subject = subject;
