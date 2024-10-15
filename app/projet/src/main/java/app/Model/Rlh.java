@@ -8,7 +8,6 @@ public class Rlh  extends Rule{
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {
-		// TODO - implement Rlh.Launch
 		Boolean result = false;
 		Type modeP1 =syllogism.getProposition().get(1).getType();
 		Type modeP2 =syllogism.getProposition().get(2).getType();
