@@ -7,9 +7,18 @@ public class Proposition {
 	private Quality quality;
 	private Type type;
 
-	public Proposition() {
+	public Proposition(Quantificator quantificator, String subject, String predicat, Type type) {
 		// TODO - implement Proposition.Proposition
-		throw new UnsupportedOperationException();
+		this.quantificator = quantificator;
+		this.subject = subject;
+		this.predicat = predicat;
+		this.type = type;
 	}
 
+	public Quality getQuality() {
+		return quality;
+	}
+	public Type getType() {
+		return type;
+	}
 }
