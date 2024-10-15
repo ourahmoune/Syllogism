@@ -8,7 +8,6 @@ public class Rmt  extends Rule{
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {
-		// TODO - implement Rlh.Launch
 		Type modeP1 =syllogism.getProposition().get(1).getType();
 		Type modeP2 =syllogism.getProposition().get(2).getType();
 		Quality qualityP1 =syllogism.getProposition().get(1).getQuality();
@@ -27,7 +26,7 @@ public class Rmt  extends Rule{
 				result= modeP1 == Type.A || modeP1 == Type.E || modeP2 == Type.A || modeP2 == Type.E ;
 				break;
 			case Figure.QUATRE:
-				result = 	qualityP1 == Quality.Negative || modeP1 == Type.A || modeP1 == Type.E ;
+				result = qualityP1 == Quality.Negative || modeP1 == Type.A || modeP1 == Type.E ;
 				break;
 
 			default:
