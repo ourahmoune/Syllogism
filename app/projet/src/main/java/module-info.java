@@ -4,6 +4,7 @@ module projet.projet {
     requires junit;
 
     opens app to javafx.fxml;
+    opens app.controller to javafx.fxml;
     exports test to junit;
     exports app;
 }

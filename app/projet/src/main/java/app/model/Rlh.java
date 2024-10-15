@@ -1,10 +1,10 @@
-package app.Model;
-public class Rpp  extends Rule{
+package app.model;
+public class Rlh  extends Rule{
 
 	private String Result;
 
 	/**
-	 *
+	 * 
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {

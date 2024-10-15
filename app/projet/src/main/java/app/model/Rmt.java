@@ -1,5 +1,5 @@
-package app.Model;
-public class Rp  extends Rule{
+package app.model;
+public class Rmt  extends Rule{
 
 	private String Result;
 
