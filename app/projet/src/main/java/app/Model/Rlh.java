@@ -13,6 +13,24 @@ public class Rlh  extends Rule{
 		Type modeP2 =syllogism.getProposition().get(2).getType();
 		Type modec = syllogism.getProposition().get(3).getType();
 		switch (syllogism.getFigure()) {
+			/*
+
+
+
+SI(C2="O";OU(A2="E";A2="A");
+SI(C2="I";VRAI;FAUX))));
+SI(D2=3;
+SI(C2="A";OU(B2="O";B2="E");
+SI(C2="E";ET(OU(B2="O";B2="E");OU(A2="E";A2="O"));
+SI(C2="O";OU(A2="E";A2="O");
+SI(C2="I";VRAI;FAUX))));
+SI(D2=4;
+SI(C2="A";OU(B2="O";B2="E");
+SI(C2="E";ET(OU(B2="O";B2="E");OU(A2="E";A2="A"));
+SI(C2="O";OU(A2="E";A2="A");
+SI(C2="I";VRAI;FAUX))))))))
+
+*/
 			case Figure.UN:
 				switch (modec) {
 					case Type.A :
@@ -25,6 +43,7 @@ public class Rlh  extends Rule{
 						break;
 					case Type.I:
 						result  = true ;
+						break;
 					default:
 						throw new UnsupportedOperationException();
 				}
@@ -38,10 +57,11 @@ public class Rlh  extends Rule{
 						result =( modeP2 ==  Type.A || modeP2 ==  Type.E) &&(modeP1 ==  Type.A || modeP1 ==  Type.E);
 						break;
 					case Type.O:
-						result = modeP1 == Type.E || modeP1 ==  Type.O;
+						result = modeP1 == Type.E || modeP1 ==  Type.A;
 						break;
 					case Type.I:
 						result = true ;
+						break;
 					default:
 						throw new UnsupportedOperationException();
 				}
@@ -57,6 +77,9 @@ public class Rlh  extends Rule{
 					case Type.O:
 						result = modeP1 ==  Type.O || modeP1 ==  Type.E ;
 						break ;
+					case Type.I:
+						result = true ;
+						break;
 					default:
 						throw new UnsupportedOperationException();
 
@@ -77,6 +100,8 @@ public class Rlh  extends Rule{
 					case Type.I:
 						result = true ;
 						break;
+					default:
+						throw new UnsupportedOperationException();
 				}
 				break;
 			default:
