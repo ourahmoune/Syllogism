@@ -8,7 +8,7 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 
-public class HelloController {
+public class GeneralController {
     @FXML
     Button Guided, Free, Array, Quantifiers;
     @FXML
@@ -18,8 +18,14 @@ public class HelloController {
 
     @FXML
     private void GuidedInterface(){
-        loadInterface("interface_list.fxml");
+        loadInterface("syllogism_guided.fxml");
     }
+
+    @FXML
+    private void UnguidedInterface(){ loadInterface("syllogism_unguided.fxml");}
+
+    @FXML
+    private void ListInterface(){ loadInterface("interface_list.fxml");}
 
     public void loadInterface(String fxmlPath){
         try {

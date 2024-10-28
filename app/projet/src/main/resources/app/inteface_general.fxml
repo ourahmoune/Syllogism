@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="20.0" minWidth="20.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="20.0" minWidth="20.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.GeneralController">
    <left>
       <VBox alignment="CENTER_LEFT" maxWidth="100.0" minHeight="20.0" minWidth="20.0" prefWidth="113.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,7 +21,7 @@
                      </font>
                   </Button>
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="Free" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-border-radius: 0 15 15 0; -fx-background-radius: 0 15 15 0;" text="Free" VBox.vgrow="ALWAYS">
+                  <Button fx:id="Free" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-border-radius: 0 15 15 0; -fx-background-radius: 0 15 15 0;" text="Free" VBox.vgrow="ALWAYS" onAction="#UnguidedInterface">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -33,7 +33,7 @@
                      </font>
                   </Button>
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="Quantifiers" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-border-radius: 0 15 15 0; -fx-background-radius: 0 15 15 0;" text="Quantifiers" VBox.vgrow="ALWAYS">
+                  <Button fx:id="Quantifiers" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-border-radius: 0 15 15 0; -fx-background-radius: 0 15 15 0;" text="Quantifiers" VBox.vgrow="ALWAYS" onAction="#ListInterface">
                      <font>
                         <Font size="19.0" />
                      </font>
