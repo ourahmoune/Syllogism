@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="app.UnguidedController" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox VBox.vgrow="ALWAYS">
          <children>
@@ -21,32 +21,32 @@
                      <children>
                         <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
                            <children>
-                              <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: All" HBox.hgrow="ALWAYS">
+                              <ComboBox fx:id="cb1" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: All" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="20.0" />
                                  </HBox.margin>
                               </ComboBox>
-                              <TextField maxWidth="1.7976931348623157E308" promptText="birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+                              <TextField fx:id="TF1_1" maxWidth="1.7976931348623157E308" promptText="birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField maxWidth="1.7976931348623157E308" promptText="have" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+                              <TextField fx:id="TF2_1" maxWidth="1.7976931348623157E308" promptText="have" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField maxWidth="1.7976931348623157E308" promptText="wings" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+                              <TextField fx:id="TF3_1" maxWidth="1.7976931348623157E308" promptText="wings" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
+                              <Button fx:id="Btn_P1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
+                              <Button fx:id="Btn_N1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -55,20 +55,20 @@
                         </HBox>
                         <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
                            <children>
-                              <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS">
+                              <ComboBox fx:id="cb2" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </ComboBox>
-                              <TextField promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                              <TextField promptText="are" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                              <TextField promptText="birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
+                              <TextField fx:id="TF1_2" promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="TF2_2" promptText="are" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="TF3_2" promptText="birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="Btn_P2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Button>
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
+                              <Button fx:id="Btn_N2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -79,7 +79,7 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b">
+            <Button fx:id="Add_syllogism" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b">
                <font>
                   <Font size="15.0" />
                </font>
@@ -95,16 +95,16 @@
             </Label>
             <HBox alignment="CENTER" style="-fx-spacing: 10;">
                <children>
-                  <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS" />
-                  <TextField editable="false" promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                  <TextField promptText="Have" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                  <TextField editable="false" maxWidth="1.7976931348623157E308" promptText="wings" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
+                  <ComboBox fx:id="cb3" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="TF1_3" editable="false" promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="TF2_3" promptText="Have" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="TF3_3" editable="false" maxWidth="1.7976931348623157E308" promptText="wings" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="Btn_P3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
+                  <Button fx:id="Btn_N3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -115,8 +115,8 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: #9dff8c; -fx-text-fill: black;" text="Validate" />
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-text-fill: black;" text="Clear">
+            <Button fx:id="Btn_validate" mnemonicParsing="false" style="-fx-background-color: #9dff8c; -fx-text-fill: black;" text="Validate" />
+            <Button fx:id="Btn_Clear" onAction="#handleClear" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-text-fill: black;" text="Clear">
                <padding>
                   <Insets left="20.0" right="20.0" />
                </padding>
