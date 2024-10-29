@@ -55,7 +55,7 @@
             <HBox alignment="TOP_RIGHT" minHeight="37.0" minWidth="200.0" prefHeight="37.0" prefWidth="500.0" style="-fx-padding: 5; -fx-spacing: 25;">
                <children>
                   <Button mnemonicParsing="false" text="English" />
-                  <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="30.0" style="-fx-background-radius: 15;" text="≡" wrapText="true">
+                  <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="30.0" style="-fx-background-radius: 15;" text="≡" wrapText="true" onAction="#handleSettings">
                      <font>
                         <Font size="15.0" />
                      </font>
