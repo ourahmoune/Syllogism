@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:controller="app.ListQuantifierController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
       <VBox prefHeight="400.0" prefWidth="186.0">
@@ -15,23 +15,16 @@
             <Region prefHeight="42.0" prefWidth="112.0" VBox.vgrow="ALWAYS" />
             <ScrollPane fitToWidth="true" prefHeight="331.0" prefWidth="112.0" style="-fx-background: #9dff8c;" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox>
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="110.0">
-                           <children>
-                              <Label alignment="TOP_CENTER" text="Label" />
-                           </children>
-                        </HBox>
-                     </children>
+                  <VBox fx:id="ListUniversal">
                   </VBox>
                </content>
             </ScrollPane>
             <Region prefHeight="50.0" prefWidth="112.0" VBox.vgrow="ALWAYS" />
             <HBox prefHeight="0.0" prefWidth="112.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-alignment: center; -fx-padding: 0; -fx-background-color: lightgrey; -fx-background-radius: 15; -fx-font-weight: bold; -fx-text-fill: #32b71b; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20;" text="+" />
+                  <Button onAction="#handleAddQuantificatorClickUniversal" mnemonicParsing="false" style="-fx-alignment: center; -fx-padding: 0; -fx-background-color: lightgrey; -fx-background-radius: 15; -fx-font-weight: bold; -fx-text-fill: #32b71b; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20;" text="+" />
                   <Region prefHeight="26.0" prefWidth="8.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" style="-fx-alignment: center; -fx-padding: 0; -fx-background-color: lightgrey; -fx-background-radius: 15; -fx-font-weight: bold; -fx-text-fill: #32b71b; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15;" text="—" />
+                  <Button onAction="#handleRemoveQuantificatorClickUniversal" mnemonicParsing="false" style="-fx-alignment: center; -fx-padding: 0; -fx-background-color: lightgrey; -fx-background-radius: 15; -fx-font-weight: bold; -fx-text-fill: #32b71b; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15;" text="—" />
                </children>
             </HBox>
             <Region prefHeight="50.0" prefWidth="112.0" VBox.vgrow="ALWAYS" />
@@ -44,23 +37,16 @@
             <Region prefHeight="42.0" prefWidth="112.0" VBox.vgrow="ALWAYS" />
             <ScrollPane fitToWidth="true" prefHeight="331.0" prefWidth="112.0" style="-fx-background: #9dff8c;" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox>
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="110.0">
-                           <children>
-                              <Label alignment="TOP_CENTER" text="Label" />
-                           </children>
-                        </HBox>
-                     </children>
+                  <VBox fx:id="ListExistential">
                   </VBox>
                </content>
             </ScrollPane>
             <Region prefHeight="50.0" prefWidth="112.0" VBox.vgrow="ALWAYS" />
             <HBox prefHeight="0.0" prefWidth="112.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-alignment: center; -fx-padding: 0; -fx-background-color: lightgrey; -fx-background-radius: 15; -fx-font-weight: bold; -fx-text-fill: #32b71b; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20;" text="+" />
+                  <Button onAction="#handleAddQuantificatorClickExistential" mnemonicParsing="false" style="-fx-alignment: center; -fx-padding: 0; -fx-background-color: lightgrey; -fx-background-radius: 15; -fx-font-weight: bold; -fx-text-fill: #32b71b; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20;" text="+" />
                   <Region prefHeight="26.0" prefWidth="8.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" style="-fx-alignment: center; -fx-padding: 0; -fx-background-color: lightgrey; -fx-background-radius: 15; -fx-font-weight: bold; -fx-text-fill: #32b71b; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15;" text="—" />
+                  <Button onAction="#handleRemoveQuantificatorClickExistential" mnemonicParsing="false" style="-fx-alignment: center; -fx-padding: 0; -fx-background-color: lightgrey; -fx-background-radius: 15; -fx-font-weight: bold; -fx-text-fill: #32b71b; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15;" text="—" />
                </children>
             </HBox>
             <Region prefHeight="50.0" prefWidth="112.0" VBox.vgrow="ALWAYS" />
