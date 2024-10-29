@@ -1,4 +1,4 @@
-package app.model.AllSyllogism;
+package app.model.allSyllogism;
 import app.model.Figure;
 import app.model.Proposition;
 import app.model.Syllogism;

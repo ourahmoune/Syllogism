@@ -1,4 +1,4 @@
-package app.model.AllSyllogism;
+package app.model.allSyllogism;
 import app.model.Syllogism;
 import java.util.ArrayList;
 import java.util.List;

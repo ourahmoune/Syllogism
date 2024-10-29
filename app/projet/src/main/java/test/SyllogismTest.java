@@ -4,8 +4,8 @@ package test;
 import app.model.Rlh;
 import app.model.Rmt;
 import org.junit.Test;
-import app.model.AllSyllogism.Data;
-import app.model.AllSyllogism.SyllogismAndRules;
+import app.model.allSyllogism.Data;
+import app.model.allSyllogism.SyllogismAndRules;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
