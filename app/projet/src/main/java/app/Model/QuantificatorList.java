@@ -1,7 +1,6 @@
 package app.Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class QuantificatorList {
 
