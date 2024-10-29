@@ -9,6 +9,7 @@ public class Rnn  extends Rule{
 	 */
 	public Boolean Launch(Syllogism syllogism) {
 		// TODO - implement Rlh.Launch
+		int x ;
 		throw new UnsupportedOperationException();
 	}
 
