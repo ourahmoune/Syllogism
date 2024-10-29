@@ -13,6 +13,7 @@ public class Rlh  extends Rule{
 		Type modeP2 =syllogism.getProposition().get(2).getType();
 		Type modec = syllogism.getProposition().get(3).getType();
 		switch (syllogism.getFigure()) {
+
 			case Figure.UN:
 				switch (modec) {
 					case Type.A :
@@ -25,8 +26,10 @@ public class Rlh  extends Rule{
 						break;
 					case Type.I:
 						result  = true ;
+						break;
 					default:
-						throw new UnsupportedOperationException();
+						throw new UnsupportedOperationException(modec +" : Type not supported");
+
 				}
 				break;
 			case Figure.DEUX:
@@ -38,12 +41,13 @@ public class Rlh  extends Rule{
 						result =( modeP2 ==  Type.A || modeP2 ==  Type.E) &&(modeP1 ==  Type.A || modeP1 ==  Type.E);
 						break;
 					case Type.O:
-						result = modeP1 == Type.E || modeP1 ==  Type.O;
+						result = modeP1 == Type.E || modeP1 ==  Type.A;
 						break;
 					case Type.I:
 						result = true ;
+						break;
 					default:
-						throw new UnsupportedOperationException();
+						throw new UnsupportedOperationException(modec +" : Type not supported");
 				}
 				break;
 			case Figure.TROIS:
@@ -57,8 +61,12 @@ public class Rlh  extends Rule{
 					case Type.O:
 						result = modeP1 ==  Type.O || modeP1 ==  Type.E ;
 						break ;
+					case Type.I:
+						result = true ;
+						break;
 					default:
-						throw new UnsupportedOperationException();
+						throw new UnsupportedOperationException(modec +" : Type not supported");
+
 
 
 				}
@@ -77,10 +85,13 @@ public class Rlh  extends Rule{
 					case Type.I:
 						result = true ;
 						break;
+					default:
+						throw new UnsupportedOperationException(modec +" : Type not supported");
+
 				}
 				break;
 			default:
-				throw new UnsupportedOperationException();
+				throw new UnsupportedOperationException(syllogism.getFigure() +" : Figure not supported");
 
 		}
 		return  result;
