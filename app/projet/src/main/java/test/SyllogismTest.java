@@ -4,8 +4,8 @@ package test;
 import app.Model.Rlh;
 import app.Model.Rmt;
 import org.junit.Test;
-import test.AllRules.Data;
-import test.AllRules.Sylloandrules;
+import app.Model.AllSyllogism.Data;
+import app.Model.AllSyllogism.SyllogismAndRules;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -16,17 +16,17 @@ import static org.junit.Assert.assertEquals;
 */
 
 public class SyllogismTest {
-    Data data = new Data("src/main/java/test/AllRules/Tableur.xlsx");
-    List<Sylloandrules> allsylo = data.getAllsyllogismeandrules() ;
+    Data data = new Data("src/main/resources/app/Tableur.xlsx");
+    List<SyllogismAndRules> AllSyllogismAndRules = data.getAllSyllogismAndRules() ;
     @Test
-    public void Alltest(){
+    public void AllTest(){
         data.load();
-        for(Sylloandrules syl : allsylo) {
+        for(SyllogismAndRules syl : AllSyllogismAndRules) {
             if(syl.getSyllogism()!= null){
                 Rmt rmt = new Rmt();
                 Rlh rlh = new Rlh();
-                assertEquals(rmt.Launch(syl.getSyllogism()) , syl.getRulles(0));
-                assertEquals(rlh.Launch(syl.getSyllogism()) , syl.getRulles(1));
+                assertEquals(rmt.Launch(syl.getSyllogism()) , syl.getRules(0));
+                assertEquals(rlh.Launch(syl.getSyllogism()) , syl.getRules(1));
             }
 
         }

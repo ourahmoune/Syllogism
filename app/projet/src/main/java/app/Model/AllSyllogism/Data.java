@@ -1,5 +1,4 @@
-package app.Model.AllRules;
-
+package app.Model.AllSyllogism;
 import app.Model.Figure;
 import app.Model.Proposition;
 import app.Model.Syllogism;
@@ -85,33 +84,32 @@ public class Data {
                             System.out.print("Unknown type\t");
                             break;
                     }
-                    if (cell == 1) {
+                    if (cell == 1) {// First Proposition
                         PropositionMap.put(1, new Proposition(type));
                         System.out.print(type + " ");
                     }
-                    if (cell == 2) {
+                    if (cell == 2) {// Second Proposition
                         PropositionMap.put(2, new Proposition(type));
                         System.out.print(type + " ");
                     }
-                    if (cell == 3) {
+                    if (cell == 3) {// Third Proposition
                         PropositionMap.put(3, new Proposition(type));
                         System.out.print(type + " ");
                     }
-                    if (cell == 4) {
+                    if (cell == 4) {// Creating Syllogism
                         syllogismandrules.setSyllogism(new Syllogism(figure, PropositionMap));
                         System.out.print(figure + " ");
                     }
-                    if ((cell >= 5) && (cell <= 14)) {
+                    if ((cell >= 5) && (cell <= 14)) {// Get the Result of rules
                         syllogismandrules.setRules(ResultOfRule);
                         System.out.print(ResultOfRule + " ");
                     }
-                    if (cell == 15) {
+                    if (cell == 15) { //get the last result and putin the syllogismandrules in the List
                         syllogismandrules.setRules(ResultOfRule);
                         System.out.print(ResultOfRule + " ");
                         AllSyllogismAndRules.add(syllogismandrules);
                     }
                 }
-
                 // Move to the next line after displaying all columns of the current row
                 System.out.println();
             }

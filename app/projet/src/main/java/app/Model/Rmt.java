@@ -24,12 +24,12 @@ public class Rmt  extends Rule{
 				result= modeP1 == Type.A || modeP1 == Type.E|| modeP2 == Type.A || modeP2 == Type.E ;
 				break;
 			case Figure.QUATRE:
-				result = 	modeP1 == Type.O || modeP1 == Type.E || modeP2 == Type.A || modeP2 == Type.E ;
+				result = modeP1 == Type.O || modeP1 == Type.E || modeP2 == Type.A || modeP2 == Type.E ;
 				break;
 
 			default:
 				// code block
-				throw new UnsupportedOperationException();
+				throw new UnsupportedOperationException(syllogism.getFigure() +" : Figure not supported");
 		}
 		return result ;
 

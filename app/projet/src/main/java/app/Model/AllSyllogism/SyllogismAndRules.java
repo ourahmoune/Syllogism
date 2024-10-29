@@ -1,5 +1,4 @@
-package app.Model.AllRules;
-
+package app.Model.AllSyllogism;
 import app.Model.Syllogism;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.List;
 public class SyllogismAndRules {
     private Syllogism syllogism;
     List<Boolean> Rules = new ArrayList<>();
+
     public SyllogismAndRules() {
         syllogism= null ;
     }

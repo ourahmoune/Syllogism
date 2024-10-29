@@ -13,24 +13,7 @@ public class Rlh  extends Rule{
 		Type modeP2 =syllogism.getProposition().get(2).getType();
 		Type modec = syllogism.getProposition().get(3).getType();
 		switch (syllogism.getFigure()) {
-			/*
 
-
-
-SI(C2="O";OU(A2="E";A2="A");
-SI(C2="I";VRAI;FAUX))));
-SI(D2=3;
-SI(C2="A";OU(B2="O";B2="E");
-SI(C2="E";ET(OU(B2="O";B2="E");OU(A2="E";A2="O"));
-SI(C2="O";OU(A2="E";A2="O");
-SI(C2="I";VRAI;FAUX))));
-SI(D2=4;
-SI(C2="A";OU(B2="O";B2="E");
-SI(C2="E";ET(OU(B2="O";B2="E");OU(A2="E";A2="A"));
-SI(C2="O";OU(A2="E";A2="A");
-SI(C2="I";VRAI;FAUX))))))))
-
-*/
 			case Figure.UN:
 				switch (modec) {
 					case Type.A :
@@ -45,7 +28,8 @@ SI(C2="I";VRAI;FAUX))))))))
 						result  = true ;
 						break;
 					default:
-						throw new UnsupportedOperationException();
+						throw new UnsupportedOperationException(modec +" : Type not supported");
+
 				}
 				break;
 			case Figure.DEUX:
@@ -63,7 +47,7 @@ SI(C2="I";VRAI;FAUX))))))))
 						result = true ;
 						break;
 					default:
-						throw new UnsupportedOperationException();
+						throw new UnsupportedOperationException(modec +" : Type not supported");
 				}
 				break;
 			case Figure.TROIS:
@@ -81,7 +65,8 @@ SI(C2="I";VRAI;FAUX))))))))
 						result = true ;
 						break;
 					default:
-						throw new UnsupportedOperationException();
+						throw new UnsupportedOperationException(modec +" : Type not supported");
+
 
 
 				}
@@ -101,11 +86,12 @@ SI(C2="I";VRAI;FAUX))))))))
 						result = true ;
 						break;
 					default:
-						throw new UnsupportedOperationException();
+						throw new UnsupportedOperationException(modec +" : Type not supported");
+
 				}
 				break;
 			default:
-				throw new UnsupportedOperationException();
+				throw new UnsupportedOperationException(syllogism.getFigure() +" : Figure not supported");
 
 		}
 		return  result;
