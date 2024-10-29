@@ -1,11 +1,11 @@
 package test;
 
 
-import app.Model.Rlh;
-import app.Model.Rmt;
+import app.model.Rlh;
+import app.model.Rmt;
 import org.junit.Test;
-import app.Model.AllSyllogism.Data;
-import app.Model.AllSyllogism.SyllogismAndRules;
+import app.model.AllSyllogism.Data;
+import app.model.AllSyllogism.SyllogismAndRules;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;

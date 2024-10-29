@@ -1,5 +1,5 @@
-package app.Model.AllSyllogism;
-import app.Model.Syllogism;
+package app.model.AllSyllogism;
+import app.model.Syllogism;
 import java.util.ArrayList;
 import java.util.List;
 
