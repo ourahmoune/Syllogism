@@ -1,5 +1,5 @@
-package app.Model;
-public class Rnn  extends Rule{
+package app.model;
+public class Rpp  extends Rule{
 
 	private String Result;
 
@@ -9,7 +9,6 @@ public class Rnn  extends Rule{
 	 */
 	public Boolean Launch(Syllogism syllogism) {
 		// TODO - implement Rlh.Launch
-		int x ;
 		throw new UnsupportedOperationException();
 	}
 

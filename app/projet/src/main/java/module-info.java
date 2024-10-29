@@ -6,6 +6,7 @@ module projet.projet {
     requires java.desktop;
 
     opens app to javafx.fxml;
+    opens app.controller to javafx.fxml;
     exports test to junit;
     exports app;
 }

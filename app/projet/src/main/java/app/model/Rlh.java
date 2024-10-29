@@ -1,4 +1,4 @@
-package app.Model;
+package app.model;
 public class Rlh  extends Rule{
 
 	private String Result;
