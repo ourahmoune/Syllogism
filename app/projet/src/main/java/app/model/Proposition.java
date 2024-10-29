@@ -14,6 +14,14 @@ public class Proposition {
 		this.predicat = predicat;
 		this.type = type;
 	}
+	public Proposition(Type type) {
+		this.type = type;
+		if (type == Type.E || type == Type.O){
+			quality = Quality.Negative;
+		}else{
+			quality = Quality.Affirmative;
+		}
+	}
 
 	public Quality getQuality() {
 		return quality;
