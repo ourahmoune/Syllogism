@@ -1,5 +1,5 @@
-package app.Model;
-public class Ruu  extends Rule{
+package app.model;
+public class RuleInteresting  extends Rule {
 
 	private String Result;
 
@@ -8,12 +8,11 @@ public class Ruu  extends Rule{
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {
-		// TODO - implement Ruu.Launch
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	public void operation() {
-		// TODO - implement Ruu.operation
+		// TODO - implement RuleInteresting.operation
 		throw new UnsupportedOperationException();
 	}
 
