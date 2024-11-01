@@ -8,14 +8,10 @@ public class Rnn  extends Rule{
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {
-		// TODO - implement Rlh.Launch
-		int x ;
-		throw new UnsupportedOperationException();
-	}
+        return syllogism.getProposition().get(1).getQuality() != Quality.Negative ||
+				syllogism.getProposition().get(2).getQuality() != Quality.Negative;
+    }
 
-	public void operation() {
-		// TODO - implement Rlh.operation
-		throw new UnsupportedOperationException();
-	}
+
 
 }
