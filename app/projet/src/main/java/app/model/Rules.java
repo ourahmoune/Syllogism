@@ -14,5 +14,8 @@ public class Rules {
 		// TODO - implement Rules.AllRules
 		throw new UnsupportedOperationException();
 	}
+	public Rules(List<Rule> listRules) {
+		this.listRules = listRules;
+	}
 
 }

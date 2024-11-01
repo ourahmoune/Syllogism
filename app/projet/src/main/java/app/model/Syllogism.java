@@ -12,6 +12,15 @@ public class Syllogism  extends Rule{
 	public boolean isValid() {
 		return this.valid;
 	}
+	public Map<Integer,Proposition> getProposition() {
+		return this.proposition;
+	}
+	public Figure getFigure() {
+		return this.figure;
+	}
+	public void setFigure(Figure figure) {
+		this.figure = figure;
+	}
 
 	public String result() {
 		// TODO - implement Syllogism.result
@@ -39,4 +48,5 @@ public class Syllogism  extends Rule{
 	public void setProposition(Map<Integer,Proposition> proposition) {
 		this.proposition = proposition;
 	}
+
 }
