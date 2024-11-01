@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@menu.css"
+            fx:controller="app.controller.MenuController">
+   <left>
+      <VBox alignment="CENTER_LEFT" minHeight="20.0" minWidth="20.0" prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER_LEFT" minHeight="20.0" minWidth="20.0" prefWidth="79.0">
+               <children>
+                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" text="%GuidedPage" VBox.vgrow="ALWAYS" fx:id="GuidedPage" styleClass="GuidedPage" />
+                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" text="%FreePage" VBox.vgrow="ALWAYS" fx:id="FreePage" styleClass="FreePage" />
+                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" text="%ArrayPage" VBox.vgrow="ALWAYS" fx:id="ArrayPage" styleClass="ArrayPage"/>
+                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" text="%ListQuantifiersPage" VBox.vgrow="ALWAYS" fx:id="ListQuantifiersPage" styleClass="ListQuantifiersPage" />
+                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-padding: 20;">
+               <children>
+                  <StackPane fx:id="HelpPage" maxWidth="20">
+                     <children>
+                        <Circle fx:id="HelpPageCircle" fill="azure"/>
+                        <Text text="?" fx:id="HelpButton"/>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_RIGHT" minHeight="37.0" minWidth="200.0" prefHeight="37.0" prefWidth="500.0" style="-fx-padding: 12.5; -fx-spacing: 25;">
+               <children>
+                  <StackPane styleClass="language" maxWidth="75" >
+                        <Label text="%Language" fx:id="language" alignment="CENTER_RIGHT" onMousePressed="#changeLanguage"/>
+                  </StackPane>
+                  <StackPane fx:id="ParamPage" styleClass="ParamPage">
+                     <children>
+                        <Circle fx:id="ParamPageCircle" fill="transparent"/>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <Pane prefHeight="1000.0" prefWidth="1000.0" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
