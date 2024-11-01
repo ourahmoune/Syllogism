@@ -1,4 +1,4 @@
-package app.Model;
+package app.model;
 
 public enum Figure
 {

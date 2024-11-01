@@ -2,8 +2,11 @@ module projet.projet {
     requires javafx.controls;
     requires javafx.fxml;
     requires junit;
+    requires org.apache.poi.ooxml;
+    requires java.desktop;
 
-    opens projet.projet to javafx.fxml;
+    opens app to javafx.fxml;
+    opens app.controller to javafx.fxml;
     exports test to junit;
-    exports projet.projet;
+    exports app;
 }

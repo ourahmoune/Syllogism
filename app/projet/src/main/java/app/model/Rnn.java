@@ -1,4 +1,4 @@
-package app.Model;
+package app.model;
 public class Rnn  extends Rule{
 
 	private String Result;
@@ -11,6 +11,7 @@ public class Rnn  extends Rule{
         return syllogism.getProposition().get(1).getQuality() != Quality.Negative ||
 				syllogism.getProposition().get(2).getQuality() != Quality.Negative;
     }
+
 
 
 }

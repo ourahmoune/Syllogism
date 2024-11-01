@@ -1,0 +1,26 @@
+.root{
+    -fx-background-color: #4AE2E2;
+}
+.button{
+    -fx-border-radius: 0 15 15 0;
+    -fx-background-radius: 0 15 15 0;
+}
+
+.GuidedPage, .ArrayPage{
+    -fx-background-color: #9dff8c;
+}
+.FreePage, .ListQuantifiersPage{
+    -fx-background-color: #32b71b;
+}
+
+.ParamPage{
+    -fx-background-image: url('./../image/logo-parametre.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.language {
+    -fx-background-image: url('./../image/logo-languge3.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
