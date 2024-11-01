@@ -1,4 +1,4 @@
-package app.Model;
+package app.model;
 public abstract class Rule {
 
 	private String result;
