@@ -1,6 +1,6 @@
 package test;
 
-import app.Model.*;
+import app.model.*;
 import org.junit.Test;
 
 import java.util.HashMap;

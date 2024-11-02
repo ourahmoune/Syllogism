@@ -14,17 +14,17 @@ public class Rlh  extends Rule{
 		Type modec = syllogism.getProposition().get(3).getType();
 		switch (syllogism.getFigure()) {
 
-			case Figure.UN:
+			case UN:
 				switch (modec) {
-					case Type.A :
+					case A :
 						result = modeP2 ==  Type.A || modeP2 ==  Type.E ;
 						break;
-					case Type.E:
+					case E:
 						result =( modeP2 ==  Type.A || modeP2 ==  Type.E)&&(modeP1 == Type.E || modeP1 ==Type.O) ;						break;
-					case Type.O:
+					case O:
 						result = modeP1 == Type.E || modeP1 == Type.O;
 						break;
-					case Type.I:
+					case I:
 						result  = true ;
 						break;
 					default:
@@ -32,36 +32,36 @@ public class Rlh  extends Rule{
 
 				}
 				break;
-			case Figure.DEUX:
+			case DEUX:
 				switch (modec) {
-					case Type.A :
+					case A :
 						result = modeP2 ==  Type.A || modeP2 ==  Type.E ;
 						break;
-					case Type.E:
+					case E:
 						result =( modeP2 ==  Type.A || modeP2 ==  Type.E) &&(modeP1 ==  Type.A || modeP1 ==  Type.E);
 						break;
-					case Type.O:
+					case O:
 						result = modeP1 == Type.E || modeP1 ==  Type.A;
 						break;
-					case Type.I:
+					case I:
 						result = true ;
 						break;
 					default:
 						throw new UnsupportedOperationException(modec +" : Type not supported");
 				}
 				break;
-			case Figure.TROIS:
+			case TROIS:
 				switch (modec) {
-					case Type.A:
+					case A:
 						result = modeP2 ==  Type.O || modeP2 ==  Type.E ;
 						break;
-					case Type.E:
+					case E:
 						result = (modeP2 ==  Type.O || modeP2 ==  Type.E )&&(modeP1 ==  Type.O || modeP1 ==  Type.E );
 						break;
-					case Type.O:
+					case O:
 						result = modeP1 ==  Type.O || modeP1 ==  Type.E ;
 						break ;
-					case Type.I:
+					case I:
 						result = true ;
 						break;
 					default:
@@ -71,18 +71,18 @@ public class Rlh  extends Rule{
 
 				}
 				break;
-			case Figure.QUATRE:
+			case QUATRE:
 				switch (modec) {
-					case Type.A:
+					case A:
 						result = modeP2 ==  Type.O || modeP2 ==  Type.E ;
 						break;
-					case Type.E:
+					case E:
 						result =(modeP2 ==  Type.O || modeP2 ==  Type.E ) &&(modeP1 ==  Type.A || modeP1 ==  Type.E );
 						break ;
-					case Type.O:
+					case O:
 						result =  modeP1 ==  Type.A || modeP1 ==  Type.E ;
 						break;
-					case Type.I:
+					case I:
 						result = true ;
 						break;
 					default:

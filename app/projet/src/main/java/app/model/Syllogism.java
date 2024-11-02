@@ -36,15 +36,6 @@ public class Syllogism  extends Rule{
 		this.figure = figure;
 		this.proposition = proposition;
 	}
-	public Figure getFigure() {
-		return this.figure;
-	}
-	public void setFigure(Figure figure) {
-		this.figure = figure;
-	}
-	public Map<Integer,Proposition> getProposition() {
-		return this.proposition;
-	}
 	public void setProposition(Map<Integer,Proposition> proposition) {
 		this.proposition = proposition;
 	}

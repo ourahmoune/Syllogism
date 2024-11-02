@@ -13,17 +13,17 @@ public class Rmt  extends Rule{
 		Type modeP2 =syllogism.getProposition().get(2).getType();
 		Boolean result = false;
 		switch(syllogism.getFigure()) {
-			case  Figure.UN:
+			case  UN:
 				// code block
 				result = modeP1 == Type.A || modeP1 == Type.E || modeP2 == Type.E || modeP2==Type.O;
 				break ;
-			case Figure.DEUX:
+			case DEUX:
 				result = modeP1 == Type.O || modeP1 == Type.E|| modeP2 == Type.O || modeP2 == Type.E  ;
 				break;
-			case Figure.TROIS:
+			case TROIS:
 				result= modeP1 == Type.A || modeP1 == Type.E|| modeP2 == Type.A || modeP2 == Type.E ;
 				break;
-			case Figure.QUATRE:
+			case QUATRE:
 				result = modeP1 == Type.O || modeP1 == Type.E || modeP2 == Type.A || modeP2 == Type.E ;
 				break;
 
