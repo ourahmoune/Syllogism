@@ -29,7 +29,7 @@ public class QuantificatorList {
 		quantificators.add(quantificator);
 	}
 
-	// Méthode pour retirer un quantificateur de la liste
+		// Méthode pour retirer un quantificateur de la liste
 	public void removeQuantificator(String word, Quantity quantity) {
 		for (Quantificator quantificator : quantificators) {
 			if (quantificator.getQuantity() == quantity) {
@@ -45,6 +45,16 @@ public class QuantificatorList {
 	// Accesseur pour obtenir la liste des quantificateurs
 	public List<Quantificator> getQuantificators() {
 		return quantificators;
+	}
+
+	// Accesseur pour obtenir la liste des quantificateurs
+	public Quantificator getQuantificator(String word) {
+		for (Quantificator quantificator : quantificators) {
+			if (quantificator.getName().equals(word)) {
+				return quantificator;
+			}
+		}
+		return null;
 	}
 
 }
