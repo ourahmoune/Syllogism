@@ -2,7 +2,7 @@ package app.model;
 
 import java.util.Map;
 
-public class Syllogism  extends Rule{
+public class Syllogism   {
 
 	private Figure figure;
 	private Map<Integer,Proposition> proposition;

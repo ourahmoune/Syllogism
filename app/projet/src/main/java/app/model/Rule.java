@@ -3,9 +3,6 @@ public abstract class Rule {
 
 	private String result;
 
-	public boolean Launch() {
-		// TODO - implement Rule.Launch
-		throw new UnsupportedOperationException();
-	}
+	public abstract Boolean Launch(Syllogism syllogism) ;
 
 }

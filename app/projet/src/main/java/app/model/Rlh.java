@@ -15,80 +15,40 @@ public class Rlh  extends Rule{
 		switch (syllogism.getFigure()) {
 
 			case UN:
-				switch (modec) {
-					case A :
-						result = modeP2 ==  Type.A || modeP2 ==  Type.E ;
-						break;
-					case E:
-						result =( modeP2 ==  Type.A || modeP2 ==  Type.E)&&(modeP1 == Type.E || modeP1 ==Type.O) ;						break;
-					case O:
-						result = modeP1 == Type.E || modeP1 == Type.O;
-						break;
-					case I:
-						result  = true ;
-						break;
-					default:
-						throw new UnsupportedOperationException(modec +" : Type not supported");
-
-				}
+                result = switch (modec) {
+                    case A -> modeP2 == Type.A || modeP2 == Type.E;
+                    case E -> (modeP2 == Type.A || modeP2 == Type.E) && (modeP1 == Type.E || modeP1 == Type.O);
+                    case O -> modeP1 == Type.E || modeP1 == Type.O;
+                    case I -> true;
+                    default -> throw new UnsupportedOperationException(modec + " : Type not supported");
+                };
 				break;
 			case DEUX:
-				switch (modec) {
-					case A :
-						result = modeP2 ==  Type.A || modeP2 ==  Type.E ;
-						break;
-					case E:
-						result =( modeP2 ==  Type.A || modeP2 ==  Type.E) &&(modeP1 ==  Type.A || modeP1 ==  Type.E);
-						break;
-					case O:
-						result = modeP1 == Type.E || modeP1 ==  Type.A;
-						break;
-					case I:
-						result = true ;
-						break;
-					default:
-						throw new UnsupportedOperationException(modec +" : Type not supported");
-				}
+                result = switch (modec) {
+                    case A -> modeP2 == Type.A || modeP2 == Type.E;
+                    case E -> (modeP2 == Type.A || modeP2 == Type.E) && (modeP1 == Type.A || modeP1 == Type.E);
+                    case O -> modeP1 == Type.E || modeP1 == Type.A;
+                    case I -> true;
+                    default -> throw new UnsupportedOperationException(modec + " : Type not supported");
+                };
 				break;
 			case TROIS:
-				switch (modec) {
-					case A:
-						result = modeP2 ==  Type.O || modeP2 ==  Type.E ;
-						break;
-					case E:
-						result = (modeP2 ==  Type.O || modeP2 ==  Type.E )&&(modeP1 ==  Type.O || modeP1 ==  Type.E );
-						break;
-					case O:
-						result = modeP1 ==  Type.O || modeP1 ==  Type.E ;
-						break ;
-					case I:
-						result = true ;
-						break;
-					default:
-						throw new UnsupportedOperationException(modec +" : Type not supported");
-
-
-
-				}
+                result = switch (modec) {
+                    case A -> modeP2 == Type.O || modeP2 == Type.E;
+                    case E -> (modeP2 == Type.O || modeP2 == Type.E) && (modeP1 == Type.O || modeP1 == Type.E);
+                    case O -> modeP1 == Type.O || modeP1 == Type.E;
+                    case I -> true;
+                    default -> throw new UnsupportedOperationException(modec + " : Type not supported");
+                };
 				break;
 			case QUATRE:
-				switch (modec) {
-					case A:
-						result = modeP2 ==  Type.O || modeP2 ==  Type.E ;
-						break;
-					case E:
-						result =(modeP2 ==  Type.O || modeP2 ==  Type.E ) &&(modeP1 ==  Type.A || modeP1 ==  Type.E );
-						break ;
-					case O:
-						result =  modeP1 ==  Type.A || modeP1 ==  Type.E ;
-						break;
-					case I:
-						result = true ;
-						break;
-					default:
-						throw new UnsupportedOperationException(modec +" : Type not supported");
-
-				}
+                result = switch (modec) {
+                    case A -> modeP2 == Type.O || modeP2 == Type.E;
+                    case E -> (modeP2 == Type.O || modeP2 == Type.E) && (modeP1 == Type.A || modeP1 == Type.E);
+                    case O -> modeP1 == Type.A || modeP1 == Type.E;
+                    case I -> true;
+                    default -> throw new UnsupportedOperationException(modec + " : Type not supported");
+                };
 				break;
 			default:
 				throw new UnsupportedOperationException(syllogism.getFigure() +" : Figure not supported");
