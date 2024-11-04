@@ -3,6 +3,7 @@ package app.controller;
 import app.StartApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -10,6 +11,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -110,6 +113,24 @@ public class MenuController {
             contentPane.getChildren().clear();
             contentPane.getChildren().add(paneloaded);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleSettings(){
+        try {
+            // Load the FXML file for the settings pop-up
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("/vue/Settings.fxml"));
+            Pane root = loader.load();
+
+            // Create a new Stage for the pop-up
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // Block interactions with other windows
+            stage.setTitle("Settings");
+            stage.setScene(new Scene(root));
+            stage.showAndWait(); // Display the pop-up and wait for it to close
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
