@@ -17,5 +17,13 @@ public class Rules {
 	public Rules(List<Rule> listRules) {
 		this.listRules = listRules;
 	}
+	public Boolean Launch(Syllogism syllogism) {
+		for (Rule rule : listRules) {
+			if(!rule.Launch(syllogism)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 }

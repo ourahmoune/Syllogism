@@ -11,11 +11,8 @@ public class Raa  extends Rule{
 	 */
 
 	public Boolean Launch(Syllogism syllogism) {
-		if(syllogism.getProposition().get(1).getQuality()==Quality.Affirmative &&syllogism.getProposition().get(2).getQuality()==Quality.Affirmative &&syllogism.getProposition().get(3).getQuality()==Quality.Negative){
-			return false;
-		}
-		return true;
-	}
+        return syllogism.getProposition().get(1).getQuality() != Quality.Affirmative || syllogism.getProposition().get(2).getQuality() != Quality.Affirmative || syllogism.getProposition().get(3).getQuality() != Quality.Negative;
+    }
 
 
 
