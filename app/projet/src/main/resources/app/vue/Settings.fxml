@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+      style="-fx-background-color: #9dff8c;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="app.controller.SettingsController"
+      stylesheets="@settings.css">
+   <children>
+      <Label text="Settings">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Rmt rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: transparent;" onMouseClicked="#toggleSwitch1">
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="47.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Rlh rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch1" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on1" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer1" prefHeight="26.0" prefWidth="55.0" >
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall1" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off1" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Rnn rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch11" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on11" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer11" prefHeight="26.0" prefWidth="55.0" >
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall2" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off11" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Rn rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch111" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on111" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer111" prefHeight="26.0" prefWidth="55.0" >
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall3" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off111" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="319.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Raa rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch1111" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on1111" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer1111" prefHeight="26.0" prefWidth="55.0" >
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall4" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off1111" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="337.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Rpp rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch11111" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on11111" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer11111" prefHeight="26.0" prefWidth="55.0" >
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall5" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off11111" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="350.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Rp rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch111111" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on111111" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer111111" prefHeight="26.0" prefWidth="55.0" >
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall6" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off111111" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="358.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Ruu rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch1111111" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on1111111" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer1111111" prefHeight="26.0" prefWidth="55.0" >
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall7" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off1111111" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="47.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Rii rule" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <VBox prefHeight="61.0" prefWidth="330.0">
+               <children>
+                  <HBox fx:id="toggleSwitch2" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
+                     <children>
+                        <Label fx:id="on2" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <StackPane fx:id="knobContainer2" prefHeight="26.0" prefWidth="55.0" >
+                           <children>
+                              <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
+                              <Circle fx:id="toggleBall8" radius="10" style="-fx-fill: #4AE2E2; -fx-stroke: black; -fx-stroke-width: 2;" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="off2" prefHeight="22.0" prefWidth="48.0" text="  Off" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

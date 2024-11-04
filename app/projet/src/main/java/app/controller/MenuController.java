@@ -121,7 +121,7 @@ public class MenuController {
     private void handleSettings(){
         try {
             // Load the FXML file for the settings pop-up
-            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("/vue/Settings.fxml"));
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("vue/Settings.fxml"));
             Pane root = loader.load();
 
             // Create a new Stage for the pop-up
