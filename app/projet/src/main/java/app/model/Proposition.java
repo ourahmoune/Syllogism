@@ -1,4 +1,13 @@
 package app.model;
+
+/**
+ * The `Proposition` class represents a logical proposition used in syllogistic reasoning.
+ * <p>
+ * Each proposition consists of a quantifier (e.g., "all" or "some"), a subject, a predicate,
+ * a quality (affirmative or negative), and a type (A, E, I, or O).
+ * The type is determined based on the quantifier and quality.
+ * </p>
+ */
 public class Proposition {
 
 	private Quantificator quantificator;
@@ -7,13 +16,15 @@ public class Proposition {
 	private Quality quality;
 	private Type type;
 
-	public Quality getQuality() {
-		return quality;
-	}
-
-public Quantificator getQuantificator() {
-		return quantificator;
-}
+	/**
+	 * Constructs a `Proposition` with the specified quantificator, subject, predicate, and quality.
+	 * The type is determined based on the quantificator and quality.
+	 *
+	 * @param quantificator The quantifier associated with the proposition.
+	 * @param subject The subject of the proposition.
+	 * @param predicat The predicate of the proposition.
+	 * @param quality The quality (affirmative or negative) of the proposition.
+	 */
 	public Proposition(Quantificator quantificator, String subject, String predicat, Quality quality) {
 		this.quantificator = quantificator;
 		this.subject = subject;
@@ -21,38 +32,61 @@ public Quantificator getQuantificator() {
 		this.quality = quality;
 		this.type = calculateType(quantificator, quality);
 	}
+
+	/**
+	 * Constructs a `Proposition` with the specified type.
+	 * Initializes the quality based on the type (negative for `Type.E` or `Type.O`,
+	 * affirmative for `Type.A` or `Type.I`).
+	 *
+	 * @param type The type of the proposition (A, E, I, or O).
+	 */
 	public Proposition(Type type) {
 		this.type = type;
-		if (type == Type.E || type == Type.O){
-			quality = Quality.Negative;
-		}else{
-			quality = Quality.Affirmative;
-		}
+		this.quality = (type == Type.E || type == Type.O) ? Quality.Negative : Quality.Affirmative;
 	}
+
+	/**
+	 * Retrieves the quality of the proposition.
+	 *
+	 * @return The quality (affirmative or negative) of the proposition.
+	 */
+	public Quality getQuality() {
+		return quality;
+	}
+
+	/**
+	 * Retrieves the quantificator of the proposition.
+	 *
+	 * @return The `Quantificator` associated with the proposition.
+	 */
+	public Quantificator getQuantificator() {
+		return quantificator;
+	}
+
+	/**
+	 * Retrieves the type of the proposition.
+	 *
+	 * @return The type of the proposition (A, E, I, or O).
+	 */
 	public Type getType() {
 		return type;
 	}
 
-	private Type calculateType(Quantificator quantificator,  Quality quality) {
-		Type result = null ;
-		switch (quantificator.getQuantity()){
-			case Universal -> {
-				if(quality == Quality.Affirmative) {
-					result = Type.A ;
-				}else{
-					result = Type.E ;
-				}
-			}
-			case Exisential -> {
-				if(quality == Quality.Affirmative) {
-					result = Type.I ;
-				}else{
-					result = Type.O ;
-				}
-			}
-
-		};
-		return result ;
-
+	/**
+	 * Determines the type of the proposition based on its quantificator and quality.
+	 * Universal affirmatives are Type A, universal negatives are Type E, existential affirmatives
+	 * are Type I, and existential negatives are Type O.
+	 *
+	 * @param quantificator The quantifier associated with the proposition.
+	 * @param quality The quality (affirmative or negative) of the proposition.
+	 * @return The calculated type of the proposition.
+	 */
+	private Type calculateType(Quantificator quantificator, Quality quality) {
+		Type result = null;
+		switch (quantificator.getQuantity()) {
+			case Universal -> result = (quality == Quality.Affirmative) ? Type.A : Type.E;
+			case Exisential -> result = (quality == Quality.Affirmative) ? Type.I : Type.O;
+		}
+		return result;
 	}
 }
