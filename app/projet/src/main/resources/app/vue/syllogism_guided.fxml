@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.GuidedController">
+<VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.GuidedController">
    <children>
       <HBox alignment="CENTER" style="-fx-spacing: 10;">
          <children>

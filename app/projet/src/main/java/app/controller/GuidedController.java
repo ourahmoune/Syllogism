@@ -1,6 +1,7 @@
-package app;
+package app.controller;
 
-import app.Model.*;
+import app.StartApplication;
+import app.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -27,7 +28,8 @@ public class GuidedController {
     @FXML
     Button oneplus,oneminus,twoplus,twominus,threeplus,threeminus;
 
-    String q1, q2, q3;
+    //qualité
+    String ql1, ql2, ql3;
 
 
 
@@ -40,7 +42,7 @@ public class GuidedController {
             if (newValue != null) {
                 // Met à jour l'image en fonction de la sélection
                 String imagePath = getImagePathForOption(newValue);
-                image_figure.setImage(new Image(imagePath));
+                image_figure.setImage(new Image(String.valueOf(StartApplication.class.getResource(imagePath))));
             }
         });
 
@@ -63,10 +65,10 @@ public class GuidedController {
 
     public String getImagePathForOption(String option){
         return switch (option) {
-            case "DEUX" -> "Figure2_syllogism.png";
-            case "TROIS" -> "Figure3_syllogism.png";
-            case "QUATRE" -> "Figure4_syllogism.png";
-            default -> "Figure1_syllogism.png";
+            case "DEUX" -> "/app/image/Figure2_syllogism.png";
+            case "TROIS" -> "/app/image/Figure3_syllogism.png";
+            case "QUATRE" -> "/app/image/Figure4_syllogism.png";
+            default -> "/app/image/Figure1_syllogism.png";
         };
     }
 
@@ -96,9 +98,9 @@ public class GuidedController {
         String predicat1 = P1_2.getText();
         String predicat3 = P3_2.getText();
 
-        Proposition p1 = new Proposition(quantificator1, sujet1, predicat1, Quality.valueOf(q1), Type.O);
-        Proposition p2 = new Proposition(quantificator2, sujet2, predicat2, Quality.valueOf(q2), Type.O);
-        Proposition p3 = new Proposition(quantificator3, sujet3, predicat3, Quality.valueOf(q3), Type.O);
+        Proposition p1 = new Proposition(quantificator1, sujet1, predicat1, Quality.valueOf(ql1));
+        Proposition p2 = new Proposition(quantificator2, sujet2, predicat2, Quality.valueOf(ql2));
+        Proposition p3 = new Proposition(quantificator3, sujet3, predicat3, Quality.valueOf(ql3));
 
         Map<Integer, Proposition> map = new HashMap<>();
         map.put(1, p1);
@@ -110,39 +112,39 @@ public class GuidedController {
 
     @FXML
     private void affirmatif1(){
-        q1 = "Affirmative";
+        ql1 = "Affirmative";
         //oneplus.setStyle("SELECTED_STYLE");
         //oneminus.setStyle("DEFAULT_STYLE");
     }
     @FXML
     private void negatif1(){
-        q1 = "Negative";
+        ql1 = "Negative";
         //oneminus.setStyle("SELECTED_STYLE");
         //oneplus.setStyle("DEFAULT_STYLE");
     }
 
     @FXML
     private void affirmatif2(){
-        q2 = "Affirmative";
+        ql2 = "Affirmative";
         //twoplus.setStyle("SELECTED_STYLE");
         //twominus.setStyle("DEFAULT_STYLE");
     }
     @FXML
     private void negatif2(){
-        q2 = "Negative";
+        ql2 = "Negative";
         //twominus.setStyle("SELECTED_STYLE");
         //twoplus.setStyle("DEFAULT_STYLE");
     }
 
     @FXML
     private void affirmatif3(){
-        q3 = "Affirmative";
+        ql3 = "Affirmative";
         //threeplus.setStyle("SELECTED_STYLE");
         //threeminus.setStyle("DEFAULT_STYLE");
     }
     @FXML
     private void negatif3(){
-        q3 = "Negative";
+        ql3 = "Negative";
         //threeminus.setStyle("SELECTED_STYLE");
         //threeplus.setStyle("DEFAULT_STYLE");
     }

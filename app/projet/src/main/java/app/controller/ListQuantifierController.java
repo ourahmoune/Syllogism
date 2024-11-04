@@ -1,8 +1,8 @@
-package app;
+package app.controller;
 
-import app.Model.Quantificator;
-import app.Model.QuantificatorList;
-import app.Model.Quantity;
+import app.model.Quantificator;
+import app.model.QuantificatorList;
+import app.model.Quantity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

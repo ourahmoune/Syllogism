@@ -13,13 +13,13 @@
             <VBox alignment="CENTER_LEFT" minHeight="20.0" minWidth="20.0" prefWidth="79.0">
                <children>
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="%GuidedPage" VBox.vgrow="ALWAYS" fx:id="GuidedPage" styleClass="GuidedPage" />
+                  <Button mnemonicParsing="false" text="%GuidedPage" VBox.vgrow="ALWAYS" fx:id="GuidedPage" styleClass="GuidedPage" onAction="#GuidedInterface"/>
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="%FreePage" VBox.vgrow="ALWAYS" fx:id="FreePage" styleClass="FreePage" />
+                  <Button mnemonicParsing="false" text="%FreePage" VBox.vgrow="ALWAYS" fx:id="FreePage" styleClass="FreePage" onAction="#UnguidedInterface" />
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
                   <Button mnemonicParsing="false" text="%ArrayPage" VBox.vgrow="ALWAYS" fx:id="ArrayPage" styleClass="ArrayPage"/>
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="%ListQuantifiersPage" VBox.vgrow="ALWAYS" fx:id="ListQuantifiersPage" styleClass="ListQuantifiersPage" />
+                  <Button mnemonicParsing="false" text="%ListQuantifiersPage" VBox.vgrow="ALWAYS" fx:id="ListQuantifiersPage" styleClass="ListQuantifiersPage" onAction="#ListInterface"/>
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
@@ -51,7 +51,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <Pane prefHeight="1000.0" prefWidth="1000.0" />
+            <Pane fx:id="contentPane" prefHeight="1000.0" prefWidth="1000.0" />
          </children>
       </VBox>
    </center>
