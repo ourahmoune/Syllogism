@@ -54,6 +54,11 @@ public class ListQuantifierController {
         }
     }
 
+    public void addQuantificator(String word, Quantity quantity) {
+        Quantificator quantificator = new Quantificator(Quantity.Universal, word);
+        QuantificatorList.getInstance().addQuantificator(quantificator);
+    }
+
 
     public void handleAddQuantificatorClickUniversal(ActionEvent actionEvent) {
 
@@ -79,8 +84,7 @@ public class ListQuantifierController {
             hbox.getChildren().add(label);
 
             //test de la size
-            Quantificator quantificator = new Quantificator(Quantity.Universal, word);
-            QuantificatorList.getInstance().addQuantificator(quantificator);
+            addQuantificator(word, Quantity.Universal);
 
             System.out.println("List of all quantificators:");
             for (Quantificator quantificatorr : QuantificatorList.getInstance().getQuantificators()) {
@@ -150,8 +154,7 @@ public class ListQuantifierController {
             hbox.getChildren().add(label);
 
             //test de la size
-            Quantificator quantificator = new Quantificator(Quantity.Exisential, word);
-            QuantificatorList.getInstance().addQuantificator(quantificator);
+            addQuantificator(word, Quantity.Exisential);
 
             // Ajout du HBox dans le VBox principal (ListQuantifier)
             ListExistential.getChildren().add(hbox);
