@@ -43,6 +43,41 @@ public class GuidedController {
                 // Met à jour l'image en fonction de la sélection
                 String imagePath = getImagePathForOption(newValue);
                 image_figure.setImage(new Image(String.valueOf(StartApplication.class.getResource(imagePath))));
+
+                clearBindings();
+
+                switch (newValue) {
+                    case "UN":
+                        P1_2.setDisable(true);
+                        P1_1.setDisable(false);
+                        P1_1.textProperty().bindBidirectional(P2_2.textProperty());
+                        P2_1.textProperty().bindBidirectional(P3_1.textProperty());
+                        P1_2.textProperty().bindBidirectional(P3_2.textProperty());
+                        break;
+                    case "DEUX":
+                        P1_1.setDisable(true);
+                        P1_2.setDisable(false);
+                        P1_2.textProperty().bindBidirectional(P2_2.textProperty());
+                        P1_1.textProperty().bindBidirectional(P3_2.textProperty());
+                        P2_1.textProperty().bindBidirectional(P3_1.textProperty());
+                        break;
+                    case "TROIS":
+                        P1_2.setDisable(true);
+                        P1_1.setDisable(false);
+                        P1_1.textProperty().bindBidirectional(P2_1.textProperty());
+                        P1_2.textProperty().bindBidirectional(P3_2.textProperty());
+                        P2_2.textProperty().bindBidirectional(P3_1.textProperty());
+                        break;
+                    case "QUATRE":
+                        P1_1.setDisable(true);
+                        P1_2.setDisable(false);
+                        P1_1.textProperty().bindBidirectional(P3_2.textProperty());
+                        P1_2.textProperty().bindBidirectional(P2_1.textProperty());
+                        P2_2.textProperty().bindBidirectional(P3_1.textProperty());
+                        break;
+                    default:
+                        break;
+                }
             }
         });
 
@@ -52,15 +87,9 @@ public class GuidedController {
                 Q3.getItems().add(quantificator.getName());
         }
 
-        P1_1.setDisable(true);
-        P1_2.setDisable(true);
+
         P2_1.setDisable(true);
         P2_2.setDisable(true);
-        P3_1.setDisable(true);
-        P3_2.setDisable(true);
-        Q1.setDisable(true);
-        Q2.setDisable(true);
-        Q3.setDisable(true);
     }
 
     public String getImagePathForOption(String option){
@@ -149,103 +178,20 @@ public class GuidedController {
         //threeplus.setStyle("DEFAULT_STYLE");
     }
 
-    @FXML
-    public void fillorder() {
-        if (choix_figure.getSelectionModel().getSelectedItem() != null) {
-            Q1.setDisable(false);
-        } else {
-            P1_1.setDisable(true);
-            P1_2.setDisable(true);
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q1.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        }
-        // Débloque P1_1 seulement si un élément est sélectionné dans Q1
-        if (Q1.getSelectionModel().getSelectedItem() != null) {
-            P1_1.setDisable(false);
-        } else {
-            P1_1.setDisable(true);
-            P1_2.setDisable(true);
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        }
+    // Méthode pour supprimer tous les bindings
+    private void clearBindings() {
 
-        // Débloque P1_2 seulement si P1_1 n'est pas vide
-        if (P1_1.getText() == null || P1_1.getText().isEmpty()) {
-            P1_2.setDisable(true);
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        } else {
-            P1_2.setDisable(false);
-        }
-
-        // Débloque Q2 seulement si P1_2 n'est pas vide
-        if (P1_2.getText() == null || P1_2.getText().isEmpty()) {
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        } else {
-            Q2.setDisable(false);
-        }
-
-        // Débloque P2_1 seulement si un élément est sélectionné dans Q2
-        if (Q2.getSelectionModel().getSelectedItem() != null) {
-            P2_1.setDisable(false);
-        } else {
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q3.setDisable(true);
-        }
-
-        // Débloque P2_2 seulement si P2_1 n'est pas vide
-        if (P2_1.getText() == null || P2_1.getText().isEmpty()) {
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q3.setDisable(true);
-        } else {
-            P2_2.setDisable(false);
-        }
-
-        // Débloque Q3 seulement si P2_2 n'est pas vide
-        if (P2_2.getText() == null || P2_2.getText().isEmpty()) {
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q3.setDisable(true);
-        } else {
-            Q3.setDisable(false);
-        }
-
-        // Débloque P3_1 seulement si un élément est sélectionné dans Q3
-        if (Q3.getSelectionModel().getSelectedItem() != null) {
-            P3_1.setDisable(false);
-        } else {
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-        }
-
-        // Débloque P3_2 seulement si P3_1 n'est pas vide
-        if (P3_1.getText() == null || P3_1.getText().isEmpty()) {
-            P3_2.setDisable(true);
-        } else {
-            P3_2.setDisable(false);
-        }
+                P1_1.textProperty().unbindBidirectional(P2_2.textProperty());
+                P2_1.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_2.textProperty().unbindBidirectional(P3_2.textProperty());
+                P1_2.textProperty().unbindBidirectional(P2_2.textProperty());
+                P1_1.textProperty().unbindBidirectional(P3_2.textProperty());
+                P2_1.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_1.textProperty().unbindBidirectional(P2_1.textProperty());
+                P1_2.textProperty().unbindBidirectional(P3_2.textProperty());
+                P2_2.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_1.textProperty().unbindBidirectional(P3_2.textProperty());
+                P1_2.textProperty().unbindBidirectional(P2_1.textProperty());
+                P2_2.textProperty().unbindBidirectional(P3_1.textProperty());
     }
 }
