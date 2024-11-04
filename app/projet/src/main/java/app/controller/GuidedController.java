@@ -47,6 +47,41 @@ public class GuidedController {
                 // Update the image based on the selected figure
                 String imagePath = getImagePathForOption(newValue);
                 image_figure.setImage(new Image(String.valueOf(StartApplication.class.getResource(imagePath))));
+
+                clearBindings();
+
+                switch (newValue) {
+                    case "UN":
+                        P1_2.setDisable(true);
+                        P1_1.setDisable(false);
+                        P1_1.textProperty().bindBidirectional(P2_2.textProperty());
+                        P2_1.textProperty().bindBidirectional(P3_1.textProperty());
+                        P1_2.textProperty().bindBidirectional(P3_2.textProperty());
+                        break;
+                    case "DEUX":
+                        P1_1.setDisable(true);
+                        P1_2.setDisable(false);
+                        P1_2.textProperty().bindBidirectional(P2_2.textProperty());
+                        P1_1.textProperty().bindBidirectional(P3_2.textProperty());
+                        P2_1.textProperty().bindBidirectional(P3_1.textProperty());
+                        break;
+                    case "TROIS":
+                        P1_2.setDisable(true);
+                        P1_1.setDisable(false);
+                        P1_1.textProperty().bindBidirectional(P2_1.textProperty());
+                        P1_2.textProperty().bindBidirectional(P3_2.textProperty());
+                        P2_2.textProperty().bindBidirectional(P3_1.textProperty());
+                        break;
+                    case "QUATRE":
+                        P1_1.setDisable(true);
+                        P1_2.setDisable(false);
+                        P1_1.textProperty().bindBidirectional(P3_2.textProperty());
+                        P1_2.textProperty().bindBidirectional(P2_1.textProperty());
+                        P2_2.textProperty().bindBidirectional(P3_1.textProperty());
+                        break;
+                    default:
+                        break;
+                }
             }
         });
 
@@ -57,8 +92,9 @@ public class GuidedController {
             Q3.getItems().add(quantificator.getName());
         }
 
-        // Disable input fields initially
-        disableInputs(true);
+        P2_1.setDisable(true);
+        P2_2.setDisable(true);
+
     }
 
     /**
@@ -137,47 +173,22 @@ public class GuidedController {
     @FXML
     private void negatif3() { ql3 = "Negative"; }
 
-    /**
-     * Enables or disables the input fields based on the current selection.
-     */
-    @FXML
-    public void fillorder() {
-        if (choix_figure.getSelectionModel().getSelectedItem() != null) {
-            Q1.setDisable(false);
-        } else {
-            disableInputs(true);
-        }
 
-        // Enable/disable fields based on current selections
-        updateInputFields();
-    }
+    // Méthode pour supprimer tous les bindings
+    private void clearBindings() {
 
-    /**
-     * Disables all input fields.
-     *
-     * @param disable True to disable inputs, false to enable.
-     */
-    private void disableInputs(boolean disable) {
-        P1_1.setDisable(disable);
-        P1_2.setDisable(disable);
-        P2_1.setDisable(disable);
-        P2_2.setDisable(disable);
-        P3_1.setDisable(disable);
-        P3_2.setDisable(disable);
-        Q1.setDisable(disable);
-        Q2.setDisable(disable);
-        Q3.setDisable(disable);
-    }
+                P1_1.textProperty().unbindBidirectional(P2_2.textProperty());
+                P2_1.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_2.textProperty().unbindBidirectional(P3_2.textProperty());
+                P1_2.textProperty().unbindBidirectional(P2_2.textProperty());
+                P1_1.textProperty().unbindBidirectional(P3_2.textProperty());
+                P2_1.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_1.textProperty().unbindBidirectional(P2_1.textProperty());
+                P1_2.textProperty().unbindBidirectional(P3_2.textProperty());
+                P2_2.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_1.textProperty().unbindBidirectional(P3_2.textProperty());
+                P1_2.textProperty().unbindBidirectional(P2_1.textProperty());
+                P2_2.textProperty().unbindBidirectional(P3_1.textProperty());
 
-    /**
-     * Updates input fields based on user selections.
-     */
-    private void updateInputFields() {
-        // Logic to enable or disable fields based on current selections
-        // The previous implementation of enabling/disabling can be optimized or refactored here
-        // Example:
-        // Enable P1_1 if Q1 has a selected item
-        // Enable P1_2 if P1_1 is not empty, etc.
-        // Implement as necessary
     }
 }
