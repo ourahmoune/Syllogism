@@ -1,4 +1,4 @@
-package app.Model;
+package app.model;
 
 import java.util.Map;
 
@@ -32,14 +32,20 @@ public class Syllogism  extends Rule{
 		throw new UnsupportedOperationException();
 	}
 
-	public Syllogism() {
-		// TODO - implement Syllogism.Syllogism
-		throw new UnsupportedOperationException();
-	}
 	public Syllogism(Figure figure, Map<Integer,Proposition> proposition) {
 		this.figure = figure;
 		this.proposition = proposition;
-
 	}
-
+	public Figure getFigure() {
+		return this.figure;
+	}
+	public void setFigure(Figure figure) {
+		this.figure = figure;
+	}
+	public Map<Integer,Proposition> getProposition() {
+		return this.proposition;
+	}
+	public void setProposition(Map<Integer,Proposition> proposition) {
+		this.proposition = proposition;
+	}
 }

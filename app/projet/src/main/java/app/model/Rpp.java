@@ -1,18 +1,19 @@
-package app.Model;
-public class RuleInteresting  extends Rule {
+package app.model;
+public class Rpp  extends Rule{
 
 	private String Result;
 
 	/**
-	 * 
+	 *
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {
-		return false;
+		// TODO - implement Rlh.Launch
+		throw new UnsupportedOperationException();
 	}
 
 	public void operation() {
-		// TODO - implement RuleInteresting.operation
+		// TODO - implement Rlh.operation
 		throw new UnsupportedOperationException();
 	}
 
