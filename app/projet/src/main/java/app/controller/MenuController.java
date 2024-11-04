@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
@@ -35,10 +36,12 @@ public class MenuController {
     public Circle HelpPageCircle;
     @FXML
     public Text HelpButton;
+    @FXML
+    Pane contentPane;
 
     @FXML
     public void initialize(){
-        //ParamPage.setStyle("-fx-background-color: blue");
+        //GuidedInterface();
     }
     @FXML
     public void changeLanguage() throws IOException {
@@ -82,5 +85,32 @@ public class MenuController {
         scene.heightProperty().addListener((obs, oldVal, newVal) -> {
             resizeButtons();;
         });
+    }
+
+    @FXML
+    private void GuidedInterface(){
+        loadInterface("vue/syllogism_guided.fxml");
+    }
+
+    @FXML
+    private void UnguidedInterface(){ loadInterface("vue/syllogism_unguided.fxml");}
+
+    @FXML
+    private void ListInterface(){ loadInterface("vue/interface_list.fxml");}
+
+    public void loadInterface(String fxmlPath){
+        try {
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath));
+            Pane paneloaded = loader.load();
+            paneloaded.setStyle("-fx-border-color: black; -fx-border-width: 3;");
+            contentPane.setStyle("-fx-border-color: yellow; -fx-border-width: 3;");
+            paneloaded.prefWidthProperty().bind(contentPane.widthProperty());
+            paneloaded.prefHeightProperty().bind(contentPane.heightProperty());
+            // Remplacer le contenu de contentPane par le nouveau contenu charge
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(paneloaded);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

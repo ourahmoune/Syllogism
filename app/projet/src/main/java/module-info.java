@@ -1,6 +1,6 @@
 module projet.projet {
-    requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.controls;
     requires junit;
     requires org.apache.poi.ooxml;
     requires java.desktop;
@@ -9,4 +9,5 @@ module projet.projet {
     opens app.controller to javafx.fxml;
     exports test to junit;
     exports app;
+    exports app.controller;
 }

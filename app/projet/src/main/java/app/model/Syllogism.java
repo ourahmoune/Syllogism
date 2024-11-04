@@ -39,5 +39,4 @@ public class Syllogism   {
 	public void setProposition(Map<Integer,Proposition> proposition) {
 		this.proposition = proposition;
 	}
-
 }

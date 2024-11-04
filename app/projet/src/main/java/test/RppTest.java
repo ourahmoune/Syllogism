@@ -17,9 +17,9 @@ public class RppTest {
         Quantificator q2 = new Quantificator(Quantity.Exisential, "Certains");
 
         // Création des propositions
-        Proposition prop1 = new Proposition(q1, "homme", "mortel", Quality.Negative, Type.A);
-        Proposition prop2 = new Proposition(q2, "philosophes", "homme", Quality.Negative, Type.A);
-        Proposition prop3 = new Proposition(q1, "philosophes", "mortels", Quality.Affirmative, Type.A);
+        Proposition prop1 = new Proposition(q1, "homme", "mortel", Quality.Negative);
+        Proposition prop2 = new Proposition(q2, "philosophes", "homme", Quality.Negative);
+        Proposition prop3 = new Proposition(q1, "philosophes", "mortels", Quality.Affirmative);
 
         // Ajout des propositions dans une map
         Map<Integer, Proposition> propositions = new HashMap<>();
@@ -38,9 +38,9 @@ public class RppTest {
         Quantificator q2 = new Quantificator(Quantity.Exisential, "Certains");
 
         // Création des propositions
-        Proposition prop1 = new Proposition(q1, "hommes", "mortels", Quality.Affirmative, Type.A);
-        Proposition prop2 = new Proposition(q2, "philosophes", "hommes", Quality.Affirmative, Type.A);
-        Proposition prop3 = new Proposition(q1, "philosophes", "mortels", Quality.Negative, Type.A);
+        Proposition prop1 = new Proposition(q1, "hommes", "mortels", Quality.Affirmative);
+        Proposition prop2 = new Proposition(q2, "philosophes", "hommes", Quality.Affirmative);
+        Proposition prop3 = new Proposition(q1, "philosophes", "mortels", Quality.Negative);
 
         // Ajout des propositions dans une map
         Map<Integer, Proposition> propositions = new HashMap<>();

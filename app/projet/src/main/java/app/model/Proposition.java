@@ -14,12 +14,12 @@ public class Proposition {
 public Quantificator getQuantificator() {
 		return quantificator;
 }
-	public Proposition(Quantificator quantificator, String subject, String predicat, Quality quality, Type type) {
+	public Proposition(Quantificator quantificator, String subject, String predicat, Quality quality) {
 		this.quantificator = quantificator;
 		this.subject = subject;
 		this.predicat = predicat;
 		this.quality = quality;
-		this.type = type;
+		this.type = calculateType(quantificator, quality);
 	}
 	public Proposition(Type type) {
 		this.type = type;
@@ -33,4 +33,26 @@ public Quantificator getQuantificator() {
 		return type;
 	}
 
+	private Type calculateType(Quantificator quantificator,  Quality quality) {
+		Type result = null ;
+		switch (quantificator.getQuantity()){
+			case Universal -> {
+				if(quality == Quality.Affirmative) {
+					result = Type.A ;
+				}else{
+					result = Type.E ;
+				}
+			}
+			case Exisential -> {
+				if(quality == Quality.Affirmative) {
+					result = Type.I ;
+				}else{
+					result = Type.O ;
+				}
+			}
+
+		};
+		return result ;
+
+	}
 }
