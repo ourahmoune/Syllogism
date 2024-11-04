@@ -8,13 +8,11 @@ public class Rpp  extends Rule{
 	 * @param syllogism
 	 */
 	public Boolean Launch(Syllogism syllogism) {
-		// TODO - implement Rlh.Launch
-		throw new UnsupportedOperationException();
+		//=SI(ET(OU(A2="I"; A2="O"); OU(B2="I"; B2="O")); FAUX; VRAI)
+		Type modeP1 =syllogism.getProposition().get(1).getType();
+		Type modeP2 =syllogism.getProposition().get(2).getType();
+        return (modeP1 != Type.I && modeP1 != Type.O) || (modeP2 != Type.I && modeP2 != Type.O);
 	}
 
-	public void operation() {
-		// TODO - implement Rlh.operation
-		throw new UnsupportedOperationException();
-	}
 
 }

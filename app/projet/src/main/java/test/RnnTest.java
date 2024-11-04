@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class RaaTest {
+public class RnnTest {
     @Test
     public void testTrue(){
         //Création des quantificateurs
@@ -17,8 +17,8 @@ public class RaaTest {
         Quantificator q2 = new Quantificator(Quantity.Exisential, "Certains");
 
         // Création des propositions
-        Proposition prop1 = new Proposition(q1, "hommes", "mortels", Quality.Affirmative, Type.A);
-        Proposition prop2 = new Proposition(q2, "philosophes", "hommes", Quality.Affirmative, Type.A);
+        Proposition prop1 = new Proposition(q1, "hommes", "mortels", Quality.Negative, Type.A);
+        Proposition prop2 = new Proposition(q2, "philosophes", "hommes", Quality.Negative, Type.A);
         Proposition prop3 = new Proposition(q1, "philosophes", "mortels", Quality.Affirmative, Type.A);
 
         // Ajout des propositions dans une map
@@ -28,8 +28,8 @@ public class RaaTest {
         propositions.put(3, prop3);
 
         Syllogism syllogism = new Syllogism(Figure.UN, propositions);
-        Raa rule= new Raa();
-        assertTrue(rule.Launch(syllogism));
+        Rnn rule= new Rnn();
+        assertFalse(rule.Launch(syllogism));
     }
     @Test
     public void testFalse(){
@@ -49,8 +49,8 @@ public class RaaTest {
         propositions.put(3, prop3);
 
         Syllogism syllogism = new Syllogism(Figure.UN, propositions);
-        Raa rule= new Raa();
-        assertFalse(rule.Launch(syllogism));
+        Rnn rule= new Rnn();
+        assertTrue(rule.Launch(syllogism));
     }
 
 }

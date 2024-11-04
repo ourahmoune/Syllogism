@@ -14,81 +14,41 @@ public class Rlh  extends Rule{
 		Type modec = syllogism.getProposition().get(3).getType();
 		switch (syllogism.getFigure()) {
 
-			case Figure.UN:
-				switch (modec) {
-					case Type.A :
-						result = modeP2 ==  Type.A || modeP2 ==  Type.E ;
-						break;
-					case Type.E:
-						result =( modeP2 ==  Type.A || modeP2 ==  Type.E)&&(modeP1 == Type.E || modeP1 ==Type.O) ;						break;
-					case Type.O:
-						result = modeP1 == Type.E || modeP1 == Type.O;
-						break;
-					case Type.I:
-						result  = true ;
-						break;
-					default:
-						throw new UnsupportedOperationException(modec +" : Type not supported");
-
-				}
+			case UN:
+                result = switch (modec) {
+                    case A -> modeP2 == Type.A || modeP2 == Type.E;
+                    case E -> (modeP2 == Type.A || modeP2 == Type.E) && (modeP1 == Type.E || modeP1 == Type.O);
+                    case O -> modeP1 == Type.E || modeP1 == Type.O;
+                    case I -> true;
+                    default -> throw new UnsupportedOperationException(modec + " : Type not supported");
+                };
 				break;
-			case Figure.DEUX:
-				switch (modec) {
-					case Type.A :
-						result = modeP2 ==  Type.A || modeP2 ==  Type.E ;
-						break;
-					case Type.E:
-						result =( modeP2 ==  Type.A || modeP2 ==  Type.E) &&(modeP1 ==  Type.A || modeP1 ==  Type.E);
-						break;
-					case Type.O:
-						result = modeP1 == Type.E || modeP1 ==  Type.A;
-						break;
-					case Type.I:
-						result = true ;
-						break;
-					default:
-						throw new UnsupportedOperationException(modec +" : Type not supported");
-				}
+			case DEUX:
+                result = switch (modec) {
+                    case A -> modeP2 == Type.A || modeP2 == Type.E;
+                    case E -> (modeP2 == Type.A || modeP2 == Type.E) && (modeP1 == Type.A || modeP1 == Type.E);
+                    case O -> modeP1 == Type.E || modeP1 == Type.A;
+                    case I -> true;
+                    default -> throw new UnsupportedOperationException(modec + " : Type not supported");
+                };
 				break;
-			case Figure.TROIS:
-				switch (modec) {
-					case Type.A:
-						result = modeP2 ==  Type.O || modeP2 ==  Type.E ;
-						break;
-					case Type.E:
-						result = (modeP2 ==  Type.O || modeP2 ==  Type.E )&&(modeP1 ==  Type.O || modeP1 ==  Type.E );
-						break;
-					case Type.O:
-						result = modeP1 ==  Type.O || modeP1 ==  Type.E ;
-						break ;
-					case Type.I:
-						result = true ;
-						break;
-					default:
-						throw new UnsupportedOperationException(modec +" : Type not supported");
-
-
-
-				}
+			case TROIS:
+                result = switch (modec) {
+                    case A -> modeP2 == Type.O || modeP2 == Type.E;
+                    case E -> (modeP2 == Type.O || modeP2 == Type.E) && (modeP1 == Type.O || modeP1 == Type.E);
+                    case O -> modeP1 == Type.O || modeP1 == Type.E;
+                    case I -> true;
+                    default -> throw new UnsupportedOperationException(modec + " : Type not supported");
+                };
 				break;
-			case Figure.QUATRE:
-				switch (modec) {
-					case Type.A:
-						result = modeP2 ==  Type.O || modeP2 ==  Type.E ;
-						break;
-					case Type.E:
-						result =(modeP2 ==  Type.O || modeP2 ==  Type.E ) &&(modeP1 ==  Type.A || modeP1 ==  Type.E );
-						break ;
-					case Type.O:
-						result =  modeP1 ==  Type.A || modeP1 ==  Type.E ;
-						break;
-					case Type.I:
-						result = true ;
-						break;
-					default:
-						throw new UnsupportedOperationException(modec +" : Type not supported");
-
-				}
+			case QUATRE:
+                result = switch (modec) {
+                    case A -> modeP2 == Type.O || modeP2 == Type.E;
+                    case E -> (modeP2 == Type.O || modeP2 == Type.E) && (modeP1 == Type.A || modeP1 == Type.E);
+                    case O -> modeP1 == Type.A || modeP1 == Type.E;
+                    case I -> true;
+                    default -> throw new UnsupportedOperationException(modec + " : Type not supported");
+                };
 				break;
 			default:
 				throw new UnsupportedOperationException(syllogism.getFigure() +" : Figure not supported");

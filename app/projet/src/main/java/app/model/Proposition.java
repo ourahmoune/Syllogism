@@ -7,11 +7,18 @@ public class Proposition {
 	private Quality quality;
 	private Type type;
 
-	public Proposition(Quantificator quantificator, String subject, String predicat, Type type) {
-		// TODO - implement Proposition.Proposition
+	public Quality getQuality() {
+		return quality;
+	}
+
+public Quantificator getQuantificator() {
+		return quantificator;
+}
+	public Proposition(Quantificator quantificator, String subject, String predicat, Quality quality, Type type) {
 		this.quantificator = quantificator;
 		this.subject = subject;
 		this.predicat = predicat;
+		this.quality = quality;
 		this.type = type;
 	}
 	public Proposition(Type type) {
@@ -22,11 +29,8 @@ public class Proposition {
 			quality = Quality.Affirmative;
 		}
 	}
-
-	public Quality getQuality() {
-		return quality;
-	}
 	public Type getType() {
 		return type;
 	}
+
 }

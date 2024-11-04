@@ -1,8 +1,8 @@
-package app.Model.AllSyllogism;
-import app.Model.Figure;
-import app.Model.Proposition;
-import app.Model.Syllogism;
-import app.Model.Type;
+package app.model.allSyllogism;
+import app.model.Figure;
+import app.model.Proposition;
+import app.model.Syllogism;
+import app.model.Type;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

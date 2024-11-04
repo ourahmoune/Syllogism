@@ -1,11 +1,10 @@
 package test;
 
 
-import app.Model.Rlh;
-import app.Model.Rmt;
+import app.model.*;
 import org.junit.Test;
-import app.Model.AllSyllogism.Data;
-import app.Model.AllSyllogism.SyllogismAndRules;
+import app.model.allSyllogism.Data;
+import app.model.allSyllogism.SyllogismAndRules;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -25,8 +24,23 @@ public class SyllogismTest {
             if(syl.getSyllogism()!= null){
                 Rmt rmt = new Rmt();
                 Rlh rlh = new Rlh();
+                Raa raa = new Raa();
+                Rpp rpp = new Rpp();
+                Rp rp = new Rp();
+                Rnn rnn = new Rnn();
+                Rn rn = new Rn();
+                Ruu ruu = new Ruu();
+                Rii rii = new Rii();
                 assertEquals(rmt.Launch(syl.getSyllogism()) , syl.getRules(0));
                 assertEquals(rlh.Launch(syl.getSyllogism()) , syl.getRules(1));
+                assertEquals(rnn.Launch(syl.getSyllogism()) , syl.getRules(2));
+                assertEquals(rn.Launch(syl.getSyllogism())  , syl.getRules(3));
+                assertEquals(raa.Launch(syl.getSyllogism()) , syl.getRules(4));
+                assertEquals(rpp.Launch(syl.getSyllogism()) , syl.getRules(5));
+                assertEquals(rp.Launch(syl.getSyllogism())  , syl.getRules(6));
+                assertEquals(ruu.Launch(syl.getSyllogism()) , syl.getRules(8));
+                assertEquals(rii.Launch(syl.getSyllogism()) , syl.getRules(10));
+
             }
 
         }
