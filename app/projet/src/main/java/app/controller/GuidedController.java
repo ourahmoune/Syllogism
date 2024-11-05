@@ -12,35 +12,39 @@ import javafx.scene.image.ImageView;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * The GuidedController class manages the interactions between the user interface
+ * and the underlying logic of the syllogism application. It handles user input,
+ * validates syllogism data, and updates the UI accordingly.
+ */
 public class GuidedController {
     @FXML
-    ImageView image_figure;
+    private ImageView image_figure;
 
     @FXML
-    ComboBox<String> Q1,Q2,Q3;
+    private ComboBox<String> Q1, Q2, Q3;
     @FXML
-    ComboBox<String> choix_figure;
-
-    @FXML
-    TextField P1_1,P1_2,P2_1,P2_2,P3_1,P3_2;
+    private ComboBox<String> choix_figure;
 
     @FXML
-    Button oneplus,oneminus,twoplus,twominus,threeplus,threeminus;
+    private TextField P1_1, P1_2, P2_1, P2_2, P3_1, P3_2;
 
-    //qualité
-    String ql1, ql2, ql3;
+    @FXML
+    private Button oneplus, oneminus, twoplus, twominus, threeplus, threeminus;
 
+    // Qualities of the propositions
+    private String ql1, ql2, ql3;
 
-
-
-    public void initialize(){
+    /**
+     * Initializes the controller by setting up the UI elements.
+     */
+    public void initialize() {
         choix_figure.getItems().addAll("UN", "DEUX", "TROIS", "QUATRE");
 
-        // Listener pour détecter les changements de sélection dans le ComboBox
+        // Listener for the figure selection
         choix_figure.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
-                // Met à jour l'image en fonction de la sélection
+                // Update the image based on the selected figure
                 String imagePath = getImagePathForOption(newValue);
                 image_figure.setImage(new Image(String.valueOf(StartApplication.class.getResource(imagePath))));
 
@@ -81,10 +85,11 @@ public class GuidedController {
             }
         });
 
+        // Populate quantificator options
         for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
-                Q1.getItems().add(quantificator.getName());
-                Q2.getItems().add(quantificator.getName());
-                Q3.getItems().add(quantificator.getName());
+            Q1.getItems().add(quantificator.getName());
+            Q2.getItems().add(quantificator.getName());
+            Q3.getItems().add(quantificator.getName());
         }
 
 
@@ -92,9 +97,16 @@ public class GuidedController {
         P1_2.setDisable(true);
         P2_1.setDisable(true);
         P2_2.setDisable(true);
+
     }
 
-    public String getImagePathForOption(String option){
+    /**
+     * Returns the image path corresponding to the selected figure.
+     *
+     * @param option The selected figure option.
+     * @return The path of the corresponding image.
+     */
+    private String getImagePathForOption(String option) {
         return switch (option) {
             case "DEUX" -> "/app/image/Figure2_syllogism.png";
             case "TROIS" -> "/app/image/Figure3_syllogism.png";
@@ -103,8 +115,11 @@ public class GuidedController {
         };
     }
 
+    /**
+     * Clears the text fields.
+     */
     @FXML
-    private void clear(){
+    private void clear() {
         P1_1.setText("");
         P1_2.setText("");
         P2_1.setText("");
@@ -113,8 +128,11 @@ public class GuidedController {
         P3_2.setText("");
     }
 
+    /**
+     * Validates and constructs the syllogism based on user input.
+     */
     @FXML
-    private void validate(){
+    private void validate() {
         Figure figure = Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
 
         Quantificator quantificator1 = QuantificatorList.getInstance().getQuantificator(Q1.getSelectionModel().getSelectedItem());
@@ -125,8 +143,8 @@ public class GuidedController {
         String sujet2 = P2_1.getText();
         String sujet3 = P3_1.getText();
 
-        String predicat2 = P2_2.getText();
         String predicat1 = P1_2.getText();
+        String predicat2 = P2_2.getText();
         String predicat3 = P3_2.getText();
 
         Proposition p1 = new Proposition(quantificator1, sujet1, predicat1, Quality.valueOf(ql1));
@@ -139,46 +157,26 @@ public class GuidedController {
         map.put(3, p3);
 
         Syllogism s = new Syllogism(figure, map);
+        // Additional processing of the syllogism can be done here
     }
 
+    // Methods to set the quality for the propositions
     @FXML
-    private void affirmatif1(){
-        ql1 = "Affirmative";
-        //oneplus.setStyle("SELECTED_STYLE");
-        //oneminus.setStyle("DEFAULT_STYLE");
-    }
+    private void affirmatif1() { ql1 = "Affirmative"; }
     @FXML
-    private void negatif1(){
-        ql1 = "Negative";
-        //oneminus.setStyle("SELECTED_STYLE");
-        //oneplus.setStyle("DEFAULT_STYLE");
-    }
+    private void negatif1() { ql1 = "Negative"; }
 
     @FXML
-    private void affirmatif2(){
-        ql2 = "Affirmative";
-        //twoplus.setStyle("SELECTED_STYLE");
-        //twominus.setStyle("DEFAULT_STYLE");
-    }
+    private void affirmatif2() { ql2 = "Affirmative"; }
     @FXML
-    private void negatif2(){
-        ql2 = "Negative";
-        //twominus.setStyle("SELECTED_STYLE");
-        //twoplus.setStyle("DEFAULT_STYLE");
-    }
+    private void negatif2() { ql2 = "Negative"; }
 
     @FXML
-    private void affirmatif3(){
-        ql3 = "Affirmative";
-        //threeplus.setStyle("SELECTED_STYLE");
-        //threeminus.setStyle("DEFAULT_STYLE");
-    }
+    private void affirmatif3() { ql3 = "Affirmative"; }
     @FXML
-    private void negatif3(){
-        ql3 = "Negative";
-        //threeminus.setStyle("SELECTED_STYLE");
-        //threeplus.setStyle("DEFAULT_STYLE");
-    }
+    private void negatif3() { ql3 = "Negative"; }
+
+
 
     // Méthode pour supprimer tous les bindings
     private void clearBindings() {
@@ -195,5 +193,6 @@ public class GuidedController {
                 P1_1.textProperty().unbindBidirectional(P3_2.textProperty());
                 P1_2.textProperty().unbindBidirectional(P2_1.textProperty());
                 P2_2.textProperty().unbindBidirectional(P3_1.textProperty());
+
     }
 }
