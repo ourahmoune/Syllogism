@@ -24,8 +24,8 @@
       </HBox>
       <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox onAction="#fillorder" fx:id="Q1" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
-            <TextField onKeyTyped="#fillorder" fx:id="P1_1"  maxWidth="1.7976931348623157E308" promptText="%birds" HBox.hgrow="ALWAYS">
+            <ComboBox fx:id="Q1" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="P1_1"  maxWidth="1.7976931348623157E308" promptText="%birds" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
@@ -35,7 +35,7 @@
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <TextField onKeyTyped="#fillorder" fx:id="P1_2"  maxWidth="1.7976931348623157E308" promptText="%wings" HBox.hgrow="ALWAYS">
+            <TextField fx:id="P1_2"  maxWidth="1.7976931348623157E308" promptText="%wings" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
@@ -49,7 +49,7 @@
             <ComboBox fx:id="Q2" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
             <TextField fx:id="P2_1"  promptText="%animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
             <TextField fx:id="V2" promptText="%are" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <TextField onKeyTyped="#fillorder" fx:id="P2_2"  promptText="%birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="P2_2"  promptText="%birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
             <Button fx:id="twoplus" onAction="#affirmatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
             <Button fx:id="twominus" onAction="#negatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0"  HBox.hgrow="ALWAYS" styleClass="quality"/>
          </children>
@@ -61,10 +61,10 @@
       </Label>
       <HBox alignment="CENTER" style="-fx-spacing: 10;">
          <children>
-            <ComboBox onAction="#fillorder" fx:id="Q3" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS" />
-            <TextField onKeyTyped="#fillorder" fx:id="P3_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
-            <TextField onAction="#fillorder" fx:id="V3" promptText="%have" HBox.hgrow="ALWAYS" />
-            <TextField onKeyTyped="#fillorder" fx:id="P3_2"  maxWidth="1.7976931348623157E308" promptText="%wings" HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="Q3" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="P3_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="V3" promptText="%have" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="P3_2"  maxWidth="1.7976931348623157E308" promptText="%wings" HBox.hgrow="ALWAYS" />
             <Button fx:id="threeplus" onAction="#affirmatif3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
             <Button fx:id="threeminus" onAction="#negatif3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" HBox.hgrow="ALWAYS" styleClass="quality"/>
          </children>
