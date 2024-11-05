@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -164,7 +165,6 @@ public class GuidedController {
     private void validate(){
         try {
             Figure figure = Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
-
             Quantificator quantificator1 = QuantificatorList.getInstance().getQuantificator(Q1.getSelectionModel().getSelectedItem());
             Quantificator quantificator2 = QuantificatorList.getInstance().getQuantificator(Q2.getSelectionModel().getSelectedItem());
             Quantificator quantificator3 = QuantificatorList.getInstance().getQuantificator(Q3.getSelectionModel().getSelectedItem());
@@ -185,8 +185,26 @@ public class GuidedController {
             map.put(1, p1);
             map.put(2, p2);
             map.put(3, p3);
-
             Syllogism s = new Syllogism(figure, map);
+            Rmt rmt = new Rmt();
+            Rlh rlh = new Rlh();
+            Raa raa = new Raa();
+            Rpp rpp = new Rpp();
+            Rp rp = new Rp();
+            Rnn rnn = new Rnn();
+            Rn rn = new Rn();
+
+            List<Rule> ruleList = new ArrayList<>();
+            ruleList.add(rmt);
+            ruleList.add(rlh);
+            ruleList.add(raa);
+            ruleList.add(rpp);
+            ruleList.add(rp);
+            ruleList.add(rn);
+            ruleList.add(rnn);
+            Rules rules = new Rules(ruleList);
+            s.setRules(rules);
+            s.solve();
         } catch (Exception e) {
             validate.setStyle("-fx-background-color: red");
         }
@@ -194,19 +212,43 @@ public class GuidedController {
 
     // Methods to set the quality for the propositions
     @FXML
-    private void affirmatif1() { ql1 = "Affirmative"; }
+    private void affirmatif1() {
+        ql1 = "Affirmative";
+        oneplus.setStyle("-fx-background-color: #37ff00");
+        oneminus.setStyle(null);
+    }
     @FXML
-    private void negatif1() { ql1 = "Negative"; }
+    private void negatif1() {
+        ql1 = "Negative";
+        oneplus.setStyle(null);
+        oneminus.setStyle("-fx-background-color: #37ff00");
+    }
 
     @FXML
-    private void affirmatif2() { ql2 = "Affirmative"; }
+    private void affirmatif2() {
+        ql2 = "Affirmative";
+        twoplus.setStyle("-fx-background-color: #37ff00");
+        twominus.setStyle(null);
+    }
     @FXML
-    private void negatif2() { ql2 = "Negative"; }
+    private void negatif2() {
+        ql2 = "Negative";
+        twoplus.setStyle(null);
+        twominus.setStyle("-fx-background-color: #37ff00");
+    }
 
     @FXML
-    private void affirmatif3() { ql3 = "Affirmative"; }
+    private void affirmatif3() {
+        ql3 = "Affirmative";
+        threeplus.setStyle("-fx-background-color: #37ff00");
+        threeminus.setStyle(null);
+    }
     @FXML
-    private void negatif3() { ql3 = "Negative"; }
+    private void negatif3() {
+        ql3 = "Negative";
+        threeplus.setStyle(null);
+        threeminus.setStyle("-fx-background-color: #37ff00");
+    }
 
     @FXML
     public void fillorder() {
