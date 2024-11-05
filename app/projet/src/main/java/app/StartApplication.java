@@ -29,9 +29,7 @@ public class StartApplication extends Application {
         StartApplication.stage.setScene(scene);
         StartApplication.stage.show();
 
-
     }
-
     public static void main(String[] args) {
         launch();
     }

@@ -1,5 +1,6 @@
 package app.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,6 @@ import java.util.List;
 public class Rules {
 
 	private List<Rule> listRules;
-
 	/**
 	 * Constructs a Rules object with the specified list of rules.
 	 *

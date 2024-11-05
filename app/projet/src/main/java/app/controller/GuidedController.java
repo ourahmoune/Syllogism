@@ -9,7 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -138,6 +140,7 @@ public class GuidedController {
      */
     @FXML
     private void validate() {
+
         Figure figure = Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
 
         Quantificator quantificator1 = QuantificatorList.getInstance().getQuantificator(Q1.getSelectionModel().getSelectedItem());
@@ -160,8 +163,21 @@ public class GuidedController {
         map.put(1, p1);
         map.put(2, p2);
         map.put(3, p3);
-
         Syllogism s = new Syllogism(figure, map);
+        Rmt rmt = new Rmt();
+        Rlh rlh = new Rlh();
+        Raa raa = new Raa();
+        Rpp rpp = new Rpp();
+        Rp rp = new Rp();
+        Rnn rnn = new Rnn();
+        Rn rn = new Rn();
+        List<Rule> ruleslist = new ArrayList<>();
+        ruleslist.add(rmt) ; ruleslist.add(rlh);ruleslist.add(raa) ; ruleslist.add(rpp); ruleslist.add(rp);ruleslist.add(rnn); ruleslist.add(rn);
+        Rules rules = new Rules(ruleslist);
+
+        s.setRules(rules);
+        s.solve();
+
         // Additional processing of the syllogism can be done here
     }
 
