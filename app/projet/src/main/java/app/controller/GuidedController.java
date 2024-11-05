@@ -88,6 +88,8 @@ public class GuidedController {
         }
 
 
+        P1_1.setDisable(true);
+        P1_2.setDisable(true);
         P2_1.setDisable(true);
         P2_2.setDisable(true);
     }
