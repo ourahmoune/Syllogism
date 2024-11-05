@@ -238,7 +238,7 @@ public class GuidedController {
             Q3.setDisable(true);
         }
 
-
+    }
     // Méthode pour supprimer tous les bindings
     private void clearBindings() {
 
