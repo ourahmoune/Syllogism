@@ -9,9 +9,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
 
-
-<VBox maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       stylesheets="@syllogism_guided.css"
       fx:controller="app.controller.GuidedController"
       styleClass="subPane">
@@ -24,34 +25,46 @@
       </HBox>
       <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox onAction="#fillorder" fx:id="Q1" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: All" HBox.hgrow="ALWAYS"/>
-            <TextField onKeyTyped="#fillorder" fx:id="P1_1"  maxWidth="1.7976931348623157E308" promptText="birds" HBox.hgrow="ALWAYS">
+            <ComboBox onAction="#fillorder" fx:id="Q1" prefWidth="150.0" promptText="Ex: All" HBox.hgrow="ALWAYS"/>
+            <TextField onKeyTyped="#fillorder" fx:id="P1_1" promptText="birds" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <TextField  maxWidth="1.7976931348623157E308" promptText="have" HBox.hgrow="ALWAYS">
+            <TextField promptText="have" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <TextField onKeyTyped="#fillorder" fx:id="P1_2"  maxWidth="1.7976931348623157E308" promptText="wings" HBox.hgrow="ALWAYS">
+            <TextField onKeyTyped="#fillorder" fx:id="P1_2" promptText="wings" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="oneplus" onAction="#affirmatif1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
-            <Button fx:id="oneminus" onAction="#negatif1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" HBox.hgrow="ALWAYS" styleClass="quality"/>
+            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                  <Circle fx:id="oneplus" onMouseClicked="#affirmatif1" styleClass="qualityCircle"/>
+                  <Label fx:id="oneplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel"/>
+            </StackPane>
+            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+               <Circle fx:id="oneminus" onMouseClicked="#negatif1" styleClass="qualityCircle"/>
+               <Label fx:id="oneminusLabel" alignment="CENTER" text="-" styleClass="qualityLabel"/>
+            </StackPane>
          </children>
       </HBox>
       <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox fx:id="Q2" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS"/>
-            <TextField fx:id="P2_1"  promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <TextField  promptText="are" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <TextField onKeyTyped="#fillorder" fx:id="P2_2"  promptText="birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <Button fx:id="twoplus" onAction="#affirmatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
-            <Button fx:id="twominus" onAction="#negatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0"  HBox.hgrow="ALWAYS" styleClass="quality"/>
+            <ComboBox fx:id="Q2" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="P2_1"  promptText="animals"  HBox.hgrow="ALWAYS" />
+            <TextField  promptText="are" HBox.hgrow="ALWAYS" />
+            <TextField onKeyTyped="#fillorder" fx:id="P2_2"  promptText="birds" HBox.hgrow="ALWAYS" />
+            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+               <Circle fx:id="twoplus" onMouseClicked="#affirmatif2" styleClass="qualityCircle"/>
+               <Label fx:id="twoplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel"/>
+            </StackPane>
+            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+               <Circle fx:id="twominus" onMouseClicked="#negatif2" styleClass="qualityCircle"/>
+               <Label fx:id="twominusLabel" alignment="CENTER" text="-" styleClass="qualityLabel"/>
+            </StackPane>
          </children>
       </HBox>
       <Label id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:">
@@ -61,12 +74,18 @@
       </Label>
       <HBox alignment="CENTER" style="-fx-spacing: 10;">
          <children>
-            <ComboBox onAction="#fillorder" fx:id="Q3" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS" />
+            <ComboBox onAction="#fillorder" fx:id="Q3" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS" />
             <TextField onKeyTyped="#fillorder" fx:id="P3_1"  promptText="animals" HBox.hgrow="ALWAYS" />
             <TextField onAction="#fillorder"  promptText="have" HBox.hgrow="ALWAYS" />
-            <TextField onKeyTyped="#fillorder" fx:id="P3_2"  maxWidth="1.7976931348623157E308" promptText="wings" HBox.hgrow="ALWAYS" />
-            <Button fx:id="threeplus" onAction="#affirmatif3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
-            <Button fx:id="threeminus" onAction="#negatif3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" HBox.hgrow="ALWAYS" styleClass="quality"/>
+            <TextField onKeyTyped="#fillorder" fx:id="P3_2" promptText="wings" HBox.hgrow="ALWAYS" />
+            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+               <Circle fx:id="threeplus" onMouseClicked="#affirmatif3" styleClass="qualityCircle"/>
+               <Label fx:id="threeplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel"/>
+            </StackPane>
+            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+               <Circle fx:id="threeminus" onMouseClicked="#negatif3" styleClass="qualityCircle"/>
+               <Label fx:id="threeminusLabel" alignment="CENTER" text="-" styleClass="qualityLabel"/>
+            </StackPane>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

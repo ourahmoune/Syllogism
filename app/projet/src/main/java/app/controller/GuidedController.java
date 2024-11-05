@@ -3,23 +3,31 @@ package app.controller;
 import app.StartApplication;
 import app.model.*;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import static app.StartApplication.scene;
 
 /**
  * The GuidedController class manages the interactions between the user interface
  * and the underlying logic of the syllogism application. It handles user input,
  * validates syllogism data, and updates the UI accordingly.
  */
-public class GuidedController {
+public class GuidedController implements Resize {
+    @FXML
+    public Label oneplusLabel, oneminusLabel, twoplusLabel, twominusLabel, threeplusLabel, threeminusLabel;
     @FXML
     private ImageView image_figure;
 
@@ -32,7 +40,9 @@ public class GuidedController {
     private TextField P1_1, P1_2, P2_1, P2_2, P3_1, P3_2;
 
     @FXML
-    private Button oneplus,oneminus,twoplus,twominus,threeplus,threeminus, validate;
+    private Button  validate;
+    @FXML
+    private Circle oneplus, oneminus, twoplus, twominus, threeplus, threeminus;
 
     // Qualities of the propositions
     private String ql1, ql2, ql3;
@@ -172,7 +182,11 @@ public class GuidedController {
 
     // Methods to set the quality for the propositions
     @FXML
-    private void affirmatif1() { ql1 = "Affirmative"; }
+    private void affirmatif1() {
+        oneplus.setFill(Color.RED);
+        System.out.println("ici");
+        ql1 = "Affirmative";
+    }
     @FXML
     private void negatif1() { ql1 = "Negative"; }
 
@@ -215,7 +229,7 @@ public class GuidedController {
             Q2.setDisable(true);
             Q3.setDisable(true);
         }
-
+    }
 
     // Méthode pour supprimer tous les bindings
     private void clearBindings() {
@@ -233,5 +247,57 @@ public class GuidedController {
                 P1_2.textProperty().unbindBidirectional(P2_1.textProperty());
                 P2_2.textProperty().unbindBidirectional(P3_1.textProperty());
 
+    }
+
+    /**
+     * Resizes font sizes of buttons and labels based on the current window width.
+     */
+    private void resizeFontSize() {
+        oneplusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30)); // 1.8% of window width
+        oneminusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        twoplusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        twominusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        threeplusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        threeminusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+    }
+    /**
+     * Resizes buttons and circles based on the current window dimensions.
+     */
+    private void resizeButtons() {
+        P1_1.setMinWidth(scene.widthProperty().getValue() / 5); // 20% of window width
+        P1_2.setMinWidth(scene.widthProperty().getValue() / 5);
+        P2_1.setMinWidth(scene.widthProperty().getValue() / 5);
+        P2_2.setMinWidth(scene.widthProperty().getValue() / 5);
+        P3_1.setMinWidth(scene.widthProperty().getValue() / 5);
+        P3_2.setMinWidth(scene.widthProperty().getValue() / 5);
+
+
+        P1_1.setMinHeight(scene.heightProperty().getValue() / 10); // 10% of window height
+        P1_2.setMinHeight(scene.heightProperty().getValue() / 10);
+        P2_1.setMinHeight(scene.heightProperty().getValue() / 10);
+        P2_2.setMinHeight(scene.heightProperty().getValue() / 10);
+        P3_1.setMinHeight(scene.heightProperty().getValue() / 10);
+        P3_2.setMinHeight(scene.heightProperty().getValue() / 10);
+
+        oneplus.setRadius(scene.widthProperty().getValue() / 60); // 1.5% of window width
+        oneminus.setRadius(scene.widthProperty().getValue() / 60);
+        twoplus.setRadius(scene.widthProperty().getValue() / 60);
+        twominus.setRadius(scene.widthProperty().getValue() / 60);
+        threeminus.setRadius(scene.widthProperty().getValue() / 60);
+        threeplus.setRadius(scene.widthProperty().getValue() / 60);
+
+    }
+    @Override
+    public void resize() {
+        resizeButtons();
+        resizeFontSize();
+
+        scene.widthProperty().addListener((obs, oldVal, newVal) -> {
+            resizeButtons();
+            resizeFontSize();
+        });
+        scene.heightProperty().addListener((obs, oldVal, newVal) -> {
+            resizeButtons();
+        });
     }
 }

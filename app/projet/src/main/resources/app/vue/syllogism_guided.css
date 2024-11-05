@@ -1,5 +1,7 @@
 .subPane{
     -fx-background-color: #4AE2E2;
+    -fx-border-width: 0 15 0 0;
+    -fx-border-color: transparent;
 }
 
 .text-field{
@@ -7,18 +9,6 @@
 }
 
 .quality{
-    -fx-background-radius: 15;
-    -fx-min-width: 30;
-    -fx-min-height: 30;
-    -fx-max-height: 30;
-    -fx-max-width: 30;
-    -fx-font-size: 20;
-    -fx-text-fill: #32b71b;
-    -fx-background-color: lightgrey;
-    -fx-alignment: center;
-    -fx-text-alignment: center;
-    -fx-padding: 0;
-    -fx-text-fill: #32b71b;
 }
 
 .validate{
@@ -29,4 +19,16 @@
 .clear{
     -fx-background-color: #32b71b;
     -fx-text-fill: black;
+}
+
+.qualityLabel {
+    -fx-alignment: center;
+    -fx-text-fill: #32b71b;
+    -fx-text-alignment: center;
+
+}
+
+.qualityCircle {
+    -fx-fill: grey;
+    -fx-alignment: center;
 }
