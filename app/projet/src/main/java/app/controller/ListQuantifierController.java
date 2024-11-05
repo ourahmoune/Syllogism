@@ -57,24 +57,40 @@ public class ListQuantifierController {
 
 
     public void handleAddQuantificatorClickUniversal(ActionEvent actionEvent) {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Add a quantificator");
-        dialog.setHeaderText("Enter a word to add to the list:");
+        if (SettingController.language.getObject("Language").equals("English  ")) {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Add a quantificator");
+            dialog.setHeaderText("Enter a word to add to the list:");
 
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(word -> {
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(word -> {
 
-            // Création d'un nouveau HBox avec les paramètres nécessaires
-            HBox hbox = createHBox(word);
+                // Création d'un nouveau HBox avec les paramètres nécessaires
+                HBox hbox = createHBox(word);
 
-            addQuantificator(word, Quantity.Universal);
+                addQuantificator(word, Quantity.Universal);
 
-            // Ajout du HBox dans le VBox principal (ListQuantifier)
-            Quantificator quantificator = new Quantificator(Quantity.Universal, word);
-            QuantificatorList.getInstance().addQuantificator(quantificator);
-            ListUniversal.getChildren().add(hbox);
-            printQuantificators();
-        });
+                // Ajout du HBox dans le VBox principal (ListQuantifier)
+                ListUniversal.getChildren().add(hbox);
+            });
+        }
+        else {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Ajouter un quantificateur");
+            dialog.setHeaderText("Entrer un mot à ajouter à la liste:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(word -> {
+
+                // Création d'un nouveau HBox avec les paramètres nécessaires
+                HBox hbox = createHBox(word);
+
+                addQuantificator(word, Quantity.Universal);
+
+                // Ajout du HBox dans le VBox principal (ListQuantifier)
+                ListUniversal.getChildren().add(hbox);
+            });
+        }
     }
 
     /**
@@ -96,22 +112,38 @@ public class ListQuantifierController {
      * Handles the event to add a new existential quantificator.
      */
     public void handleAddQuantificatorClickExistential(ActionEvent actionEvent) {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Add a quantificator");
-        dialog.setHeaderText("Enter a word to add to the list:");
+        if (SettingController.language.getObject("Language").equals("English  ")) {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Add a quantificator");
+            dialog.setHeaderText("Enter a word to add to the list:");
 
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(word -> {
-            // Création d'un nouveau HBox avec les paramètres nécessaires
-            HBox hbox = createHBox(word);
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(word -> {
+                // Création d'un nouveau HBox avec les paramètres nécessaires
+                HBox hbox = createHBox(word);
 
-            addQuantificator(word, Quantity.Exisential);
+                addQuantificator(word, Quantity.Exisential);
 
-            // Ajout du HBox dans le VBox principal (ListQuantifier)
-            Quantificator quantificator = new Quantificator(Quantity.Exisential, word);
-            QuantificatorList.getInstance().addQuantificator(quantificator);
-            ListExistential.getChildren().add(hbox);
-        });
+                // Ajout du HBox dans le VBox principal (ListQuantifier)
+                ListExistential.getChildren().add(hbox);
+            });
+        }
+        else {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Ajouter un quantificateur");
+            dialog.setHeaderText("Entrer un mot à ajouter à la liste:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(word -> {
+                // Création d'un nouveau HBox avec les paramètres nécessaires
+                HBox hbox = createHBox(word);
+
+                addQuantificator(word, Quantity.Exisential);
+
+                // Ajout du HBox dans le VBox principal (ListQuantifier)
+                ListExistential.getChildren().add(hbox);
+            });
+        }
     }
 
     /**
