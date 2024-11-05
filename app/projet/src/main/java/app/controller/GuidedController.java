@@ -39,7 +39,12 @@ public class GuidedController {
      * Initializes the controller by setting up the UI elements.
      */
     public void initialize() {
-        choix_figure.getItems().addAll("UN", "DEUX", "TROIS", "QUATRE");
+        if (SettingController.language.getObject("Language").equals("English  ")){
+            choix_figure.getItems().addAll("ONE", "TWO", "THREE", "FOUR");
+        }
+        else {
+            choix_figure.getItems().addAll("UN", "DEUX", "TROIS", "QUATRE");
+        }
 
         // Listener for the figure selection
         choix_figure.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
@@ -50,37 +55,37 @@ public class GuidedController {
 
                 clearBindings();
 
-                switch (newValue) {
-                    case "UN":
-                        P1_2.setDisable(true);
-                        P1_1.setDisable(false);
-                        P1_1.textProperty().bindBidirectional(P2_2.textProperty());
-                        P2_1.textProperty().bindBidirectional(P3_1.textProperty());
-                        P1_2.textProperty().bindBidirectional(P3_2.textProperty());
-                        break;
-                    case "DEUX":
-                        P1_1.setDisable(true);
-                        P1_2.setDisable(false);
-                        P1_2.textProperty().bindBidirectional(P2_2.textProperty());
-                        P1_1.textProperty().bindBidirectional(P3_2.textProperty());
-                        P2_1.textProperty().bindBidirectional(P3_1.textProperty());
-                        break;
-                    case "TROIS":
-                        P1_2.setDisable(true);
-                        P1_1.setDisable(false);
-                        P1_1.textProperty().bindBidirectional(P2_1.textProperty());
-                        P1_2.textProperty().bindBidirectional(P3_2.textProperty());
-                        P2_2.textProperty().bindBidirectional(P3_1.textProperty());
-                        break;
-                    case "QUATRE":
-                        P1_1.setDisable(true);
-                        P1_2.setDisable(false);
-                        P1_1.textProperty().bindBidirectional(P3_2.textProperty());
-                        P1_2.textProperty().bindBidirectional(P2_1.textProperty());
-                        P2_2.textProperty().bindBidirectional(P3_1.textProperty());
-                        break;
-                    default:
-                        break;
+                if (newValue.equals("UN") || newValue.equals("ONE")) {
+                    newValue = "UN";
+                    P1_2.setDisable(true);
+                    P1_1.setDisable(false);
+                    P1_1.textProperty().bindBidirectional(P2_2.textProperty());
+                    P2_1.textProperty().bindBidirectional(P3_1.textProperty());
+                    P1_2.textProperty().bindBidirectional(P3_2.textProperty());
+                }
+                else if (newValue.equals("TWO") || newValue.equals("DEUX")) {
+                    newValue = "DEUX";
+                    P1_1.setDisable(true);
+                    P1_2.setDisable(false);
+                    P1_2.textProperty().bindBidirectional(P2_2.textProperty());
+                    P1_1.textProperty().bindBidirectional(P3_2.textProperty());
+                    P2_1.textProperty().bindBidirectional(P3_1.textProperty());
+                }
+                else if (newValue.equals("THREE") || newValue.equals("TROIS")) {
+                    newValue = "TROIS";
+                    P1_2.setDisable(true);
+                    P1_1.setDisable(false);
+                    P1_1.textProperty().bindBidirectional(P2_1.textProperty());
+                    P1_2.textProperty().bindBidirectional(P3_2.textProperty());
+                    P2_2.textProperty().bindBidirectional(P3_1.textProperty());
+                }
+                else if (newValue.equals("FOUR") || newValue.equals("QUATRE")) {
+                    newValue = "QUATRE";
+                    P1_1.setDisable(true);
+                    P1_2.setDisable(false);
+                    P1_1.textProperty().bindBidirectional(P3_2.textProperty());
+                    P1_2.textProperty().bindBidirectional(P2_1.textProperty());
+                    P2_2.textProperty().bindBidirectional(P3_1.textProperty());
                 }
             }
         });
