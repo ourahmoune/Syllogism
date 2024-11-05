@@ -1,6 +1,9 @@
 package app.controller;
 
 import app.StartApplication;
+import app.model.Quantificator;
+import app.model.QuantificatorList;
+import app.model.Quantity;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -50,13 +53,45 @@ public class MenuController {
     @FXML
     public void initialize() {
         //GuidedInterface();
+
+        if (SettingController.getLanguage().equals("english")){
+            QuantificatorList.getInstance().getQuantificators().clear();
+            //Quantificator par défault universel
+            TranslateQuantificator("All", Quantity.Universal);
+            TranslateQuantificator("Every", Quantity.Universal);
+            TranslateQuantificator("No", Quantity.Universal);
+            TranslateQuantificator("None", Quantity.Universal);
+
+            //Quantificator par défault existentiel
+            TranslateQuantificator("Some", Quantity.Exisential);
+            TranslateQuantificator("Most", Quantity.Exisential);
+            TranslateQuantificator("Many", Quantity.Exisential);
+            TranslateQuantificator("Few", Quantity.Exisential);
+            TranslateQuantificator("Several", Quantity.Exisential);
+            TranslateQuantificator("Any", Quantity.Exisential);
+        }else{
+            QuantificatorList.getInstance().getQuantificators().clear();
+            //Quantificator par défault universel
+            TranslateQuantificator("Tous/Tout/Toute/Toutes", Quantity.Universal);
+            TranslateQuantificator("Chaque", Quantity.Universal);
+            TranslateQuantificator("Aucun/Aucune", Quantity.Universal);
+
+            //Quantificator par défault existentiel
+            TranslateQuantificator("Certains/Certaines", Quantity.Exisential);
+            TranslateQuantificator("La plupart", Quantity.Exisential);
+            TranslateQuantificator("Beaucoup", Quantity.Exisential);
+            TranslateQuantificator("Peu", Quantity.Exisential);
+            TranslateQuantificator("Plusieurs", Quantity.Exisential);
+            TranslateQuantificator("N'importe quel", Quantity.Exisential);
+        }
     }
 
-    /**
-     * Changes the application language based on user preference.
-     *
-     * @throws IOException if the FXML file cannot be loaded
-     */
+    private void TranslateQuantificator(String word, Quantity quantity) {
+        Quantificator quantificator = new Quantificator(quantity, word);
+        QuantificatorList.getInstance().addQuantificator(quantificator);
+    }
+
+
     @FXML
     public void changeLanguage() throws IOException {
         SettingController.changeLanguage();
@@ -144,7 +179,7 @@ public class MenuController {
      */
     public void loadInterface(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
             Pane paneloaded = loader.load();
             paneloaded.setStyle("-fx-border-color: black; -fx-border-width: 3;");
             contentPane.setStyle("-fx-border-color: yellow; -fx-border-width: 3;");

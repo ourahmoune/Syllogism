@@ -50,9 +50,12 @@ public class ListQuantifierController {
         }
     }
 
-    /**
-     * Handles the event to add a new universal quantificator.
-     */
+    public void addQuantificator(String word, Quantity quantity) {
+        Quantificator quantificator = new Quantificator(Quantity.Universal, word);
+        QuantificatorList.getInstance().addQuantificator(quantificator);
+    }
+
+
     public void handleAddQuantificatorClickUniversal(ActionEvent actionEvent) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Add a quantificator");
@@ -60,7 +63,13 @@ public class ListQuantifierController {
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(word -> {
+
+            // Création d'un nouveau HBox avec les paramètres nécessaires
             HBox hbox = createHBox(word);
+
+            addQuantificator(word, Quantity.Universal);
+
+            // Ajout du HBox dans le VBox principal (ListQuantifier)
             Quantificator quantificator = new Quantificator(Quantity.Universal, word);
             QuantificatorList.getInstance().addQuantificator(quantificator);
             ListUniversal.getChildren().add(hbox);
@@ -93,7 +102,12 @@ public class ListQuantifierController {
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(word -> {
+            // Création d'un nouveau HBox avec les paramètres nécessaires
             HBox hbox = createHBox(word);
+
+            addQuantificator(word, Quantity.Exisential);
+
+            // Ajout du HBox dans le VBox principal (ListQuantifier)
             Quantificator quantificator = new Quantificator(Quantity.Exisential, word);
             QuantificatorList.getInstance().addQuantificator(quantificator);
             ListExistential.getChildren().add(hbox);

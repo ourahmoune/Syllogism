@@ -12,6 +12,7 @@ public class SettingController {
      * Initially set to the English language resource bundle.
      */
     public static ResourceBundle language = ResourceBundle.getBundle("language/texts_en");
+    public static ResourceBundle subMenu = ResourceBundle.getBundle("language/texts_submenu_en");
 
     /**
      * Changes the application language based on the current language setting.
@@ -21,8 +22,18 @@ public class SettingController {
     public static void changeLanguage() {
         if (language.getObject("Language").equals("English  ")) {
             language = ResourceBundle.getBundle("language/texts_fr");
-        } else {
+            subMenu = ResourceBundle.getBundle("language/texts_submenu_fr");
+        }else{
             language = ResourceBundle.getBundle("language/texts_en");
+            subMenu = ResourceBundle.getBundle("language/texts_submenu_en");
+        }
+    }
+
+    public static String getLanguage() {
+        if (language.getObject("Language").equals("English  ")){
+            return "english";
+        }else{
+            return "french";
         }
     }
 }
