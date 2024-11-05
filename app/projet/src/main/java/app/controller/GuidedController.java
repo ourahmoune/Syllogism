@@ -2,6 +2,7 @@ package app.controller;
 
 import app.StartApplication;
 import app.model.*;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -22,12 +23,10 @@ public class GuidedController {
     private ImageView image_figure;
 
     @FXML
-    private ComboBox<String> Q1, Q2, Q3;
-    @FXML
-    private ComboBox<String> choix_figure;
+    private ComboBox<String> choix_figure, Q1, Q2, Q3;
 
     @FXML
-    private TextField P1_1, P1_2, P2_1, P2_2, P3_1, P3_2;
+    private TextField P1_1, P1_2, P2_1, P2_2, P3_1, P3_2, V1, V2, V3;
 
     @FXML
     private Button oneplus, oneminus, twoplus, twominus, threeplus, threeminus;
@@ -91,18 +90,35 @@ public class GuidedController {
         });
 
         // Populate quantificator options
-        for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
-            Q1.getItems().add(quantificator.getName());
-            Q2.getItems().add(quantificator.getName());
-            Q3.getItems().add(quantificator.getName());
-        }
-
+        resetComboBoxQuanti();
 
         P1_1.setDisable(true);
         P1_2.setDisable(true);
         P2_1.setDisable(true);
         P2_2.setDisable(true);
+    }
 
+
+    private void translateComboBoxQuanti(){
+        if (SettingController.language.getObject("Language").equals("English  ")){
+            Q1.setPromptText("Ex: All");
+            Q2.setPromptText("Ex: Some");
+            Q3.setPromptText("Ex: Some");
+        }
+        else {
+            Q1.setPromptText("Ex: Tous/Tout/Toute/Toutes");
+            Q2.setPromptText("Ex: Certains/Certaines");
+            Q3.setPromptText("Ex: Certains/Certaines");
+        }
+    }
+
+    private void resetComboBoxQuanti(){
+        for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
+            Q1.getItems().add(quantificator.getName());
+            Q2.getItems().add(quantificator.getName());
+            Q3.getItems().add(quantificator.getName());
+        }
+        translateComboBoxQuanti();
     }
 
     /**
@@ -125,12 +141,18 @@ public class GuidedController {
      */
     @FXML
     private void clear() {
+        Q1.getSelectionModel().clearSelection();
+        Q2.getSelectionModel().clearSelection();
+        Q3.getSelectionModel().clearSelection();
         P1_1.setText("");
         P1_2.setText("");
         P2_1.setText("");
         P2_2.setText("");
         P3_1.setText("");
         P3_2.setText("");
+        V1.setText("");
+        V2.setText("");
+        V3.setText("");
     }
 
     /**
