@@ -92,6 +92,9 @@ public class GuidedController {
             Q3.getItems().add(quantificator.getName());
         }
 
+
+        P1_1.setDisable(true);
+        P1_2.setDisable(true);
         P2_1.setDisable(true);
         P2_2.setDisable(true);
 
@@ -172,6 +175,7 @@ public class GuidedController {
     private void affirmatif3() { ql3 = "Affirmative"; }
     @FXML
     private void negatif3() { ql3 = "Negative"; }
+
 
 
     // Méthode pour supprimer tous les bindings
