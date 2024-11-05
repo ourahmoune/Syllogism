@@ -57,40 +57,26 @@ public class ListQuantifierController {
 
 
     public void handleAddQuantificatorClickUniversal(ActionEvent actionEvent) {
+        TextInputDialog dialog = new TextInputDialog();
         if (SettingController.language.getObject("Language").equals("English  ")) {
-            TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Add a quantificator");
             dialog.setHeaderText("Enter a word to add to the list:");
-
-            Optional<String> result = dialog.showAndWait();
-            result.ifPresent(word -> {
-
-                // Création d'un nouveau HBox avec les paramètres nécessaires
-                HBox hbox = createHBox(word);
-
-                addQuantificator(word, Quantity.Universal);
-
-                // Ajout du HBox dans le VBox principal (ListQuantifier)
-                ListUniversal.getChildren().add(hbox);
-            });
         }
         else {
-            TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Ajouter un quantificateur");
             dialog.setHeaderText("Entrer un mot à ajouter à la liste:");
-
-            Optional<String> result = dialog.showAndWait();
-            result.ifPresent(word -> {
-
-                // Création d'un nouveau HBox avec les paramètres nécessaires
-                HBox hbox = createHBox(word);
-
-                addQuantificator(word, Quantity.Universal);
-
-                // Ajout du HBox dans le VBox principal (ListQuantifier)
-                ListUniversal.getChildren().add(hbox);
-            });
         }
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(word -> {
+
+            // Création d'un nouveau HBox avec les paramètres nécessaires
+            HBox hbox = createHBox(word);
+
+            addQuantificator(word, Quantity.Universal);
+
+            // Ajout du HBox dans le VBox principal (ListQuantifier)
+            ListUniversal.getChildren().add(hbox);
+        });
     }
 
     /**
@@ -112,38 +98,25 @@ public class ListQuantifierController {
      * Handles the event to add a new existential quantificator.
      */
     public void handleAddQuantificatorClickExistential(ActionEvent actionEvent) {
+        TextInputDialog dialog = new TextInputDialog();
         if (SettingController.language.getObject("Language").equals("English  ")) {
-            TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Add a quantificator");
             dialog.setHeaderText("Enter a word to add to the list:");
-
-            Optional<String> result = dialog.showAndWait();
-            result.ifPresent(word -> {
-                // Création d'un nouveau HBox avec les paramètres nécessaires
-                HBox hbox = createHBox(word);
-
-                addQuantificator(word, Quantity.Exisential);
-
-                // Ajout du HBox dans le VBox principal (ListQuantifier)
-                ListExistential.getChildren().add(hbox);
-            });
         }
         else {
-            TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Ajouter un quantificateur");
             dialog.setHeaderText("Entrer un mot à ajouter à la liste:");
-
-            Optional<String> result = dialog.showAndWait();
-            result.ifPresent(word -> {
-                // Création d'un nouveau HBox avec les paramètres nécessaires
-                HBox hbox = createHBox(word);
-
-                addQuantificator(word, Quantity.Exisential);
-
-                // Ajout du HBox dans le VBox principal (ListQuantifier)
-                ListExistential.getChildren().add(hbox);
-            });
         }
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(word -> {
+            // Création d'un nouveau HBox avec les paramètres nécessaires
+            HBox hbox = createHBox(word);
+
+            addQuantificator(word, Quantity.Exisential);
+
+            // Ajout du HBox dans le VBox principal (ListQuantifier)
+            ListExistential.getChildren().add(hbox);
+        });
     }
 
     /**
