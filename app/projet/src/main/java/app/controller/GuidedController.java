@@ -2,6 +2,7 @@ package app.controller;
 
 import app.StartApplication;
 import app.model.*;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
@@ -32,12 +33,10 @@ public class GuidedController implements Resize {
     private ImageView image_figure;
 
     @FXML
-    private ComboBox<String> Q1, Q2, Q3;
-    @FXML
-    private ComboBox<String> choix_figure;
+    private ComboBox<String> choix_figure, Q1, Q2, Q3;
 
     @FXML
-    private TextField P1_1, P1_2, P2_1, P2_2, P3_1, P3_2;
+    private TextField P1_1, P1_2, P2_1, P2_2, P3_1, P3_2, V1, V2, V3;
 
     @FXML
     private Button  validate;
@@ -103,18 +102,35 @@ public class GuidedController implements Resize {
         });
 
         // Populate quantificator options
-        for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
-            Q1.getItems().add(quantificator.getName());
-            Q2.getItems().add(quantificator.getName());
-            Q3.getItems().add(quantificator.getName());
-        }
-
+        resetComboBoxQuanti();
 
         P1_1.setDisable(true);
         P1_2.setDisable(true);
         P2_1.setDisable(true);
         P2_2.setDisable(true);
+    }
 
+
+    private void translateComboBoxQuanti(){
+        if (SettingController.language.getObject("Language").equals("English  ")){
+            Q1.setPromptText("Ex: All");
+            Q2.setPromptText("Ex: Some");
+            Q3.setPromptText("Ex: Some");
+        }
+        else {
+            Q1.setPromptText("Ex: Tous/Tout/Toute/Toutes");
+            Q2.setPromptText("Ex: Certains/Certaines");
+            Q3.setPromptText("Ex: Certains/Certaines");
+        }
+    }
+
+    private void resetComboBoxQuanti(){
+        for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
+            Q1.getItems().add(quantificator.getName());
+            Q2.getItems().add(quantificator.getName());
+            Q3.getItems().add(quantificator.getName());
+        }
+        translateComboBoxQuanti();
     }
 
     /**
@@ -125,9 +141,9 @@ public class GuidedController implements Resize {
      */
     private String getImagePathForOption(String option) {
         return switch (option) {
-            case "DEUX" -> "/app/image/Figure2_syllogism.png";
-            case "TROIS" -> "/app/image/Figure3_syllogism.png";
-            case "QUATRE" -> "/app/image/Figure4_syllogism.png";
+            case "DEUX", "TWO" -> "/app/image/Figure2_syllogism.png";
+            case "TROIS", "THREE" -> "/app/image/Figure3_syllogism.png";
+            case "QUATRE", "FOUR" -> "/app/image/Figure4_syllogism.png";
             default -> "/app/image/Figure1_syllogism.png";
         };
     }
@@ -137,12 +153,18 @@ public class GuidedController implements Resize {
      */
     @FXML
     private void clear() {
+        Q1.getSelectionModel().clearSelection();
+        Q2.getSelectionModel().clearSelection();
+        Q3.getSelectionModel().clearSelection();
         P1_1.setText("");
         P1_2.setText("");
         P2_1.setText("");
         P2_2.setText("");
         P3_1.setText("");
         P3_2.setText("");
+        V1.setText("");
+        V2.setText("");
+        V3.setText("");
     }
 
     /**
@@ -151,8 +173,14 @@ public class GuidedController implements Resize {
     @FXML
     private void validate(){
         try {
-            Figure figure = Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
-
+        Figure figure = switch (choix_figure.getSelectionModel().getSelectedItem()) {
+            case "ONE" -> Figure.UN;
+            case "TWO" -> Figure.DEUX;
+            case "THREE" -> Figure.TROIS;
+            case "FOUR" -> Figure.QUATRE;
+            default -> Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
+        };
+          
             Quantificator quantificator1 = QuantificatorList.getInstance().getQuantificator(Q1.getSelectionModel().getSelectedItem());
             Quantificator quantificator2 = QuantificatorList.getInstance().getQuantificator(Q2.getSelectionModel().getSelectedItem());
             Quantificator quantificator3 = QuantificatorList.getInstance().getQuantificator(Q3.getSelectionModel().getSelectedItem());
@@ -173,8 +201,26 @@ public class GuidedController implements Resize {
             map.put(1, p1);
             map.put(2, p2);
             map.put(3, p3);
-
             Syllogism s = new Syllogism(figure, map);
+            Rmt rmt = new Rmt();
+            Rlh rlh = new Rlh();
+            Raa raa = new Raa();
+            Rpp rpp = new Rpp();
+            Rp rp = new Rp();
+            Rnn rnn = new Rnn();
+            Rn rn = new Rn();
+
+            List<Rule> ruleList = new ArrayList<>();
+            ruleList.add(rmt);
+            ruleList.add(rlh);
+            ruleList.add(raa);
+            ruleList.add(rpp);
+            ruleList.add(rp);
+            ruleList.add(rn);
+            ruleList.add(rnn);
+            Rules rules = new Rules(ruleList);
+            s.setRules(rules);
+            s.solve();
         } catch (Exception e) {
             validate.setStyle("-fx-background-color: red");
         }
@@ -188,48 +234,36 @@ public class GuidedController implements Resize {
         ql1 = "Affirmative";
     }
     @FXML
-    private void negatif1() { ql1 = "Negative"; }
-
-    @FXML
-    private void affirmatif2() { ql2 = "Affirmative"; }
-    @FXML
-    private void negatif2() { ql2 = "Negative"; }
-
-    @FXML
-    private void affirmatif3() { ql3 = "Affirmative"; }
-    @FXML
-    private void negatif3() { ql3 = "Negative"; }
-
-    @FXML
-    public void fillorder() {
-        validate.setStyle("-fx-background-color: #9dff8c");
-        if (choix_figure.getSelectionModel().getSelectedItem() != null) {
-            Q1.setDisable(false);
-        } else {
-            P1_1.setDisable(true);
-            P1_2.setDisable(true);
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q1.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        }
-        // Débloque P1_1 seulement si un élément est sélectionné dans Q1
-        if (Q1.getSelectionModel().getSelectedItem() != null) {
-            P1_1.setDisable(false);
-        } else {
-            P1_1.setDisable(true);
-            P1_2.setDisable(true);
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        }
+    private void negatif1() {
+        ql1 = "Negative";
+        oneplus.setStyle(null);
+        oneminus.setStyle("-fx-background-color: #37ff00");
     }
+
+    @FXML
+    private void affirmatif2() {
+        ql2 = "Affirmative";
+        twoplus.setStyle("-fx-background-color: #37ff00");
+        twominus.setStyle(null);
+    }
+    @FXML
+    private void negatif2() {
+        ql2 = "Negative";
+        twoplus.setStyle(null);
+        twominus.setStyle("-fx-background-color: #37ff00");
+    }
+
+    @FXML
+    private void affirmatif3() {
+        ql3 = "Affirmative";
+        threeplus.setStyle("-fx-background-color: #37ff00");
+        threeminus.setStyle(null);
+    }
+    @FXML
+    private void negatif3() {
+        ql3 = "Negative";
+    }
+
 
     // Méthode pour supprimer tous les bindings
     private void clearBindings() {

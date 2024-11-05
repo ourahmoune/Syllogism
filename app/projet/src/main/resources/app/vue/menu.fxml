@@ -38,6 +38,7 @@
    </left>
    <center>
       <VBox>
+      <VBox>
          <children>
             <HBox alignment="TOP_RIGHT" style="-fx-padding: 12.5; -fx-spacing: 25;">
                <children>

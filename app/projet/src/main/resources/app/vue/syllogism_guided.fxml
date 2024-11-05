@@ -25,18 +25,18 @@
       </HBox>
       <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox onAction="#fillorder" fx:id="Q1" prefWidth="150.0" promptText="Ex: All" HBox.hgrow="ALWAYS"/>
-            <TextField onKeyTyped="#fillorder" fx:id="P1_1" promptText="birds" HBox.hgrow="ALWAYS">
+            <ComboBox fx:id="Q1"prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="P1_1" promptText="%birds" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <TextField promptText="have" HBox.hgrow="ALWAYS">
+            <TextField fx:id="V1" promptText="%have" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <TextField onKeyTyped="#fillorder" fx:id="P1_2" promptText="wings" HBox.hgrow="ALWAYS">
+            <TextField fx:id="P1_2" promptText="%wings" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
@@ -53,10 +53,10 @@
       </HBox>
       <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox fx:id="Q2" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS"/>
-            <TextField fx:id="P2_1"  promptText="animals"  HBox.hgrow="ALWAYS" />
-            <TextField  promptText="are" HBox.hgrow="ALWAYS" />
-            <TextField onKeyTyped="#fillorder" fx:id="P2_2"  promptText="birds" HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="Q2" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="P2_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="V2" promptText="%are" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="P2_2"  promptText="%birds" HBox.hgrow="ALWAYS" />
             <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
                <Circle fx:id="twoplus" onMouseClicked="#affirmatif2" styleClass="qualityCircle"/>
                <Label fx:id="twoplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel"/>
@@ -74,11 +74,11 @@
       </Label>
       <HBox alignment="CENTER" style="-fx-spacing: 10;">
          <children>
-            <ComboBox onAction="#fillorder" fx:id="Q3" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS" />
-            <TextField onKeyTyped="#fillorder" fx:id="P3_1"  promptText="animals" HBox.hgrow="ALWAYS" />
-            <TextField onAction="#fillorder"  promptText="have" HBox.hgrow="ALWAYS" />
-            <TextField onKeyTyped="#fillorder" fx:id="P3_2" promptText="wings" HBox.hgrow="ALWAYS" />
-            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+            <ComboBox fx:id="Q3" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="P3_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="V3" promptText="%have" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="P3_2" promptText="%wings" HBox.hgrow="ALWAYS" />
+           <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
                <Circle fx:id="threeplus" onMouseClicked="#affirmatif3" styleClass="qualityCircle"/>
                <Label fx:id="threeplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel"/>
             </StackPane>
