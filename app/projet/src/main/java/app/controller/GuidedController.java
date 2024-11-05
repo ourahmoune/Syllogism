@@ -9,61 +9,111 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-
+/**
+ * The GuidedController class manages the interactions between the user interface
+ * and the underlying logic of the syllogism application. It handles user input,
+ * validates syllogism data, and updates the UI accordingly.
+ */
 public class GuidedController {
     @FXML
-    ImageView image_figure;
+    private ImageView image_figure;
 
     @FXML
-    ComboBox<String> Q1,Q2,Q3;
+    private ComboBox<String> Q1, Q2, Q3;
     @FXML
-    ComboBox<String> choix_figure;
-
-    @FXML
-    TextField P1_1,P1_2,P2_1,P2_2,P3_1,P3_2;
+    private ComboBox<String> choix_figure;
 
     @FXML
-    Button oneplus,oneminus,twoplus,twominus,threeplus,threeminus, validate;
+    private TextField P1_1, P1_2, P2_1, P2_2, P3_1, P3_2;
 
-    //qualité
-    String ql1, ql2, ql3;
+    @FXML
+    private Button oneplus,oneminus,twoplus,twominus,threeplus,threeminus, validate;
 
+    // Qualities of the propositions
+    private String ql1, ql2, ql3;
 
+    /**
+     * Initializes the controller by setting up the UI elements.
+     */
+    public void initialize() {
+        if (SettingController.language.getObject("Language").equals("English  ")){
+            choix_figure.getItems().addAll("ONE", "TWO", "THREE", "FOUR");
+        }
+        else {
+            choix_figure.getItems().addAll("UN", "DEUX", "TROIS", "QUATRE");
+        }
 
-
-    public void initialize(){
-        choix_figure.getItems().addAll("UN", "DEUX", "TROIS", "QUATRE");
-
-        // Listener pour détecter les changements de sélection dans le ComboBox
+        // Listener for the figure selection
         choix_figure.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
-                // Met à jour l'image en fonction de la sélection
+                // Update the image based on the selected figure
                 String imagePath = getImagePathForOption(newValue);
                 image_figure.setImage(new Image(String.valueOf(StartApplication.class.getResource(imagePath))));
+
+                clearBindings();
+
+                if (newValue.equals("UN") || newValue.equals("ONE")) {
+                    newValue = "UN";
+                    P1_2.setDisable(true);
+                    P1_1.setDisable(false);
+                    P1_1.textProperty().bindBidirectional(P2_2.textProperty());
+                    P2_1.textProperty().bindBidirectional(P3_1.textProperty());
+                    P1_2.textProperty().bindBidirectional(P3_2.textProperty());
+                }
+                else if (newValue.equals("TWO") || newValue.equals("DEUX")) {
+                    newValue = "DEUX";
+                    P1_1.setDisable(true);
+                    P1_2.setDisable(false);
+                    P1_2.textProperty().bindBidirectional(P2_2.textProperty());
+                    P1_1.textProperty().bindBidirectional(P3_2.textProperty());
+                    P2_1.textProperty().bindBidirectional(P3_1.textProperty());
+                }
+                else if (newValue.equals("THREE") || newValue.equals("TROIS")) {
+                    newValue = "TROIS";
+                    P1_2.setDisable(true);
+                    P1_1.setDisable(false);
+                    P1_1.textProperty().bindBidirectional(P2_1.textProperty());
+                    P1_2.textProperty().bindBidirectional(P3_2.textProperty());
+                    P2_2.textProperty().bindBidirectional(P3_1.textProperty());
+                }
+                else if (newValue.equals("FOUR") || newValue.equals("QUATRE")) {
+                    newValue = "QUATRE";
+                    P1_1.setDisable(true);
+                    P1_2.setDisable(false);
+                    P1_1.textProperty().bindBidirectional(P3_2.textProperty());
+                    P1_2.textProperty().bindBidirectional(P2_1.textProperty());
+                    P2_2.textProperty().bindBidirectional(P3_1.textProperty());
+                }
             }
         });
 
+        // Populate quantificator options
         for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
-                Q1.getItems().add(quantificator.getName());
-                Q2.getItems().add(quantificator.getName());
-                Q3.getItems().add(quantificator.getName());
+            Q1.getItems().add(quantificator.getName());
+            Q2.getItems().add(quantificator.getName());
+            Q3.getItems().add(quantificator.getName());
         }
+
 
         P1_1.setDisable(true);
         P1_2.setDisable(true);
         P2_1.setDisable(true);
         P2_2.setDisable(true);
-        P3_1.setDisable(true);
-        P3_2.setDisable(true);
-        Q1.setDisable(true);
-        Q2.setDisable(true);
-        Q3.setDisable(true);
+
     }
 
-    public String getImagePathForOption(String option){
+    /**
+     * Returns the image path corresponding to the selected figure.
+     *
+     * @param option The selected figure option.
+     * @return The path of the corresponding image.
+     */
+    private String getImagePathForOption(String option) {
         return switch (option) {
             case "DEUX" -> "/app/image/Figure2_syllogism.png";
             case "TROIS" -> "/app/image/Figure3_syllogism.png";
@@ -72,8 +122,11 @@ public class GuidedController {
         };
     }
 
+    /**
+     * Clears the text fields.
+     */
     @FXML
-    private void clear(){
+    private void clear() {
         P1_1.setText("");
         P1_2.setText("");
         P2_1.setText("");
@@ -82,6 +135,9 @@ public class GuidedController {
         P3_2.setText("");
     }
 
+    /**
+     * Validates and constructs the syllogism based on user input.
+     */
     @FXML
     private void validate(){
         try {
@@ -114,44 +170,21 @@ public class GuidedController {
         }
     }
 
+    // Methods to set the quality for the propositions
     @FXML
-    private void affirmatif1(){
-        ql1 = "Affirmative";
-        //oneplus.setStyle("SELECTED_STYLE");
-        //oneminus.setStyle("DEFAULT_STYLE");
-    }
+    private void affirmatif1() { ql1 = "Affirmative"; }
     @FXML
-    private void negatif1(){
-        ql1 = "Negative";
-        //oneminus.setStyle("SELECTED_STYLE");
-        //oneplus.setStyle("DEFAULT_STYLE");
-    }
+    private void negatif1() { ql1 = "Negative"; }
 
     @FXML
-    private void affirmatif2(){
-        ql2 = "Affirmative";
-        //twoplus.setStyle("SELECTED_STYLE");
-        //twominus.setStyle("DEFAULT_STYLE");
-    }
+    private void affirmatif2() { ql2 = "Affirmative"; }
     @FXML
-    private void negatif2(){
-        ql2 = "Negative";
-        //twominus.setStyle("SELECTED_STYLE");
-        //twoplus.setStyle("DEFAULT_STYLE");
-    }
+    private void negatif2() { ql2 = "Negative"; }
 
     @FXML
-    private void affirmatif3(){
-        ql3 = "Affirmative";
-        //threeplus.setStyle("SELECTED_STYLE");
-        //threeminus.setStyle("DEFAULT_STYLE");
-    }
+    private void affirmatif3() { ql3 = "Affirmative"; }
     @FXML
-    private void negatif3(){
-        ql3 = "Negative";
-        //threeminus.setStyle("SELECTED_STYLE");
-        //threeplus.setStyle("DEFAULT_STYLE");
-    }
+    private void negatif3() { ql3 = "Negative"; }
 
     @FXML
     public void fillorder() {
@@ -183,74 +216,22 @@ public class GuidedController {
             Q3.setDisable(true);
         }
 
-        // Débloque P1_2 seulement si P1_1 n'est pas vide
-        if (P1_1.getText() == null || P1_1.getText().isEmpty()) {
-            P1_2.setDisable(true);
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        } else {
-            P1_2.setDisable(false);
-        }
 
-        // Débloque Q2 seulement si P1_2 n'est pas vide
-        if (P1_2.getText() == null || P1_2.getText().isEmpty()) {
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        } else {
-            Q2.setDisable(false);
-        }
+    // Méthode pour supprimer tous les bindings
+    private void clearBindings() {
 
-        // Débloque P2_1 seulement si un élément est sélectionné dans Q2
-        if (Q2.getSelectionModel().getSelectedItem() != null) {
-            P2_1.setDisable(false);
-        } else {
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q3.setDisable(true);
-        }
+                P1_1.textProperty().unbindBidirectional(P2_2.textProperty());
+                P2_1.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_2.textProperty().unbindBidirectional(P3_2.textProperty());
+                P1_2.textProperty().unbindBidirectional(P2_2.textProperty());
+                P1_1.textProperty().unbindBidirectional(P3_2.textProperty());
+                P2_1.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_1.textProperty().unbindBidirectional(P2_1.textProperty());
+                P1_2.textProperty().unbindBidirectional(P3_2.textProperty());
+                P2_2.textProperty().unbindBidirectional(P3_1.textProperty());
+                P1_1.textProperty().unbindBidirectional(P3_2.textProperty());
+                P1_2.textProperty().unbindBidirectional(P2_1.textProperty());
+                P2_2.textProperty().unbindBidirectional(P3_1.textProperty());
 
-        // Débloque P2_2 seulement si P2_1 n'est pas vide
-        if (P2_1.getText() == null || P2_1.getText().isEmpty()) {
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q3.setDisable(true);
-        } else {
-            P2_2.setDisable(false);
-        }
-
-        // Débloque Q3 seulement si P2_2 n'est pas vide
-        if (P2_2.getText() == null || P2_2.getText().isEmpty()) {
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q3.setDisable(true);
-        } else {
-            Q3.setDisable(false);
-        }
-
-        // Débloque P3_1 seulement si un élément est sélectionné dans Q3
-        if (Q3.getSelectionModel().getSelectedItem() != null) {
-            P3_1.setDisable(false);
-        } else {
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-        }
-
-        // Débloque P3_2 seulement si P3_1 n'est pas vide
-        if (P3_1.getText() == null || P3_1.getText().isEmpty()) {
-            P3_2.setDisable(true);
-        } else {
-            P3_2.setDisable(false);
-        }
     }
 }

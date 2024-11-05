@@ -18,7 +18,7 @@
    <children>
       <HBox alignment="CENTER" style="-fx-spacing: 10;">
          <children>
-            <ComboBox onAction="#fillorder" fx:id="choix_figure" prefWidth="150.0" promptText="Figure:" HBox.hgrow="ALWAYS"/>
+            <ComboBox fx:id="choix_figure" prefWidth="150.0" promptText="Figure:" HBox.hgrow="ALWAYS"/>
             <ImageView fx:id="image_figure" fitHeight="40.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
@@ -46,8 +46,8 @@
       </HBox>
       <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox onAction="#fillorder" fx:id="Q2" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS"/>
-            <TextField onKeyTyped="#fillorder" fx:id="P2_1"  promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="Q2" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="P2_1"  promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
             <TextField  promptText="are" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
             <TextField onKeyTyped="#fillorder" fx:id="P2_2"  promptText="birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
             <Button fx:id="twoplus" onAction="#affirmatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
