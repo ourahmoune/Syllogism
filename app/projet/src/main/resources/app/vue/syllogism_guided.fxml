@@ -11,7 +11,10 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.GuidedController">
+<VBox maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@syllogism_guided.css"
+      fx:controller="app.controller.GuidedController"
+      styleClass="subPane">
    <children>
       <HBox alignment="CENTER" style="-fx-spacing: 10;">
          <children>
@@ -21,50 +24,34 @@
       </HBox>
       <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox fx:id="Q1" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
-            <TextField fx:id="P1_1"  maxWidth="1.7976931348623157E308" promptText="%birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+            <ComboBox onAction="#fillorder" fx:id="Q1" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+            <TextField onKeyTyped="#fillorder" fx:id="P1_1"  maxWidth="1.7976931348623157E308" promptText="%birds" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="V1" maxWidth="1.7976931348623157E308" promptText="%have" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+            <TextField fx:id="V1" maxWidth="1.7976931348623157E308" promptText="%have" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="P1_2"  maxWidth="1.7976931348623157E308" promptText="%wings" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+            <TextField onKeyTyped="#fillorder" fx:id="P1_2"  maxWidth="1.7976931348623157E308" promptText="%wings" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="20.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="oneplus" onAction="#affirmatif1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="oneminus" onAction="#negatif1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
+            <Button fx:id="oneplus" onAction="#affirmatif1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
+            <Button fx:id="oneminus" onAction="#negatif1" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" HBox.hgrow="ALWAYS" styleClass="quality"/>
          </children>
       </HBox>
       <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
          <children>
             <ComboBox fx:id="Q2" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
             <TextField fx:id="P2_1"  promptText="%animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <TextField  fx:id="V2" promptText="%are" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="P2_2"  promptText="%birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <Button fx:id="twoplus" onAction="#affirmatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="twominus" onAction="#negatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
+            <TextField fx:id="V2" promptText="%are" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+            <TextField onKeyTyped="#fillorder" fx:id="P2_2"  promptText="%birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+            <Button fx:id="twoplus" onAction="#affirmatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
+            <Button fx:id="twominus" onAction="#negatif2" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0"  HBox.hgrow="ALWAYS" styleClass="quality"/>
          </children>
       </HBox>
       <Label id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:">
@@ -74,26 +61,18 @@
       </Label>
       <HBox alignment="CENTER" style="-fx-spacing: 10;">
          <children>
-            <ComboBox fx:id="Q3" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="P3_1"  promptText="%animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <TextField  fx:id="V3" promptText="%have" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="P3_2"  maxWidth="1.7976931348623157E308" promptText="%wings" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-            <Button fx:id="threeplus" onAction="#affirmatif3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="threeminus" onAction="#negatif3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
+            <ComboBox onAction="#fillorder" fx:id="Q3" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+            <TextField onKeyTyped="#fillorder" fx:id="P3_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
+            <TextField onAction="#fillorder" fx:id="V3" promptText="%have" HBox.hgrow="ALWAYS" />
+            <TextField onKeyTyped="#fillorder" fx:id="P3_2"  maxWidth="1.7976931348623157E308" promptText="%wings" HBox.hgrow="ALWAYS" />
+            <Button fx:id="threeplus" onAction="#affirmatif3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="+" HBox.hgrow="ALWAYS" styleClass="quality"/>
+            <Button fx:id="threeminus" onAction="#negatif3" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" text="-" HBox.hgrow="ALWAYS" styleClass="quality"/>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button onAction="#validate" mnemonicParsing="false" style="-fx-background-color: #9dff8c; -fx-text-fill: black;" text="Validate" />
-            <Button onAction="#clear" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-text-fill: black;" text="Clear">
+            <Button fx:id="validate" onAction="#validate" mnemonicParsing="false" text="Validate" styleClass="validate"/>
+            <Button onAction="#clear" contentDisplay="CENTER" mnemonicParsing="false" text="Clear" styleClass="clear">
                <padding>
                   <Insets left="20.0" right="20.0" />
                </padding>

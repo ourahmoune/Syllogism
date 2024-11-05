@@ -9,7 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -146,6 +148,7 @@ public class MenuController {
         scene.heightProperty().addListener((obs, oldVal, newVal) -> {
             resizeButtons();
         });
+
     }
 
     /**
@@ -181,8 +184,6 @@ public class MenuController {
         try {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
             Pane paneloaded = loader.load();
-            paneloaded.setStyle("-fx-border-color: black; -fx-border-width: 3;");
-            contentPane.setStyle("-fx-border-color: yellow; -fx-border-width: 3;");
             paneloaded.prefWidthProperty().bind(contentPane.widthProperty());
             paneloaded.prefHeightProperty().bind(contentPane.heightProperty());
             // Replace the content of contentPane with the newly loaded content

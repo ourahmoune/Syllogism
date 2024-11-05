@@ -10,7 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,7 +31,7 @@ public class GuidedController {
     private TextField P1_1, P1_2, P2_1, P2_2, P3_1, P3_2, V1, V2, V3;
 
     @FXML
-    private Button oneplus, oneminus, twoplus, twominus, threeplus, threeminus;
+    private Button oneplus,oneminus,twoplus,twominus,threeplus,threeminus, validate;
 
     // Qualities of the propositions
     private String ql1, ql2, ql3;
@@ -159,32 +161,35 @@ public class GuidedController {
      * Validates and constructs the syllogism based on user input.
      */
     @FXML
-    private void validate() {
-        Figure figure = Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
+    private void validate(){
+        try {
+            Figure figure = Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
 
-        Quantificator quantificator1 = QuantificatorList.getInstance().getQuantificator(Q1.getSelectionModel().getSelectedItem());
-        Quantificator quantificator2 = QuantificatorList.getInstance().getQuantificator(Q2.getSelectionModel().getSelectedItem());
-        Quantificator quantificator3 = QuantificatorList.getInstance().getQuantificator(Q3.getSelectionModel().getSelectedItem());
+            Quantificator quantificator1 = QuantificatorList.getInstance().getQuantificator(Q1.getSelectionModel().getSelectedItem());
+            Quantificator quantificator2 = QuantificatorList.getInstance().getQuantificator(Q2.getSelectionModel().getSelectedItem());
+            Quantificator quantificator3 = QuantificatorList.getInstance().getQuantificator(Q3.getSelectionModel().getSelectedItem());
 
-        String sujet1 = P1_1.getText();
-        String sujet2 = P2_1.getText();
-        String sujet3 = P3_1.getText();
+            String sujet1 = P1_1.getText();
+            String sujet2 = P2_1.getText();
+            String sujet3 = P3_1.getText();
 
-        String predicat1 = P1_2.getText();
-        String predicat2 = P2_2.getText();
-        String predicat3 = P3_2.getText();
+            String predicat2 = P2_2.getText();
+            String predicat1 = P1_2.getText();
+            String predicat3 = P3_2.getText();
 
-        Proposition p1 = new Proposition(quantificator1, sujet1, predicat1, Quality.valueOf(ql1));
-        Proposition p2 = new Proposition(quantificator2, sujet2, predicat2, Quality.valueOf(ql2));
-        Proposition p3 = new Proposition(quantificator3, sujet3, predicat3, Quality.valueOf(ql3));
+            Proposition p1 = new Proposition(quantificator1, sujet1, predicat1, Quality.valueOf(ql1));
+            Proposition p2 = new Proposition(quantificator2, sujet2, predicat2, Quality.valueOf(ql2));
+            Proposition p3 = new Proposition(quantificator3, sujet3, predicat3, Quality.valueOf(ql3));
 
-        Map<Integer, Proposition> map = new HashMap<>();
-        map.put(1, p1);
-        map.put(2, p2);
-        map.put(3, p3);
+            Map<Integer, Proposition> map = new HashMap<>();
+            map.put(1, p1);
+            map.put(2, p2);
+            map.put(3, p3);
 
-        Syllogism s = new Syllogism(figure, map);
-        // Additional processing of the syllogism can be done here
+            Syllogism s = new Syllogism(figure, map);
+        } catch (Exception e) {
+            validate.setStyle("-fx-background-color: red");
+        }
     }
 
     // Methods to set the quality for the propositions
@@ -203,6 +208,35 @@ public class GuidedController {
     @FXML
     private void negatif3() { ql3 = "Negative"; }
 
+    @FXML
+    public void fillorder() {
+        validate.setStyle("-fx-background-color: #9dff8c");
+        if (choix_figure.getSelectionModel().getSelectedItem() != null) {
+            Q1.setDisable(false);
+        } else {
+            P1_1.setDisable(true);
+            P1_2.setDisable(true);
+            P2_1.setDisable(true);
+            P2_2.setDisable(true);
+            P3_1.setDisable(true);
+            P3_2.setDisable(true);
+            Q1.setDisable(true);
+            Q2.setDisable(true);
+            Q3.setDisable(true);
+        }
+        // Débloque P1_1 seulement si un élément est sélectionné dans Q1
+        if (Q1.getSelectionModel().getSelectedItem() != null) {
+            P1_1.setDisable(false);
+        } else {
+            P1_1.setDisable(true);
+            P1_2.setDisable(true);
+            P2_1.setDisable(true);
+            P2_2.setDisable(true);
+            P3_1.setDisable(true);
+            P3_2.setDisable(true);
+            Q2.setDisable(true);
+            Q3.setDisable(true);
+        }
 
 
     // Méthode pour supprimer tous les bindings

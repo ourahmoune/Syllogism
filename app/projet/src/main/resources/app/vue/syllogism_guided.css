@@ -1,0 +1,32 @@
+.subPane{
+    -fx-background-color: #4AE2E2;
+}
+
+.text-field{
+    -fx-prompt-text-fill: #808080;
+}
+
+.quality{
+    -fx-background-radius: 15;
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+    -fx-max-width: 30;
+    -fx-font-size: 20;
+    -fx-text-fill: #32b71b;
+    -fx-background-color: lightgrey;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-padding: 0;
+    -fx-text-fill: #32b71b;
+}
+
+.validate{
+    -fx-background-color: #9dff8c;
+    -fx-text-fill: black;
+}
+
+.clear{
+    -fx-background-color: #32b71b;
+    -fx-text-fill: black;
+}
