@@ -58,7 +58,6 @@ public class GuidedController {
                 clearBindings();
 
                 if (newValue.equals("UN") || newValue.equals("ONE")) {
-                    newValue = "UN";
                     P1_2.setDisable(true);
                     P1_1.setDisable(false);
                     P1_1.textProperty().bindBidirectional(P2_2.textProperty());
@@ -66,7 +65,6 @@ public class GuidedController {
                     P1_2.textProperty().bindBidirectional(P3_2.textProperty());
                 }
                 else if (newValue.equals("TWO") || newValue.equals("DEUX")) {
-                    newValue = "DEUX";
                     P1_1.setDisable(true);
                     P1_2.setDisable(false);
                     P1_2.textProperty().bindBidirectional(P2_2.textProperty());
@@ -74,7 +72,6 @@ public class GuidedController {
                     P2_1.textProperty().bindBidirectional(P3_1.textProperty());
                 }
                 else if (newValue.equals("THREE") || newValue.equals("TROIS")) {
-                    newValue = "TROIS";
                     P1_2.setDisable(true);
                     P1_1.setDisable(false);
                     P1_1.textProperty().bindBidirectional(P2_1.textProperty());
@@ -82,7 +79,6 @@ public class GuidedController {
                     P2_2.textProperty().bindBidirectional(P3_1.textProperty());
                 }
                 else if (newValue.equals("FOUR") || newValue.equals("QUATRE")) {
-                    newValue = "QUATRE";
                     P1_1.setDisable(true);
                     P1_2.setDisable(false);
                     P1_1.textProperty().bindBidirectional(P3_2.textProperty());
