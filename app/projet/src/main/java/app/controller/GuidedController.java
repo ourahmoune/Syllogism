@@ -132,9 +132,9 @@ public class GuidedController {
      */
     private String getImagePathForOption(String option) {
         return switch (option) {
-            case "DEUX" -> "/app/image/Figure2_syllogism.png";
-            case "TROIS" -> "/app/image/Figure3_syllogism.png";
-            case "QUATRE" -> "/app/image/Figure4_syllogism.png";
+            case "DEUX", "TWO" -> "/app/image/Figure2_syllogism.png";
+            case "TROIS", "THREE" -> "/app/image/Figure3_syllogism.png";
+            case "QUATRE", "FOUR" -> "/app/image/Figure4_syllogism.png";
             default -> "/app/image/Figure1_syllogism.png";
         };
     }
@@ -164,7 +164,14 @@ public class GuidedController {
     @FXML
     private void validate(){
         try {
-            Figure figure = Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
+        Figure figure = switch (choix_figure.getSelectionModel().getSelectedItem()) {
+            case "ONE" -> Figure.UN;
+            case "TWO" -> Figure.DEUX;
+            case "THREE" -> Figure.TROIS;
+            case "FOUR" -> Figure.QUATRE;
+            default -> Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
+        };
+          
             Quantificator quantificator1 = QuantificatorList.getInstance().getQuantificator(Q1.getSelectionModel().getSelectedItem());
             Quantificator quantificator2 = QuantificatorList.getInstance().getQuantificator(Q2.getSelectionModel().getSelectedItem());
             Quantificator quantificator3 = QuantificatorList.getInstance().getQuantificator(Q3.getSelectionModel().getSelectedItem());
@@ -250,37 +257,7 @@ public class GuidedController {
         threeminus.setStyle("-fx-background-color: #37ff00");
     }
 
-    @FXML
-    public void fillorder() {
-        validate.setStyle("-fx-background-color: #9dff8c");
-        if (choix_figure.getSelectionModel().getSelectedItem() != null) {
-            Q1.setDisable(false);
-        } else {
-            P1_1.setDisable(true);
-            P1_2.setDisable(true);
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q1.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        }
-        // Débloque P1_1 seulement si un élément est sélectionné dans Q1
-        if (Q1.getSelectionModel().getSelectedItem() != null) {
-            P1_1.setDisable(false);
-        } else {
-            P1_1.setDisable(true);
-            P1_2.setDisable(true);
-            P2_1.setDisable(true);
-            P2_2.setDisable(true);
-            P3_1.setDisable(true);
-            P3_2.setDisable(true);
-            Q2.setDisable(true);
-            Q3.setDisable(true);
-        }
 
-    }
     // Méthode pour supprimer tous les bindings
     private void clearBindings() {
 
