@@ -8,9 +8,9 @@
             stylesheets="@menu.css"
             fx:controller="app.controller.MenuController">
    <left>
-      <VBox alignment="CENTER_LEFT" minHeight="20.0" minWidth="20.0" prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+      <VBox>
          <children>
-            <VBox alignment="CENTER_LEFT" minHeight="20.0" minWidth="20.0" prefWidth="79.0">
+            <VBox>
                <children>
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
                   <Button mnemonicParsing="false" text="%GuidedPage" VBox.vgrow="ALWAYS" fx:id="GuidedPage" styleClass="GuidedPage" onAction="#GuidedInterface"/>
@@ -37,9 +37,9 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox>
          <children>
-            <HBox alignment="TOP_RIGHT" minHeight="37.0" minWidth="200.0" prefHeight="37.0" prefWidth="500.0" style="-fx-padding: 12.5; -fx-spacing: 25;">
+            <HBox alignment="TOP_RIGHT" style="-fx-padding: 12.5; -fx-spacing: 25;">
                <children>
                   <StackPane styleClass="language" maxWidth="75" >
                         <Label text="%Language" fx:id="language" alignment="CENTER_RIGHT" onMousePressed="#changeLanguage"/>
@@ -51,7 +51,7 @@
                   </StackPane>
                </children>
             </HBox>
-            <Pane fx:id="contentPane" prefHeight="1000.0" prefWidth="1000.0" />
+            <Pane fx:id="contentPane" prefHeight="1200.0" prefWidth="1200.0"/>
          </children>
       </VBox>
    </center>
