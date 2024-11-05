@@ -71,7 +71,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button onAction="#validate" mnemonicParsing="false" text="Validate" styleClass="validate"/>
+            <Button fx:id="validate" onAction="#validate" mnemonicParsing="false" text="Validate" styleClass="validate"/>
             <Button onAction="#clear" contentDisplay="CENTER" mnemonicParsing="false" text="Clear" styleClass="clear">
                <padding>
                   <Insets left="20.0" right="20.0" />
