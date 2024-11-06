@@ -6,7 +6,6 @@ import java.util.Map;
  * Class representing a syllogism consisting of a figure, propositions, and associated rules.
  */
 public class Syllogism {
-
 	private Figure figure;
 	private Map<Integer, Proposition> proposition;
 	private Rules rules;

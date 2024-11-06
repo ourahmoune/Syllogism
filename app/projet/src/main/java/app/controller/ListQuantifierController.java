@@ -70,8 +70,6 @@ public class ListQuantifierController {
             addQuantificator(word, Quantity.Universal);
 
             // Ajout du HBox dans le VBox principal (ListQuantifier)
-            Quantificator quantificator = new Quantificator(Quantity.Universal, word);
-            QuantificatorList.getInstance().addQuantificator(quantificator);
             ListUniversal.getChildren().add(hbox);
             printQuantificators();
         });
@@ -82,7 +80,6 @@ public class ListQuantifierController {
      */
     public void handleRemoveQuantificatorClickUniversal(ActionEvent actionEvent) {
         Alert alert = createDeleteConfirmationDialog("Universal");
-
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             String selectedQuantificatorName = getSelectedQuantificatorName(alert);
