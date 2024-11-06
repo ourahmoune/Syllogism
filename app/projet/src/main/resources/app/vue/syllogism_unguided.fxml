@@ -11,32 +11,32 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.UnGuidedController">
    <children>
       <VBox VBox.vgrow="ALWAYS">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #4AE2E2;" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox style="-fx-background-color: #4AE2E2;">
+                  <VBox fx:id="vboxPremice" style="-fx-background-color: #4AE2E2;">
                      <children>
                         <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
                            <children>
-                              <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: All" HBox.hgrow="ALWAYS">
+                              <ComboBox fx:id="Q1" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="20.0" />
                                  </HBox.margin>
                               </ComboBox>
-                              <TextField maxWidth="1.7976931348623157E308" promptText="birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+                              <TextField maxWidth="1.7976931348623157E308" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField maxWidth="1.7976931348623157E308" promptText="have" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+                              <TextField maxWidth="1.7976931348623157E308" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="20.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField maxWidth="1.7976931348623157E308" promptText="wings" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
+                              <TextField maxWidth="1.7976931348623157E308" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="20.0" />
                                  </HBox.margin>
@@ -55,14 +55,14 @@
                         </HBox>
                         <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
                            <children>
-                              <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS">
+                              <ComboBox fx:id="Q2" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </ComboBox>
-                              <TextField promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                              <TextField promptText="are" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                              <TextField promptText="birds" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                              <TextField style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                              <TextField style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                              <TextField style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
                               <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="15.0" />
@@ -79,7 +79,7 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b">
+            <Button onAction="#addPremice" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b">
                <font>
                   <Font size="15.0" />
                </font>
@@ -95,10 +95,10 @@
             </Label>
             <HBox alignment="CENTER" style="-fx-spacing: 10;">
                <children>
-                  <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Ex: Some" HBox.hgrow="ALWAYS" />
-                  <TextField editable="false" promptText="animals" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                  <TextField promptText="Have" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                  <TextField editable="false" maxWidth="1.7976931348623157E308" promptText="wings" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                  <ComboBox fx:id="Q3" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                  <TextField editable="false" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                  <TextField style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
+                  <TextField editable="false" maxWidth="1.7976931348623157E308" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
                   <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
