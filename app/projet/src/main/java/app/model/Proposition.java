@@ -53,7 +53,8 @@ public class Proposition {
 	public Quality getQuality() {
 		return quality;
 	}
-
+	public String getSubject() {return subject;}
+	public String getPredicat() {return predicat;}
 	/**
 	 * Retrieves the quantificator of the proposition.
 	 *
