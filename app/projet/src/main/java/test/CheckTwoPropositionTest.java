@@ -6,7 +6,6 @@ import app.model.Quantificator;
 import app.model.Quantity;
 import app.model.polysyllogismes.Polysyllogisme;
 import org.junit.Test;
-
 import java.util.Map;
 
 public class CheckTwoPropositionTest {

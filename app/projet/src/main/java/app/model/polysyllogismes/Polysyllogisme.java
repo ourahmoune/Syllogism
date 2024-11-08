@@ -53,4 +53,26 @@ public class Polysyllogisme {
         }
         return result ;
     }
+    public boolean HasValideForm(){
+        boolean result = true ;
+        Map<String , String> FistSecondCommun = null ;
+        for(int i=1;i<taille ;i++){
+            FistSecondCommun = CheckTwoPremise(proposition.get(i),proposition.get(i+1));
+            if(FistSecondCommun == null){
+                result = false ;
+                break ;
+            }
+        }
+        String IsoleFirst , IsoleLast , Terme1Conclusion , Terme2Conclusion = null ;
+        FistSecondCommun = CheckTwoPremise(proposition.get(1),proposition.get(2));
+        IsoleFirst = FistSecondCommun.get("FirstIsole");
+        FistSecondCommun = CheckTwoPremise(proposition.get(taille-1),proposition.get(taille));
+        IsoleLast = FistSecondCommun.get("FirstIsole");
+        Terme1Conclusion = proposition.get(taille).getSubject();
+        Terme2Conclusion = proposition.get(taille).getPredicat();
+        result =(  (  IsoleFirst.equals(Terme1Conclusion ) || IsoleFirst.equals(Terme2Conclusion)   )
+                &&
+                (IsoleLast.equals(Terme1Conclusion) || IsoleLast.equals( Terme2Conclusion)));
+        return result ;
+    }
 }
