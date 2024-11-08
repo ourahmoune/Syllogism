@@ -44,7 +44,6 @@ public class Proposition {
 		this.type = type;
 		this.quality = (type == Type.E || type == Type.O) ? Quality.Negative : Quality.Affirmative;
 	}
-
 	/**
 	 * Retrieves the quality of the proposition.
 	 *
