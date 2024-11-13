@@ -2,13 +2,21 @@ package app.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Class representing a collection of rules for evaluating syllogisms.
+ */
 public class Rules {
 
 	private static Map<Rule, Boolean> listRules =new HashMap<>();
 	/**
-	 * 
-	 * @param syllogism
+	 * Evaluates all rules against the given syllogism.
+	 *
+	 * @param syllogism the syllogism to evaluate
+	 * @return a string result of the evaluation (not yet implemented)
+	 * @throws UnsupportedOperationException if not implemented
 	 */
 	public String AllRules(Syllogism syllogism) {
 		// TODO - implement Rules.AllRules
@@ -24,6 +32,7 @@ public class Rules {
 		}
 		return true;
 	}
+
 	public static Map<Rule, Boolean> getListRules() {
 		return listRules;
 	}

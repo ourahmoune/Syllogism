@@ -18,7 +18,6 @@ public class StartApplication extends Application {
     {
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("vue/menu.fxml"), SettingController.language);
         scene = new Scene(fxmlLoader.load(), 1280, 720);
-
         if (fxmlLoader.getController() instanceof MenuController) {
             MenuController controller = fxmlLoader.getController();
             controller.resize();
@@ -29,9 +28,7 @@ public class StartApplication extends Application {
         StartApplication.stage.setScene(scene);
         StartApplication.stage.show();
 
-
     }
-
     public static void main(String[] args) {
         launch();
     }

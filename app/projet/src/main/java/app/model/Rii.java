@@ -5,12 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Rii extends Rule{
+/**
+ * The Rii class represents a rule for "uninteresting" syllogisms.
+ * Rii: Some syllogisms, while valid, are considered uninteresting because their existential conclusion
+ * could have been replaced with a stronger universal conclusion.
+ * This class evaluates a syllogism based on its types of propositions and its figure.
+ */
+public class Rii extends Rule {
+
     private String Result;
 
     /**
+     * Evaluates the validity of a syllogism based on its types of propositions and its figure.
+     * Utilizes a list of rules (`ruleList`) and modified syllogisms to check validity
+     * according to specific conditions.
      *
-     * @param syllogism
+     * @param syllogism The `Syllogism` object to evaluate, containing the types of propositions and the figure.
+     * @return A boolean indicating whether the syllogism is valid according to the defined rules.
      */
     public Boolean Launch(Syllogism syllogism) {
         Type modeP1 =syllogism.getProposition().get(1).getType();
@@ -30,8 +41,6 @@ public class Rii extends Rule{
             boolean valideA = Rules.Launch(syllogismeA);
             boolean valideE = Rules.Launch(syllogismeE);
             return valideA || valideE;
-
-
         }
         return false;
     }

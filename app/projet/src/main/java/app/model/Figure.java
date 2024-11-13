@@ -1,7 +1,9 @@
 package app.model;
 
-public enum Figure
-{
+/**
+ * Enum representing different figures.
+ */
+public enum Figure {
     UN,
     DEUX,
     TROIS,
