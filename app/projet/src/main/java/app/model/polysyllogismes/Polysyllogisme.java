@@ -15,6 +15,24 @@ public class Polysyllogisme {
         this.proposition = propositions;
         this.taille = taille ;
     }
+    private Proposition SearchProposition(String terme){
+        Proposition propositionresult = null;
+        for( int i = 1 ; i<taille ; i++){
+            Proposition p = proposition.get(i);
+            if(p != null){
+                propositionresult = new Proposition(p.getQuantificator() ,p.getSubject() , p.getPredicat() , p.getQuality()) ;
+                if(propositionresult.getPredicat().equals(terme) || propositionresult.getSubject().equals(terme)  ){
+                    proposition.remove(i);
+                    return propositionresult;
+                }
+            }
+
+
+        }
+        return propositionresult ;
+
+
+    }
     public Map<Integer, Proposition> getProposition() {return proposition;}
     public int getTaille() {return taille;}
     public Map<String, String> CheckTwoPremise(Proposition P1 , Proposition P2){
@@ -73,34 +91,44 @@ public class Polysyllogisme {
         }
         String IsoleFirst , IsoleLast , Terme1Conclusion , Terme2Conclusion = null ;
         FistSecondCommun = CheckTwoPremise(proposition.get(1),proposition.get(2));
-        IsoleFirst = FistSecondCommun.get("FirstIsole");
-        FistSecondCommun = CheckTwoPremise(proposition.get(taille-2),proposition.get(taille-1));
-        IsoleLast = FistSecondCommun.get("SecondIsole");
-        Terme1Conclusion = proposition.get(taille).getSubject();
-        Terme2Conclusion = proposition.get(taille).getPredicat();
-        result =(  (  IsoleFirst.equals(Terme1Conclusion ) || IsoleFirst.equals(Terme2Conclusion)   )
-                &&
-                (IsoleLast.equals(Terme1Conclusion) || IsoleLast.equals( Terme2Conclusion)));
+        if(FistSecondCommun != null){
+            IsoleFirst = FistSecondCommun.get("FirstIsole");
+            FistSecondCommun = CheckTwoPremise(proposition.get(taille-2),proposition.get(taille-1));
+            if(FistSecondCommun != null){
+                IsoleLast = FistSecondCommun.get("SecondIsole");
+                Terme1Conclusion = proposition.get(taille).getSubject();
+                Terme2Conclusion = proposition.get(taille).getPredicat();
+                result =(  (  IsoleFirst.equals(Terme1Conclusion ) || IsoleFirst.equals(Terme2Conclusion)   )
+                        &&
+                        (IsoleLast.equals(Terme1Conclusion) || IsoleLast.equals( Terme2Conclusion)));
+            }else{
+                result = false ;
+            }
+        }else{
+            result = false ;
+        }
+
+
+
+
         return result ;
     }
-    public boolean Reordonne(){
+    public void  Reordonne(){
         System.out.println("start :reodonne ");
-        boolean result = false ;
-        int i=1 ;
-        int j=0;
-        while(i<taille-2 && !result ){// l'avant dernier proposition
-            j=i+1 ;
-            while(j<taille-1){
-                swap(i,j);
-                result = HasValideForm() ;
-                if(result){
-                    break ;
-                }else{
-                    j++;
-                }
+        String terme = proposition.get(taille).getSubject();
+        Map<Integer, Proposition> newproposition = new HashMap<>();
+        for(int i =1 ; i<taille ; i++){
+            Proposition p = SearchProposition(terme) ;
+            newproposition.put(i, p);
+            if(terme.equals(p.getPredicat()) ){
+                terme = p.getSubject();
+            }else{
+                terme = p.getPredicat();
             }
-            i++;
         }
-        return result ;
+        Proposition conclusion = new Proposition(proposition.get(taille).getQuantificator() , proposition.get(taille).getSubject() , proposition.get(taille).getPredicat() , proposition.get(taille).getQuality() );
+
+        proposition = newproposition ;
+        proposition.put(taille,conclusion);
     }
 }

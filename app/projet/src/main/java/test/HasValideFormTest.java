@@ -36,6 +36,6 @@ public class HasValideFormTest {
         propositions.put(6, new Proposition(new Quantificator(Quantity.Universal ,"tous"), "mammifere", "animal" , Quality.Affirmative));
         propositions.put(7, new Proposition(new Quantificator(Quantity.Universal ,"tous"), "minivelo", "poils durs" , Quality.Affirmative));
         Polysyllogisme polysyllogisme = new Polysyllogisme(propositions, 7);
-        // a continuer 
+        assert (! polysyllogisme.HasValideForm());
     }
 }
