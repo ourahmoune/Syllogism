@@ -16,23 +16,7 @@ public class Rii extends Rule{
         Type modeP1 =syllogism.getProposition().get(1).getType();
         Type modeP2 =syllogism.getProposition().get(2).getType();
         Type modec = syllogism.getProposition().get(3).getType();
-        Rmt rmt = new Rmt();
-        Rlh rlh = new Rlh();
-        Raa raa = new Raa();
-        Rpp rpp = new Rpp();
-        Rp rp = new Rp();
-        Rnn rnn = new Rnn();
-        Rn rn = new Rn();
-        List<Rule> ruleList = new ArrayList<Rule>();
-        ruleList.add(rmt);
-        ruleList.add(rlh);
-        ruleList.add(raa);
-        ruleList.add(rpp);
-        ruleList.add(rp);
-        ruleList.add(rn)
-        ;ruleList.add(rnn);
-        Rules rules = new Rules(ruleList) ;
-        if((modeP1 == Type.A ||modeP1 == Type.E ) && ( modeP2 == Type.A || modeP2 == Type.E) && (modec == Type.I ||modec == Type.O)&&(rules.Launch(syllogism))){
+        if((modeP1 == Type.A ||modeP1 == Type.E ) && ( modeP2 == Type.A || modeP2 == Type.E) && (modec == Type.I ||modec == Type.O)&&(Rules.Launch(syllogism))){
             Map<Integer,Proposition> propositionA =new HashMap<>();
             propositionA.put(1, new Proposition(modeP1));
             propositionA.put(2, new Proposition(modeP2));
@@ -43,9 +27,8 @@ public class Rii extends Rule{
             propositionE.put(2, new Proposition(modeP2));
             propositionE.put(3, new Proposition(Type.E));
             Syllogism syllogismeE = new Syllogism(syllogism.getFigure(), propositionE);
-            boolean valideA = rules.Launch(syllogismeA);
-            boolean valideE = rules.Launch(syllogismeE);
-            // si l un des syllogism et valide alors c inintirisant
+            boolean valideA = Rules.Launch(syllogismeA);
+            boolean valideE = Rules.Launch(syllogismeE);
             return valideA || valideE;
 
 

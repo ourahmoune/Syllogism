@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.StartApplication;
+import app.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static app.StartApplication.scene;
 
@@ -42,9 +44,19 @@ public class MenuController {
     @FXML
     Pane contentPane;
 
+
     @FXML
     public void initialize(){
         //GuidedInterface();
+        Rules.getListRules().put(new Rmt(), true);
+        Rules.getListRules().put(new Raa(), true);
+        Rules.getListRules().put(new Rii(), true);
+        Rules.getListRules().put(new Rlh(), true);
+        Rules.getListRules().put(new Rnn(), true);
+        Rules.getListRules().put(new Rn(), true);
+        Rules.getListRules().put(new Rp(), true);
+        Rules.getListRules().put(new Rpp(), true);
+        Rules.getListRules().put(new Ruu(), true);
     }
     @FXML
     public void changeLanguage() throws IOException {
@@ -124,12 +136,14 @@ public class MenuController {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("vue/Settings.fxml"));
             Pane root = loader.load();
 
-            // Create a new Stage for the pop-up
+            SettingsController settingsController = loader.getController();
+
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL); // Block interactions with other windows
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Settings");
             stage.setScene(new Scene(root));
-            stage.showAndWait(); // Display the pop-up and wait for it to close
+
+            stage.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }
