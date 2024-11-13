@@ -61,7 +61,7 @@ public class Syllogism {
 	 */
 
 	public void solve() {
-		this.valid=rules.Launch(this);
+		this.valid=Rules.Launch(this);
 		if(this.valid) {
 			System.out.println("le syllogism est valid");
 		}else{

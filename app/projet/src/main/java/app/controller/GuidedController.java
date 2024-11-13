@@ -189,24 +189,6 @@ public class GuidedController {
             map.put(2, p2);
             map.put(3, p3);
             Syllogism s = new Syllogism(figure, map);
-            Rmt rmt = new Rmt();
-            Rlh rlh = new Rlh();
-            Raa raa = new Raa();
-            Rpp rpp = new Rpp();
-            Rp rp = new Rp();
-            Rnn rnn = new Rnn();
-            Rn rn = new Rn();
-
-            List<Rule> ruleList = new ArrayList<>();
-            ruleList.add(rmt);
-            ruleList.add(rlh);
-            ruleList.add(raa);
-            ruleList.add(rpp);
-            ruleList.add(rp);
-            ruleList.add(rn);
-            ruleList.add(rnn);
-            Rules rules = new Rules(ruleList);
-            s.setRules(rules);
             s.solve();
         } catch (Exception e) {
             validate.setStyle("-fx-background-color: red");
