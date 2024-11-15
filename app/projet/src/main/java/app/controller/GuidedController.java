@@ -160,22 +160,21 @@ public class GuidedController {
     @FXML
     private void validate(){
         try {
-        Figure figure = switch (choix_figure.getSelectionModel().getSelectedItem()) {
+
+            Figure figure = switch (choix_figure.getSelectionModel().getSelectedItem()) {
             case "ONE" -> Figure.UN;
             case "TWO" -> Figure.DEUX;
             case "THREE" -> Figure.TROIS;
             case "FOUR" -> Figure.QUATRE;
             default -> Figure.valueOf(choix_figure.getSelectionModel().getSelectedItem());
         };
-          
+
             Quantificator quantificator1 = QuantificatorList.getInstance().getQuantificator(Q1.getSelectionModel().getSelectedItem());
             Quantificator quantificator2 = QuantificatorList.getInstance().getQuantificator(Q2.getSelectionModel().getSelectedItem());
             Quantificator quantificator3 = QuantificatorList.getInstance().getQuantificator(Q3.getSelectionModel().getSelectedItem());
-
             String sujet1 = P1_1.getText();
             String sujet2 = P2_1.getText();
             String sujet3 = P3_1.getText();
-
             String predicat2 = P2_2.getText();
             String predicat1 = P1_2.getText();
             String predicat3 = P3_2.getText();
@@ -183,31 +182,13 @@ public class GuidedController {
             Proposition p1 = new Proposition(quantificator1, sujet1, predicat1, Quality.valueOf(ql1));
             Proposition p2 = new Proposition(quantificator2, sujet2, predicat2, Quality.valueOf(ql2));
             Proposition p3 = new Proposition(quantificator3, sujet3, predicat3, Quality.valueOf(ql3));
-
             Map<Integer, Proposition> map = new HashMap<>();
             map.put(1, p1);
             map.put(2, p2);
             map.put(3, p3);
             Syllogism s = new Syllogism(figure, map);
-            Rmt rmt = new Rmt();
-            Rlh rlh = new Rlh();
-            Raa raa = new Raa();
-            Rpp rpp = new Rpp();
-            Rp rp = new Rp();
-            Rnn rnn = new Rnn();
-            Rn rn = new Rn();
-
-            List<Rule> ruleList = new ArrayList<>();
-            ruleList.add(rmt);
-            ruleList.add(rlh);
-            ruleList.add(raa);
-            ruleList.add(rpp);
-            ruleList.add(rp);
-            ruleList.add(rn);
-            ruleList.add(rnn);
-            Rules rules = new Rules(ruleList);
-            s.setRules(rules);
             s.solve();
+
         } catch (Exception e) {
             validate.setStyle("-fx-background-color: red");
         }

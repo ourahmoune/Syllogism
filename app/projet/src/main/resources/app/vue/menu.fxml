@@ -44,7 +44,7 @@
                   <StackPane styleClass="language" maxWidth="75" >
                         <Label text="%Language" fx:id="language" alignment="CENTER_RIGHT" onMousePressed="#changeLanguage"/>
                   </StackPane>
-                  <StackPane fx:id="ParamPage" styleClass="ParamPage">
+                  <StackPane fx:id="ParamPage" styleClass="ParamPage" onMouseClicked="#handleSettings">
                      <children>
                         <Circle fx:id="ParamPageCircle" fill="transparent"/>
                      </children>
