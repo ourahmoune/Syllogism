@@ -9,9 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -102,7 +100,11 @@ public class MenuController implements Resize{
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("vue/menu.fxml"), SettingController.language);
         scene.setRoot(fxmlLoader.load());
         ((MenuController) fxmlLoader.getController()).resize();
-        ((MenuController) fxmlLoader.getController()).loadInterface(subInterface);
+        try {
+            ((MenuController) fxmlLoader.getController()).loadInterface(subInterface);
+        } catch (Exception e) {
+            System.err.println("no subInterface");
+        }
     }
 
     /**

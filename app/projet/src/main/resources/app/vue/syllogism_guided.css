@@ -1,14 +1,10 @@
 .subPane{
     -fx-background-color: #4AE2E2;
-    -fx-border-width: 0 15 0 0;
     -fx-border-color: transparent;
 }
 
 .text-field{
     -fx-prompt-text-fill: #808080;
-}
-
-.quality{
 }
 
 .validate{
@@ -23,12 +19,16 @@
 
 .qualityLabel {
     -fx-alignment: center;
-    -fx-text-fill: #32b71b;
+    -fx-text-fill: #9dff8c;
     -fx-text-alignment: center;
-
 }
 
 .qualityCircle {
     -fx-fill: grey;
     -fx-alignment: center;
+}
+
+.validate, .clear{
+    -fx-border-radius: 15 15 15 15;
+    -fx-background-radius: 15 15 15 15;
 }
