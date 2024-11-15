@@ -8,9 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -26,7 +24,7 @@ import static app.StartApplication.scene;
  * MenuController manages the main menu interface of the application.
  * It handles navigation between different pages and the language settings.
  */
-public class MenuController {
+public class MenuController implements Resize{
     @FXML
     public Label language;
     @FXML
@@ -48,7 +46,9 @@ public class MenuController {
     @FXML
     public Text HelpButton;
     @FXML
-    Pane contentPane;
+    Pane contentPane; // Pane to load different interfaces
+
+    private String subInterface;
 
     @FXML
     public void initialize(){
@@ -107,6 +107,11 @@ public class MenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("vue/menu.fxml"), SettingController.language);
         scene.setRoot(fxmlLoader.load());
         ((MenuController) fxmlLoader.getController()).resize();
+        try {
+            ((MenuController) fxmlLoader.getController()).loadInterface(subInterface);
+        } catch (Exception e) {
+            System.err.println("no subInterface");
+        }
     }
 
     /**
@@ -141,9 +146,7 @@ public class MenuController {
         language.setMinHeight(scene.heightProperty().getValue() / 12);
     }
 
-    /**
-     * Resizes font sizes and buttons whenever the scene dimensions change.
-     */
+    @Override
     public void resize() {
         resizeFontSize();
         resizeButtons();
@@ -188,6 +191,7 @@ public class MenuController {
      * @param fxmlPath the path to the FXML file to load
      */
     public void loadInterface(String fxmlPath) {
+        this.subInterface = fxmlPath;
         try {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
             Pane paneloaded = loader.load();
@@ -196,6 +200,9 @@ public class MenuController {
             // Replace the content of contentPane with the newly loaded content
             contentPane.getChildren().clear();
             contentPane.getChildren().add(paneloaded);
+            if (loader.getController() instanceof Resize){
+                ((Resize) loader.getController()).resize();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
