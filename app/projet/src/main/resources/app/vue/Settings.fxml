@@ -16,7 +16,7 @@
       fx:controller="app.controller.SettingsController"
       stylesheets="@settings.css">
    <children>
-      <Label text="Settings">
+      <Label text="%Settings">
          <font>
             <Font size="30.0" />
          </font>
@@ -26,9 +26,9 @@
             <Insets />
          </VBox.margin>
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400">
                <children>
-                  <Label text="Rmt rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Rmt" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -56,9 +56,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="47.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400.0">
                <children>
-                  <Label text="Rlh rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Rlh" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -70,7 +70,7 @@
                <children>
                   <HBox fx:id="toggleSwitch1" alignment="CENTER" prefHeight="26.0" prefWidth="149.0" style="-fx-spacing: 0;">
                      <children>
-                        <Label fx:id="on1" prefHeight="24.0" prefWidth="28.0" text="On" textAlignment="RIGHT" />
+                        <Label fx:id="on1" prefHeight="24.0" prefWidth="28.0" text="  On" textAlignment="RIGHT" />
                         <StackPane fx:id="knobContainer1" prefHeight="26.0" prefWidth="55.0" >
                            <children>
                               <Rectangle width="45" height="20" arcWidth="10" arcHeight="10" style="-fx-fill: lightgray;" />
@@ -86,9 +86,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400.0">
                <children>
-                  <Label text="Rnn rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Rnn" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -116,9 +116,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400.0">
                <children>
-                  <Label text="Rn rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Rn" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -146,9 +146,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="319.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400.0">
                <children>
-                  <Label text="Raa rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Raa" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -176,9 +176,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="337.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400.0">
                <children>
-                  <Label text="Rpp rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Rpp" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -206,9 +206,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="350.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400.0">
                <children>
-                  <Label text="Rp rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Rp" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -236,9 +236,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="358.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400.0">
                <children>
-                  <Label text="Ruu rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Ruu" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -266,9 +266,9 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="47.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="400.0">
                <children>
-                  <Label text="Rii rule" VBox.vgrow="ALWAYS">
+                  <Label text="%Rii" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="19.0" />
                      </font>

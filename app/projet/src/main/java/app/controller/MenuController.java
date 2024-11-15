@@ -205,14 +205,13 @@ public class MenuController {
     private void handleSettings(){
         try {
             // Load the FXML file for the settings pop-up
-            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("vue/Settings.fxml"));
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("vue/Settings.fxml"), SettingController.subMenu);
             Pane root = loader.load();
 
             SettingsController settingsController = loader.getController();
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Settings");
             stage.setScene(new Scene(root));
 
             stage.showAndWait();
