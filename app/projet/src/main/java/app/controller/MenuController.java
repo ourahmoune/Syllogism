@@ -1,11 +1,10 @@
 package app.controller;
 
 import app.StartApplication;
-import app.model.Quantificator;
-import app.model.QuantificatorList;
-import app.model.Quantity;
+import app.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -13,8 +12,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static app.StartApplication.scene;
 
@@ -24,37 +26,42 @@ import static app.StartApplication.scene;
  */
 public class MenuController implements Resize{
     @FXML
-    public Label language; // Label to display the current language setting
+    public Label language;
     @FXML
-    public Button GuidedPage; // Button to navigate to the guided interface
+    public Button GuidedPage;
     @FXML
-    public Button ArrayPage; // Button to navigate to the array interface
+    public Button ArrayPage;
     @FXML
-    public Button FreePage; // Button to navigate to the free interface
+    public Button FreePage;
     @FXML
-    public Button ListQuantifiersPage; // Button to navigate to the quantifiers list interface
+    public Button ListQuantifiersPage;
     @FXML
-    public StackPane ParamPage; // StackPane for parameters page
+    public StackPane ParamPage;
     @FXML
-    public StackPane HelpPage; // StackPane for help page
+    public StackPane HelpPage;
     @FXML
-    public Circle ParamPageCircle; // Circle indicator for parameters page
+    public Circle ParamPageCircle;
     @FXML
-    public Circle HelpPageCircle; // Circle indicator for help page
+    public Circle HelpPageCircle;
     @FXML
-    public Text HelpButton; // Text element for the help button
+    public Text HelpButton;
     @FXML
     Pane contentPane; // Pane to load different interfaces
 
     private String subInterface;
 
-    /**
-     * Initializes the menu controller. This method can be used to set
-     * up initial state if needed.
-     */
     @FXML
-    public void initialize() {
+    public void initialize(){
         //GuidedInterface();
+        Rules.getListRules().put(new Rmt(), true);
+        Rules.getListRules().put(new Raa(), true);
+        Rules.getListRules().put(new Rii(), true);
+        Rules.getListRules().put(new Rlh(), true);
+        Rules.getListRules().put(new Rnn(), true);
+        Rules.getListRules().put(new Rn(), true);
+        Rules.getListRules().put(new Rp(), true);
+        Rules.getListRules().put(new Rpp(), true);
+        Rules.getListRules().put(new Ruu(), true);
 
         if (SettingController.getLanguage().equals("english")){
             QuantificatorList.getInstance().getQuantificators().clear();
@@ -197,6 +204,25 @@ public class MenuController implements Resize{
                 ((Resize) loader.getController()).resize();
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleSettings(){
+        try {
+            // Load the FXML file for the settings pop-up
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("vue/Settings.fxml"), SettingController.subMenu);
+            Pane root = loader.load();
+
+            SettingsController settingsController = loader.getController();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+
+            stage.showAndWait();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -61,11 +61,14 @@ public class Syllogism {
 	 */
 
 	public void solve() {
-		this.valid=rules.Launch(this);
-		if(this.valid) {
-			System.out.println("le syllogism est valid");
-		}else{
-			System.out.println("le syllogism est invalid");
+		System.out.println("Solving syllogism...");
+		this.valid = Rules.Launch(this);
+		System.out.println("Rules launched: " + this.valid);
+
+		if (this.valid) {
+			System.out.println("The syllogism is valid");
+		} else {
+			System.out.println("The syllogism is invalid");
 		}
 	}
 }
