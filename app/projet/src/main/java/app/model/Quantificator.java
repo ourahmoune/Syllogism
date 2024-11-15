@@ -58,4 +58,9 @@ public class Quantificator {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return name;  // Vous pouvez aussi retourner d'autres informations si nécessaire
+	}
 }

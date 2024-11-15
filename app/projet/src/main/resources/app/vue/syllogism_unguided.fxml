@@ -18,64 +18,6 @@
             <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #4AE2E2;" VBox.vgrow="ALWAYS">
                <content>
                   <VBox fx:id="vboxPremice" style="-fx-background-color: #4AE2E2;">
-                     <children>
-                        <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
-                           <children>
-                              <ComboBox fx:id="Q1" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets bottom="20.0" />
-                                 </HBox.margin>
-                              </ComboBox>
-                              <TextField maxWidth="1.7976931348623157E308" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets bottom="20.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <TextField maxWidth="1.7976931348623157E308" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets bottom="20.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <TextField maxWidth="1.7976931348623157E308" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets bottom="20.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
-                           <children>
-                              <ComboBox fx:id="Q2" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </ComboBox>
-                              <TextField style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                              <TextField style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                              <TextField style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
                   </VBox>
                </content>
             </ScrollPane>
@@ -115,7 +57,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: #9dff8c; -fx-text-fill: black;" text="Validate" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #9dff8c; -fx-text-fill: black;" text="Validate" onAction="#iterateOverVBox" />
             <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-text-fill: black;" text="Clear">
                <padding>
                   <Insets left="20.0" right="20.0" />
