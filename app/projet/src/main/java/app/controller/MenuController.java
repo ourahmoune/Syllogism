@@ -1,23 +1,23 @@
 package app.controller;
 
 import app.StartApplication;
-import app.model.Quantificator;
-import app.model.QuantificatorList;
-import app.model.Quantity;
+import app.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static app.StartApplication.scene;
 
@@ -25,27 +25,27 @@ import static app.StartApplication.scene;
  * MenuController manages the main menu interface of the application.
  * It handles navigation between different pages and the language settings.
  */
-public class MenuController {
+public class MenuController implements Resize{
     @FXML
-    public Label language; // Label to display the current language setting
+    public Label language;
     @FXML
-    public Button GuidedPage; // Button to navigate to the guided interface
+    public Button GuidedPage;
     @FXML
-    public Button ArrayPage; // Button to navigate to the array interface
+    public Button ArrayPage;
     @FXML
-    public Button FreePage; // Button to navigate to the free interface
+    public Button FreePage;
     @FXML
-    public Button ListQuantifiersPage; // Button to navigate to the quantifiers list interface
+    public Button ListQuantifiersPage;
     @FXML
-    public StackPane ParamPage; // StackPane for parameters page
+    public StackPane ParamPage;
     @FXML
-    public StackPane HelpPage; // StackPane for help page
+    public StackPane HelpPage;
     @FXML
-    public Circle ParamPageCircle; // Circle indicator for parameters page
+    public Circle ParamPageCircle;
     @FXML
-    public Circle HelpPageCircle; // Circle indicator for help page
+    public Circle HelpPageCircle;
     @FXML
-    public Text HelpButton; // Text element for the help button
+    public Text HelpButton;
     @FXML
     Pane contentPane; // Pane to load different interfaces
     @FXML
@@ -53,13 +53,20 @@ public class MenuController {
     @FXML
     StackPane stackroot;
 
-    /**
-     * Initializes the menu controller. This method can be used to set
-     * up initial state if needed.
-     */
+    private String subInterface;
+
     @FXML
-    public void initialize() {
+    public void initialize(){
         //GuidedInterface();
+        Rules.getListRules().put(new Rmt(), true);
+        Rules.getListRules().put(new Raa(), true);
+        Rules.getListRules().put(new Rii(), true);
+        Rules.getListRules().put(new Rlh(), true);
+        Rules.getListRules().put(new Rnn(), true);
+        Rules.getListRules().put(new Rn(), true);
+        Rules.getListRules().put(new Rp(), true);
+        Rules.getListRules().put(new Rpp(), true);
+        Rules.getListRules().put(new Ruu(), true);
 
         if (SettingController.getLanguage().equals("english")){
             QuantificatorList.getInstance().getQuantificators().clear();
@@ -105,6 +112,11 @@ public class MenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("vue/menu.fxml"), SettingController.language);
         scene.setRoot(fxmlLoader.load());
         ((MenuController) fxmlLoader.getController()).resize();
+        try {
+            ((MenuController) fxmlLoader.getController()).loadInterface(subInterface);
+        } catch (Exception e) {
+            System.err.println("no subInterface");
+        }
     }
 
     /**
@@ -139,9 +151,7 @@ public class MenuController {
         language.setMinHeight(scene.heightProperty().getValue() / 12);
     }
 
-    /**
-     * Resizes font sizes and buttons whenever the scene dimensions change.
-     */
+    @Override
     public void resize() {
         resizeFontSize();
         resizeButtons();
@@ -187,18 +197,23 @@ public class MenuController {
      *
      * @param fxmlPath the path to the FXML file to load
      */
-    public void loadInterface(Pane target, String fxmlPath) {
+
+    public void loadInterface(String fxmlPath) {
+        this.subInterface = fxmlPath;
         try {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
             Pane paneloaded = loader.load();
             paneloaded.prefWidthProperty().bind(target.widthProperty());
             paneloaded.prefHeightProperty().bind(target.heightProperty());
             // Replace the content of contentPane with the newly loaded content
-            target.getChildren().clear();
-            target.getChildren().add(paneloaded);
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(paneloaded);
+            if (loader.getController() instanceof Resize){
+                ((Resize) loader.getController()).resize();
+            }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+       }
     }
 
     public void loadInterface(StackPane target, String fxmlPath) {
@@ -211,6 +226,25 @@ public class MenuController {
 
             target.getChildren().add(paneloaded);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleSettings(){
+        try {
+            // Load the FXML file for the settings pop-up
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("vue/Settings.fxml"), SettingController.subMenu);
+            Pane root = loader.load();
+
+            SettingsController settingsController = loader.getController();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+
+            stage.showAndWait();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
