@@ -6,6 +6,7 @@ import app.model.QuantificatorList;
 import app.model.Quantity;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -47,6 +48,10 @@ public class MenuController {
     public Text HelpButton; // Text element for the help button
     @FXML
     Pane contentPane; // Pane to load different interfaces
+    @FXML
+    Pane HelpPane; //Pane for the load of the help fxml
+    @FXML
+    StackPane stackroot;
 
     /**
      * Initializes the menu controller. This method can be used to set
@@ -156,7 +161,7 @@ public class MenuController {
      */
     @FXML
     private void GuidedInterface() {
-        loadInterface("vue/syllogism_guided.fxml");
+        loadInterface(contentPane, "vue/syllogism_guided.fxml");
     }
 
     /**
@@ -164,7 +169,7 @@ public class MenuController {
      */
     @FXML
     private void UnguidedInterface() {
-        loadInterface("vue/syllogism_unguided.fxml");
+        loadInterface(contentPane, "vue/syllogism_unguided.fxml");
     }
 
     /**
@@ -172,23 +177,39 @@ public class MenuController {
      */
     @FXML
     private void ListInterface() {
-        loadInterface("vue/interface_list.fxml");
+        loadInterface(contentPane, "vue/interface_list.fxml");
     }
 
+    @FXML
+    private void HelpInterface() { loadInterface(stackroot, "vue/interface_help.fxml"); }
     /**
      * Loads a specified interface from an FXML file into the content pane.
      *
      * @param fxmlPath the path to the FXML file to load
      */
-    public void loadInterface(String fxmlPath) {
+    public void loadInterface(Pane target, String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
             Pane paneloaded = loader.load();
-            paneloaded.prefWidthProperty().bind(contentPane.widthProperty());
-            paneloaded.prefHeightProperty().bind(contentPane.heightProperty());
+            paneloaded.prefWidthProperty().bind(target.widthProperty());
+            paneloaded.prefHeightProperty().bind(target.heightProperty());
             // Replace the content of contentPane with the newly loaded content
-            contentPane.getChildren().clear();
-            contentPane.getChildren().add(paneloaded);
+            target.getChildren().clear();
+            target.getChildren().add(paneloaded);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadInterface(StackPane target, String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
+            Pane paneloaded = loader.load();
+
+            HelpButtonController helpController = loader.getController();
+            helpController.setMainController(this);
+
+            target.getChildren().add(paneloaded);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -30,3 +30,14 @@
     -fx-background-color: #32b71b;
     -fx-text-fill: black;
 }
+
+.qualityLabel {
+    -fx-alignment: center;
+    -fx-text-fill: #9dff8c;
+    -fx-text-alignment: center;
+}
+
+.qualityCircle {
+    -fx-fill: grey;
+    -fx-alignment: center;
+}
