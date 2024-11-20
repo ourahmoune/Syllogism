@@ -1,5 +1,4 @@
 package app.model;
-
 /**
  * Enum representing different figures.
  */

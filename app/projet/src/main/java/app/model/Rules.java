@@ -1,5 +1,7 @@
 package app.model;
 
+import app.model.polysyllogismes.Polysyllogisme;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,23 +23,23 @@ public class Rules {
 	/**
 	 * Evaluates all rules against the given syllogism.
 	 *
-	 * @param syllogism the syllogism to evaluate
+	 * @param polysyllogisme the polysyllogisme to evaluate
 	 * @return a string result of the evaluation (not yet implemented)
 	 * @throws UnsupportedOperationException if not implemented
 	 */
-	public String AllRules(Syllogism syllogism) {
+	public String AllRules(Polysyllogisme polysyllogisme) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * Launches the evaluation of all rules against the given syllogism.
 	 *
-	 * @param syllogism the syllogism to evaluate
+	 * @param polysyllogisme the polysyllogisme to evaluate
 	 * @return true if all rules are satisfied, false otherwise
 	 */
-	public Boolean Launch(Syllogism syllogism) {
+	public Boolean Launch(Polysyllogisme polysyllogisme) {
 		for (Rule rule : listRules) {
-			if (!rule.Launch(syllogism)) {
+			if (!rule.Launch(polysyllogisme)) {
 				return false;
 			}
 		}

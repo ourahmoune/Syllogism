@@ -54,6 +54,8 @@ public class Proposition {
 	}
 	public String getSubject() {return subject;}
 	public String getPredicat() {return predicat;}
+	public void setSubject(String subject) {this.subject = subject;}
+	public void setPredicat(String predicat) {this.predicat = predicat;}
 	/**
 	 * Retrieves the quantificator of the proposition.
 	 *

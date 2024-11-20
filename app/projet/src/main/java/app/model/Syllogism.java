@@ -1,15 +1,14 @@
 package app.model;
 
+import app.model.polysyllogismes.Polysyllogisme;
+
 import java.util.Map;
 
 /**
  * Class representing a syllogism consisting of a figure, propositions, and associated rules.
  */
-public class Syllogism {
-	private Figure figure;
-	private Map<Integer, Proposition> proposition;
-	private Rules rules;
-	private boolean valid;
+public class Syllogism extends Polysyllogisme {
+
 	/**
 	 * Constructs a Syllogism with the specified figure and propositions.
 	 *
@@ -17,6 +16,7 @@ public class Syllogism {
 	 * @param proposition the propositions of the syllogism
 	 */
 	public Syllogism(Figure figure, Map<Integer, Proposition> proposition) {
+		this.taille =3;
 		this.figure = figure;
 		this.proposition = proposition;
 	}
@@ -25,9 +25,7 @@ public class Syllogism {
 		return this.valid;
 	}
 
-	public Map<Integer, Proposition> getProposition() {
-		return this.proposition;
-	}
+
 	public Figure getFigure() {
 		return this.figure;
 	}
@@ -51,20 +49,26 @@ public class Syllogism {
 	public String result() {
 		throw new UnsupportedOperationException();
 	}
-
-	/**
-	 * Solves the syllogism (not yet implemented).
-	 *
-	 *
-	 * @throws UnsupportedOperationException if not implemented
-	 */
-
-	public void solve() {
-		this.valid=rules.Launch(this);
-		if(this.valid) {
-			System.out.println("le syllogism est valid");
-		}else{
-			System.out.println("le syllogism est invalid");
+	public void setprposition(Figure figure) {
+		switch (figure) {
+			case UN -> {
+				proposition.get(1).setSubject("M"); proposition.get(1).setPredicat("P");
+				proposition.get(2).setSubject("S"); proposition.get(2).setPredicat("M");
+			}
+			case DEUX -> {
+				proposition.get(1).setSubject("P"); proposition.get(1).setPredicat("M");
+				proposition.get(2).setSubject("S"); proposition.get(2).setPredicat("M");
+			}
+			case TROIS -> {
+				proposition.get(1).setSubject("M"); proposition.get(1).setPredicat("P");
+				proposition.get(2).setSubject("M"); proposition.get(2).setPredicat("S");
+			}
+			case QUATRE -> {
+				proposition.get(1).setSubject("P"); proposition.get(1).setPredicat("M");
+				proposition.get(2).setSubject("M"); proposition.get(2).setPredicat("S");
+			}
 		}
 	}
+
+
 }

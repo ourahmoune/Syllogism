@@ -1,16 +1,18 @@
 package app.model.polysyllogismes;
-
+import app.model.Figure;
 import app.model.Proposition;
-import app.model.Syllogism;
+import app.model.Rules;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+public class Polysyllogisme{
+    protected int taille;
+    protected Figure figure = null  ;
+    protected Map<Integer, Proposition> proposition; ;;
+    protected Rules rules;
+    protected boolean valid;
 
-public class Polysyllogisme {
-    private Map<Integer, Proposition> proposition; ;
-    private int taille ;;
-    public Polysyllogisme( ) {}
+    public Polysyllogisme() {}
     public Polysyllogisme(Map<Integer,Proposition> propositions, int taille) {
         this.proposition = propositions;
         this.taille = taille ;
@@ -131,4 +133,22 @@ public class Polysyllogisme {
         proposition = newproposition ;
         proposition.put(taille,conclusion);
     }
+
+    /**
+     * Solves the syllogism (not yet implemented).
+     *
+     *
+     * @throws UnsupportedOperationException if not implemented
+     */
+
+    public void solve() {
+        this.valid=rules.Launch(this);
+        if(this.valid) {
+            System.out.println("le syllogism est valid");
+        }else{
+            System.out.println("le syllogism est invalid");
+        }
+    }
+
+
 }

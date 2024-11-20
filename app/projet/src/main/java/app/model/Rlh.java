@@ -1,5 +1,7 @@
 package app.model;
 
+import app.model.polysyllogismes.Polysyllogisme;
+
 /**
  * The Rlh class represents the "latius hos" Rule.
  * Rlh: the quantity of a term in the conclusion can only be universal if it is so in the premise containing that term.
@@ -13,24 +15,24 @@ public class Rlh extends Rule {
     private String Result;
 
     /**
-     * Main method to evaluate the validity of a syllogism.
+     * Main method to evaluate the validity of a polysyllogisme.
      * <p>
-     * This method determines whether the syllogism is valid based on its premises (modeP1 and modeP2),
+     * This method determines whether the polysyllogisme is valid based on its premises (modeP1 and modeP2),
      * its conclusion (modeC), and its figure.
      * </p>
      *
-     * @param syllogism The `Syllogism` object to evaluate, containing the propositions (premises and conclusion) as well as the figure.
-     * @return A boolean `true` if the syllogism is valid according to the defined rules, `false` otherwise.
-     * @throws UnsupportedOperationException if the proposition type or the figure of the syllogism is not supported.
+     * @param polysyllogisme The `Syllogism` object to evaluate, containing the propositions (premises and conclusion) as well as the figure.
+     * @return A boolean `true` if the polysyllogisme is valid according to the defined rules, `false` otherwise.
+     * @throws UnsupportedOperationException if the proposition type or the figure of the polysyllogisme is not supported.
      */
-    public Boolean Launch(Syllogism syllogism) {
+    public Boolean Launch(Polysyllogisme polysyllogisme) {
         Boolean result = false;
 
-        Type modeP1 = syllogism.getProposition().get(1).getType();  // Type of the first premise
-        Type modeP2 = syllogism.getProposition().get(2).getType();  // Type of the second premise
-        Type modeC = syllogism.getProposition().get(3).getType();   // Type of the conclusion
-
-        switch (syllogism.getFigure()) {
+        Type modeP1 = polysyllogisme.getProposition().get(1).getType();  // Type of the first premise
+        Type modeP2 = polysyllogisme.getProposition().get(2).getType();  // Type of the second premise
+        Type modeC = polysyllogisme.getProposition().get(3).getType();   // Type of the conclusion
+/*
+        switch (polysyllogisme.getFigure()) {
             case UN:
                 result = switch (modeC) {
                     case A -> modeP2 == Type.A || modeP2 == Type.E;
@@ -72,8 +74,10 @@ public class Rlh extends Rule {
                 break;
 
             default:
-                throw new UnsupportedOperationException(syllogism.getFigure() + " : Figure not supported");
+                throw new UnsupportedOperationException(polysyllogisme.getFigure() + " : Figure not supported");
         }
+
+ */
         return result;
     }
 }
