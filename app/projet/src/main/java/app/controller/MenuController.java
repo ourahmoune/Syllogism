@@ -171,7 +171,7 @@ public class MenuController implements Resize{
      */
     @FXML
     private void GuidedInterface() {
-        loadInterface(contentPane, "vue/syllogism_guided.fxml");
+        loadInterface("vue/syllogism_guided.fxml");
     }
 
     /**
@@ -179,7 +179,7 @@ public class MenuController implements Resize{
      */
     @FXML
     private void UnguidedInterface() {
-        loadInterface(contentPane, "vue/syllogism_unguided.fxml");
+        loadInterface("vue/syllogism_unguided.fxml");
     }
 
     /**
@@ -187,7 +187,7 @@ public class MenuController implements Resize{
      */
     @FXML
     private void ListInterface() {
-        loadInterface(contentPane, "vue/interface_list.fxml");
+        loadInterface("vue/interface_list.fxml");
     }
 
     @FXML
@@ -203,8 +203,8 @@ public class MenuController implements Resize{
         try {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
             Pane paneloaded = loader.load();
-            paneloaded.prefWidthProperty().bind(target.widthProperty());
-            paneloaded.prefHeightProperty().bind(target.heightProperty());
+            paneloaded.prefWidthProperty().bind(contentPane.widthProperty());
+            paneloaded.prefHeightProperty().bind(contentPane.heightProperty());
             // Replace the content of contentPane with the newly loaded content
             contentPane.getChildren().clear();
             contentPane.getChildren().add(paneloaded);
