@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+      fx:id="vbox_root"
+        fx:controller="app.controller.ArrayController"
+        prefHeight="400.0" prefWidth="600.0" stylesheets="@array.css">
+    <ScrollPane  fx:id="array_scroll" >
+        <VBox fx:id="array_root">
+            <GridPane fx:id="table" VBox.vgrow="ALWAYS" minHeight="400" minWidth="600">
+
+            </GridPane>
+        </VBox>
+    </ScrollPane>
+</VBox>
+

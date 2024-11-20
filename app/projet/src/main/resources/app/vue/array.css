@@ -1,0 +1,40 @@
+
+.scroll-pane {
+    -fx-background-color: #4AE2E2;
+    -fx-background: #4AE2E2;
+    -fx-control-inner-background: #4AE2E2;
+}
+/* Style pour les cellules de contenu */
+.table-cell {
+    -fx-min-width: 50px;
+    -fx-min-height: 25px;
+    -fx-alignment: center;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-background-color: #4AE2E2;
+}
+
+/* Style pour les en-têtes */
+.table-header {
+    -fx-background-color: #0288D1;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: black;
+    -fx-padding: 5px;
+    -fx-alignment: center;
+}
+#table {
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}
+#array_root {
+    /*-fx-padding: ;*/
+    -fx-alignment: center;
+}
+#array_scroll {
+    -fx-fit-to-width: true; /* Étend horizontalement le contenu */
+    -fx-fit-to-height: false; /* Permet le défilement vertical */
+}
+#vbox_root {
+    /*-fx-padding: 10;*/
+}

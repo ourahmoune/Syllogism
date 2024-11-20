@@ -183,6 +183,14 @@ public class MenuController {
     }
 
     /**
+     * Loads the array Interface.
+     */
+    @FXML
+    private void ArrayInterface(){
+        loadInterface("vue/interface_array.fxml");
+    }
+
+    /**
      * Loads a specified interface from an FXML file into the content pane.
      *
      * @param fxmlPath the path to the FXML file to load

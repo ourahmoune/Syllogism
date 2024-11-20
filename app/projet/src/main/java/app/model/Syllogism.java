@@ -71,4 +71,5 @@ public class Syllogism {
 			System.out.println("The syllogism is invalid");
 		}
 	}
+
 }
