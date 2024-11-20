@@ -4,55 +4,56 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@menu.css"
-            fx:controller="app.controller.MenuController">
-   <left>
-      <VBox>
-         <children>
-            <VBox style="-fx-border-width: 0 40 0 0; -fx-border-color: transparent">
-               <children>
-                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="%GuidedPage" VBox.vgrow="ALWAYS" fx:id="GuidedPage" styleClass="GuidedPage" onAction="#GuidedInterface"/>
-                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="%FreePage" VBox.vgrow="ALWAYS" fx:id="FreePage" styleClass="FreePage" onAction="#UnguidedInterface" />
-                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="%ArrayPage" VBox.vgrow="ALWAYS" fx:id="ArrayPage" styleClass="ArrayPage"/>
-                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="%ListQuantifiersPage" VBox.vgrow="ALWAYS" fx:id="ListQuantifiersPage" styleClass="ListQuantifiersPage" onAction="#ListInterface"/>
-                  <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-padding: 20;">
-               <children>
-                  <StackPane fx:id="HelpPage" maxWidth="20">
-                     <children>
-                        <Circle fx:id="HelpPageCircle" fill="azure"/>
-                        <Text text="?" fx:id="HelpButton"/>
-                     </children>
-                  </StackPane>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <VBox>
-         <children>
-            <HBox alignment="TOP_RIGHT" style="-fx-padding: 12.5; -fx-spacing: 25;">
-               <children>
-                  <StackPane styleClass="language" maxWidth="75" >
+
+<StackPane fx:id="stackroot" xmlns:fx="http://javafx.com/fxml" fx:controller="app.controller.MenuController" stylesheets="@menu.css">
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity">
+      <left>
+         <VBox>
+            <children>
+               <VBox>
+                  <children>
+                     <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                     <Button mnemonicParsing="false" text="%GuidedPage" VBox.vgrow="ALWAYS" fx:id="GuidedPage" styleClass="GuidedPage" onAction="#GuidedInterface"/>
+                     <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                     <Button mnemonicParsing="false" text="%FreePage" VBox.vgrow="ALWAYS" fx:id="FreePage" styleClass="FreePage" onAction="#UnguidedInterface" />
+                     <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                     <Button mnemonicParsing="false" text="%ArrayPage" VBox.vgrow="ALWAYS" fx:id="ArrayPage" styleClass="ArrayPage"/>
+                     <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                     <Button mnemonicParsing="false" text="%ListQuantifiersPage" VBox.vgrow="ALWAYS" fx:id="ListQuantifiersPage" styleClass="ListQuantifiersPage" onAction="#ListInterface"/>
+                     <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
+                  </children>
+               </VBox>
+               <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-padding: 20;">
+                  <children>
+                     <StackPane fx:id="HelpPage" maxWidth="20">
+                        <children>
+                           <Circle fx:id="HelpPageCircle" fill="azure" onMousePressed="#HelpInterface"/>
+                           <Text text="?" mouseTransparent="true" fx:id="HelpButton"/>
+                        </children>
+                     </StackPane>
+                  </children>
+               </VBox>
+            </children>
+         </VBox>
+      </left>
+      <center>
+         <VBox>
+            <children>
+               <HBox alignment="TOP_RIGHT" style="-fx-padding: 12.5; -fx-spacing: 25;">
+                  <children>
+                     <StackPane styleClass="language" maxWidth="75" >
                         <Label text="%Language" fx:id="language" alignment="CENTER_RIGHT" onMousePressed="#changeLanguage"/>
-                  </StackPane>
-                  <StackPane fx:id="ParamPage" styleClass="ParamPage" onMouseClicked="#handleSettings">
-                     <children>
-                        <Circle fx:id="ParamPageCircle" fill="transparent"/>
-                     </children>
-                  </StackPane>
-               </children>
-            </HBox>
-            <Pane fx:id="contentPane" prefHeight="1200.0" prefWidth="1200.0"/>
-         </children>
-      </VBox>
-   </center>
-</BorderPane>
+                     </StackPane>
+                     <StackPane fx:id="ParamPage" styleClass="ParamPage">
+                        <children>
+                           <Circle fx:id="ParamPageCircle" fill="transparent"/>
+                        </children>
+                     </StackPane>
+                  </children>
+               </HBox>
+               <Pane fx:id="contentPane" prefHeight="1200.0" prefWidth="1200.0"/>
+            </children>
+         </VBox>
+      </center>
+   </BorderPane>
+</StackPane>
