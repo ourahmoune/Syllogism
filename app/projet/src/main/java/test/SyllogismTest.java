@@ -49,14 +49,14 @@ public class SyllogismTest {
                 // Assert that the output of each rule matches the expected value
                 Syllogism syllogism = syl.getSyllogism();
                 assertEquals(rmt.Launch(syllogism), syl.getRules(0));
-
+                assertEquals(rlh.Launch(syllogism), syl.getRules(1));
+                assertEquals(rnn.Launch(syllogism), syl.getRules(2));
+                assertEquals(rn.Launch(syllogism), syl.getRules(3));
+                assertEquals(raa.Launch(syllogism), syl.getRules(4));
+                assertEquals(rpp.Launch(syllogism), syl.getRules(5));
+                assertEquals(rp.Launch(syllogism), syl.getRules(6));
+                assertEquals(ruu.Launch(syllogism), syl.getRules(8));
                 /*
-                assertEquals(rlh.Launch(syl.getPolysyllogisme()), syl.getRules(1));
-                assertEquals(rnn.Launch(syl.getPolysyllogisme()), syl.getRules(2));
-                assertEquals(rn.Launch(syl.getPolysyllogisme()), syl.getRules(3));
-                assertEquals(raa.Launch(syl.getPolysyllogisme()), syl.getRules(4));
-                assertEquals(rpp.Launch(syl.getPolysyllogisme()), syl.getRules(5));
-                assertEquals(rp.Launch(syl.getPolysyllogisme()), syl.getRules(6));
                 assertEquals(ruu.Launch(syl.getPolysyllogisme()), syl.getRules(8));
                 assertEquals(rii.Launch(syl.getPolysyllogisme()), syl.getRules(10));
                  */

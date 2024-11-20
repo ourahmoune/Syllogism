@@ -2,6 +2,9 @@ package app.model;
 
 import app.model.polysyllogismes.Polysyllogisme;
 
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * The Rlh class represents the "latius hos" Rule.
  * Rlh: the quantity of a term in the conclusion can only be universal if it is so in the premise containing that term.
@@ -26,58 +29,35 @@ public class Rlh extends Rule {
      * @throws UnsupportedOperationException if the proposition type or the figure of the polysyllogisme is not supported.
      */
     public Boolean Launch(Polysyllogisme polysyllogisme) {
-        Boolean result = false;
-
-        Type modeP1 = polysyllogisme.getProposition().get(1).getType();  // Type of the first premise
-        Type modeP2 = polysyllogisme.getProposition().get(2).getType();  // Type of the second premise
-        Type modeC = polysyllogisme.getProposition().get(3).getType();   // Type of the conclusion
-/*
-        switch (polysyllogisme.getFigure()) {
-            case UN:
-                result = switch (modeC) {
-                    case A -> modeP2 == Type.A || modeP2 == Type.E;
-                    case E -> (modeP2 == Type.A || modeP2 == Type.E) && (modeP1 == Type.E || modeP1 == Type.O);
-                    case O -> modeP1 == Type.E || modeP1 == Type.O;
-                    case I -> true;
-                    default -> throw new UnsupportedOperationException(modeC + " : Type not supported");
-                };
-                break;
-
-            case DEUX:
-                result = switch (modeC) {
-                    case A -> modeP2 == Type.A || modeP2 == Type.E;
-                    case E -> (modeP2 == Type.A || modeP2 == Type.E) && (modeP1 == Type.A || modeP1 == Type.E);
-                    case O -> modeP1 == Type.E || modeP1 == Type.A;
-                    case I -> true;
-                    default -> throw new UnsupportedOperationException(modeC + " : Type not supported");
-                };
-                break;
-
-            case TROIS:
-                result = switch (modeC) {
-                    case A -> modeP2 == Type.O || modeP2 == Type.E;
-                    case E -> (modeP2 == Type.O || modeP2 == Type.E) && (modeP1 == Type.O || modeP1 == Type.E);
-                    case O -> modeP1 == Type.O || modeP1 == Type.E;
-                    case I -> true;
-                    default -> throw new UnsupportedOperationException(modeC + " : Type not supported");
-                };
-                break;
-
-            case QUATRE:
-                result = switch (modeC) {
-                    case A -> modeP2 == Type.O || modeP2 == Type.E;
-                    case E -> (modeP2 == Type.O || modeP2 == Type.E) && (modeP1 == Type.A || modeP1 == Type.E);
-                    case O -> modeP1 == Type.A || modeP1 == Type.E;
-                    case I -> true;
-                    default -> throw new UnsupportedOperationException(modeC + " : Type not supported");
-                };
-                break;
-
-            default:
-                throw new UnsupportedOperationException(polysyllogisme.getFigure() + " : Figure not supported");
+        boolean result1 = true;
+        boolean result2 = true;
+        String SujetConc , PredicatConc = null ;
+        Proposition p1 = polysyllogisme.getProposition().get(1);
+        Proposition p2 = polysyllogisme.getProposition().get(2);
+        Proposition C = polysyllogisme.getProposition().get(polysyllogisme.getTaille());
+        Map<String,String> FistSecondCommun = polysyllogisme.CheckTwoPremise(p1, p2);
+        if(FistSecondCommun !=null){
+            if(C.getQuality() == Quality.Negative){
+                if(p1.getSubject().equals( FistSecondCommun.get("FirstIsole"))){
+                    result1 = p1.getQuantity() ==  Quantity.Universal ;
+                }else{
+                    result1 = p1.getQuality() == Quality.Negative ;
+                }
+            }
         }
+        p1 = polysyllogisme.getProposition().get(polysyllogisme.getTaille()-2);
+        p2 = polysyllogisme.getProposition().get(polysyllogisme.getTaille()-1);
+        FistSecondCommun = polysyllogisme.CheckTwoPremise(p1, p2);
+        if(FistSecondCommun !=null){
 
- */
-        return result;
+            if(C.getQuantity() == Quantity.Universal ){
+                if(Objects.equals(p2.getSubject(), FistSecondCommun.get("SecondIsole"))){
+                    result2 = p2.getQuantity() ==  Quantity.Universal ;
+                }else{
+                    result2 = p2.getQuality() == Quality.Negative ;
+                }
+            }
+        }
+        return result1&result2;
     }
 }

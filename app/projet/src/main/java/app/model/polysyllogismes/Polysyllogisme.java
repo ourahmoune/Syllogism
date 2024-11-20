@@ -129,7 +129,6 @@ public class Polysyllogisme{
             }
         }
         Proposition conclusion = new Proposition(proposition.get(taille).getQuantificator() , proposition.get(taille).getSubject() , proposition.get(taille).getPredicat() , proposition.get(taille).getQuality() );
-
         proposition = newproposition ;
         proposition.put(taille,conclusion);
     }

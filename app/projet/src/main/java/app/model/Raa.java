@@ -28,8 +28,19 @@ public class Raa extends Rule {
 	 *         `false` otherwise.
 	 */
 	public Boolean Launch(Polysyllogisme polysyllogisme) {
-		return polysyllogisme.getProposition().get(1).getQuality() != Quality.Affirmative ||
-				polysyllogisme.getProposition().get(2).getQuality() != Quality.Affirmative ||
-				polysyllogisme.getProposition().get(3).getQuality() != Quality.Negative;
+		boolean result = true ;
+		int compter = 0;
+		int taille = polysyllogisme.getTaille();
+		Proposition p= null ;
+		for (int i = 1; i < taille; i++) {
+			p = polysyllogisme.getProposition().get(i);
+			if(p.getQuantity() ==  Quantity.Exisential){
+				compter++;
+				if(compter == 2){
+					return  false;
+				}
+			}
+		}
+		return result ;
 	}
 }

@@ -16,7 +16,19 @@ public class Rnn extends Rule {
 	 * @return true if at least one proposition is not negative, false otherwise
 	 */
 	public Boolean Launch(Polysyllogisme polysyllogisme) {
-		return polysyllogisme.getProposition().get(1).getQuality() != Quality.Negative ||
-				polysyllogisme.getProposition().get(2).getQuality() != Quality.Negative;
+		boolean result = true ;
+		int compter = 0;
+		int taille = polysyllogisme.getTaille();
+		Proposition p= null ;
+		for (int i = 1; i < taille; i++) {
+			p = polysyllogisme.getProposition().get(i);
+			if(p.getQuality() == Quality.Negative){
+				compter++;
+				if(compter == 2){
+					 return  false;
+				}
+			}
+		}
+		return result ;
 	}
 }

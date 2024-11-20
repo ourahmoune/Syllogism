@@ -16,8 +16,19 @@ public class Rpp extends Rule {
 	 * @return true if at least one proposition is not of type I or O, false otherwise
 	 */
 	public Boolean Launch(Polysyllogisme polysyllogisme ) {
-		Type modeP1 = polysyllogisme.getProposition().get(1).getType();
-		Type modeP2 = polysyllogisme.getProposition().get(2).getType();
-		return (modeP1 != Type.I && modeP1 != Type.O) || (modeP2 != Type.I && modeP2 != Type.O);
+		boolean result = true ;
+		int compter = 0;
+		int taille = polysyllogisme.getTaille();
+		Proposition p= null ;
+		for (int i = 1; i < taille; i++) {
+			p = polysyllogisme.getProposition().get(i);
+			if(p.getQuantity() ==  Quantity.Exisential){
+				compter++;
+				if(compter == 2){
+					return  false;
+				}
+			}
+		}
+		return result ;
 	}
 }
