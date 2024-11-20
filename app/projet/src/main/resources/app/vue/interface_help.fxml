@@ -18,7 +18,7 @@
       stylesheets="@syllogism_guided.css" onMouseClicked="#close">
 
     <VBox style="-fx-background-color: grey; -fx-background-radius: 15" prefHeight="1200.0" prefWidth="1200.0" spacing="20" alignment="CENTER">
-
+    <Text text="%TitleRule"/>
         <HBox alignment="CENTER">
 
             <Region HBox.hgrow="ALWAYS"/>
@@ -48,20 +48,21 @@
 
         </HBox>
 
-
+        <Text text="%MaS"/>
         <HBox alignment="CENTER" spacing="20">
+
 
             <Region HBox.hgrow="ALWAYS"/>
             <HBox alignment="CENTER" style="-fx-border-color: red; -fx-border-radius: 15" spacing="20">
                 <Label text=" 1 " style="-fx-background-color: gold; -fx-background-radius: 15"/>
                 <ImageView fx:id="imgFigure" preserveRatio="true"/>
-                <Text text="Sélection de la qualité (positive ou négative)" wrappingWidth="200" textAlignment="CENTER"/>
+                <Text text="%HelpStep1" wrappingWidth="200" textAlignment="CENTER"/>
             </HBox>
 
             <HBox alignment="CENTER" style="-fx-border-color: red; -fx-border-radius: 15" spacing="20">
                 <Label text=" 2 " style="-fx-background-color: gold; -fx-background-radius: 15"/>
                 <ImageView fx:id="imgQuant" preserveRatio="true"/>
-                <Text text="Sélection de la qualité (positive ou négative)" wrappingWidth="200" textAlignment="CENTER"/>
+                <Text text="%HelpStep2" wrappingWidth="200" textAlignment="CENTER"/>
             </HBox>
             <Region HBox.hgrow="ALWAYS"/>
 
@@ -71,7 +72,7 @@
 
             <HBox alignment="CENTER" style="-fx-border-color: green; -fx-border-radius: 15" spacing="20">
                 <Label text=" 3 " style="-fx-background-color: gold; -fx-background-radius: 15"/>
-                <Text text="Remplissage des champs disponibles" wrappingWidth="100"/>
+                <Text text="%HelpStep3" wrappingWidth="100"/>
             </HBox>
 
             <HBox alignment="CENTER" style="-fx-border-color: blue; -fx-border-radius: 15" spacing="20">
@@ -86,7 +87,7 @@
                         <Label alignment="CENTER" text="-" styleClass="qualityLabel" />
                     </StackPane>
                 </VBox>
-                <Label text="Sélection de la qualité (positive ou négative)"/>
+                <Label text="%HelpStep4"/>
             </HBox>
 
             <HBox alignment="CENTER" style="-fx-border-color: purple; -fx-border-radius: 15" spacing="20">
@@ -94,11 +95,11 @@
                 <VBox>
                     <HBox spacing="20">
                         <ImageView fx:id="imgVValidate"/>
-                        <Text text="Lance la résolution du sillogisme avec le contenu des champs" wrappingWidth="200"/>
+                        <Text text="%HelpStep5_1" wrappingWidth="200"/>
                     </HBox>
                     <HBox spacing="20">
                         <ImageView fx:id="imgWValidate"/>
-                        <Text text="Le boutton passe au rouge si il manque quelque chose" wrappingWidth="200"/>
+                        <Text text="%HelpStep5_2" wrappingWidth="200"/>
                     </HBox>
                 </VBox>
             </HBox>

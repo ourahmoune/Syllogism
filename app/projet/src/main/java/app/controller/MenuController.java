@@ -203,7 +203,7 @@ public class MenuController {
 
     public void loadInterface(StackPane target, String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.language);
             Pane paneloaded = loader.load();
 
             HelpButtonController helpController = loader.getController();
