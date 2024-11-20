@@ -121,7 +121,7 @@ public class MenuController implements Resize{
         GuidedPage.setFont(Font.font(scene.widthProperty().getValue() / 56)); // 1.8% of window width
         FreePage.setFont(Font.font(scene.widthProperty().getValue() / 56));
         ArrayPage.setFont(Font.font(scene.widthProperty().getValue() / 56));
-        ListQuantifiersPage.setFont(Font.font(scene.widthProperty().getValue() / 56));
+        ListQuantifiersPage.setFont(Font.font(scene.widthProperty().getValue() / 58));
         language.setFont(Font.font(scene.widthProperty().getValue() / 56));
         HelpButton.setFont(Font.font(scene.widthProperty().getValue() / 50)); // 2% of window width
     }
