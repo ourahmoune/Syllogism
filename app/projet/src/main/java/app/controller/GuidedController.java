@@ -34,7 +34,6 @@ public class GuidedController {
     @FXML
     private Button oneplus,oneminus,twoplus,twominus,threeplus,threeminus, validate;
 
-    // Qualities of the propositions
     private String ql1, ql2, ql3;
 
     /**
@@ -88,7 +87,6 @@ public class GuidedController {
             }
         });
 
-        // Populate quantificator options
         resetComboBoxQuanti();
 
         P1_1.setDisable(true);

@@ -5,12 +5,25 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <VBox xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml"
+      xmlns:fx="http://javafx.com/fxml"
       fx:id="vbox_root"
-        fx:controller="app.controller.ArrayController"
-        prefHeight="400.0" prefWidth="600.0" stylesheets="@array.css">
-    <ScrollPane  fx:id="array_scroll" >
+      fx:controller="app.controller.ArrayController"
+      prefHeight="400.0" prefWidth="600.0" stylesheets="@array.css">
+   <HBox>
+    <GridPane fx:id="table_menu" VBox.vgrow="ALWAYS" minHeight="25" minWidth="600">
+        <rowConstraints>
+            <RowConstraints prefHeight="40" maxHeight="40" />
+        </rowConstraints>
+    </GridPane>
+       <Region  minWidth="15">
+
+       </Region>
+   </HBox>
+    <ScrollPane  fx:id="array_scroll" fitToWidth="true" >
         <VBox fx:id="array_root">
             <GridPane fx:id="table" VBox.vgrow="ALWAYS" minHeight="400" minWidth="600">
 
