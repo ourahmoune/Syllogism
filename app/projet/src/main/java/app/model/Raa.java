@@ -34,10 +34,11 @@ public class Raa extends Rule {
 		Proposition p= null ;
 		for (int i = 1; i < taille; i++) {
 			p = polysyllogisme.getProposition().get(i);
-			if(p.getQuantity() ==  Quantity.Exisential){
+			if(p.getQuality() ==  Quality.Affirmative){
 				compter++;
 				if(compter == 2){
-					return  false;
+					p=polysyllogisme.getProposition().get(taille);
+					return p.getQuality() == Quality.Affirmative;
 				}
 			}
 		}

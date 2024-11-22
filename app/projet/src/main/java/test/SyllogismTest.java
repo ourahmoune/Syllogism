@@ -57,7 +57,6 @@ public class SyllogismTest {
                 assertEquals(rp.Launch(syllogism), syl.getRules(6));
                 assertEquals(ruu.Launch(syllogism), syl.getRules(8));
                 /*
-                assertEquals(ruu.Launch(syl.getPolysyllogisme()), syl.getRules(8));
                 assertEquals(rii.Launch(syl.getPolysyllogisme()), syl.getRules(10));
                  */
             }

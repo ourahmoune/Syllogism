@@ -11,7 +11,6 @@ public class Polysyllogisme{
     protected Map<Integer, Proposition> proposition; ;;
     protected Rules rules;
     protected boolean valid;
-
     public Polysyllogisme() {}
     public Polysyllogisme(Map<Integer,Proposition> propositions, int taille) {
         this.proposition = propositions;
@@ -116,8 +115,7 @@ public class Polysyllogisme{
         return result ;
     }
     public void  Reordonne(){
-        System.out.println("start :reodonne ");
-        String terme = proposition.get(taille).getSubject();
+        String terme = proposition.get(taille).getPredicat();
         Map<Integer, Proposition> newproposition = new HashMap<>();
         for(int i =1 ; i<taille ; i++){
             Proposition p = SearchProposition(terme) ;
