@@ -66,7 +66,7 @@ public class ListQuantifierController implements Resize {
     }
 
     public void addQuantificator(String word, Quantity quantity) {
-        Quantificator quantificator = new Quantificator(Quantity.Universal, word);
+        Quantificator quantificator = new Quantificator(quantity, word);
         QuantificatorList.getInstance().addQuantificator(quantificator);
     }
 
@@ -173,7 +173,7 @@ public class ListQuantifierController implements Resize {
     private void printQuantificators() {
         System.out.println("List of all quantificators:");
         for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
-            System.out.println(quantificator.getName());
+            System.out.println("name : " + quantificator.getName() + " et quantity : " + quantificator.getQuantity());
         }
     }
 
