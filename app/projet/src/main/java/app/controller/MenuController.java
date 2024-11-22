@@ -4,6 +4,7 @@ import app.StartApplication;
 import app.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -47,6 +48,10 @@ public class MenuController implements Resize{
     public Text HelpButton;
     @FXML
     Pane contentPane; // Pane to load different interfaces
+    @FXML
+    Pane HelpPane; //Pane for the load of the help fxml
+    @FXML
+    StackPane stackroot;
 
     private String subInterface;
 
@@ -121,7 +126,7 @@ public class MenuController implements Resize{
         GuidedPage.setFont(Font.font(scene.widthProperty().getValue() / 56)); // 1.8% of window width
         FreePage.setFont(Font.font(scene.widthProperty().getValue() / 56));
         ArrayPage.setFont(Font.font(scene.widthProperty().getValue() / 56));
-        ListQuantifiersPage.setFont(Font.font(scene.widthProperty().getValue() / 56));
+        ListQuantifiersPage.setFont(Font.font(scene.widthProperty().getValue() / 58));
         language.setFont(Font.font(scene.widthProperty().getValue() / 56));
         HelpButton.setFont(Font.font(scene.widthProperty().getValue() / 50)); // 2% of window width
     }
@@ -185,11 +190,14 @@ public class MenuController implements Resize{
         loadInterface("vue/interface_list.fxml");
     }
 
+    @FXML
+    private void HelpInterface() { loadInterface(stackroot, "vue/interface_help.fxml"); }
     /**
      * Loads a specified interface from an FXML file into the content pane.
      *
      * @param fxmlPath the path to the FXML file to load
      */
+
     public void loadInterface(String fxmlPath) {
         this.subInterface = fxmlPath;
         try {
@@ -203,6 +211,20 @@ public class MenuController implements Resize{
             if (loader.getController() instanceof Resize){
                 ((Resize) loader.getController()).resize();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+       }
+    }
+
+    public void loadInterface(StackPane target, String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.language);
+            Pane paneloaded = loader.load();
+
+            HelpButtonController helpController = loader.getController();
+            helpController.setMainController(this);
+
+            target.getChildren().add(paneloaded);
         } catch (IOException e) {
             e.printStackTrace();
         }

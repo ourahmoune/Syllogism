@@ -7,6 +7,14 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -54,6 +62,8 @@ public class GuidedController implements Resize {
      * Initializes the controller by setting up the UI elements.
      */
     public void initialize() {
+        actionFields(P1_1);
+
         if (SettingController.language.getObject("Language").equals("English  ")){
             choix_figure.getItems().addAll("ONE", "TWO", "THREE", "FOUR");
         }
@@ -381,5 +391,16 @@ public class GuidedController implements Resize {
         P3_1.setOnKeyTyped(event -> validate.setStyle("-fx-background-color: #9dff8c"));
         P3_2.setOnKeyTyped(event -> validate.setStyle("-fx-background-color: #9dff8c"));
         Q3.setOnAction(event -> validate.setStyle("-fx-background-color: #9dff8c"));
+    }
+
+    public void actionFields(Control o){
+        o.setOnMouseClicked(event -> {
+            // Changer le fond du bouton avec la couleur désirée
+            validate.setBackground(new Background(new BackgroundFill(
+                    Color.web("#9dff8c"), // Couleur de fond
+                    CornerRadii.EMPTY, // Coins arrondis (ici non arrondis)
+                    null // Marge intérieure (insets) nulle
+            )));
+        });
     }
 }
