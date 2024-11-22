@@ -60,15 +60,16 @@ public class Syllogism {
 	 * @throws UnsupportedOperationException if not implemented
 	 */
 
-	public void solve() {
+	public boolean solve() {
 		System.out.println("Solving syllogism...");
 		this.valid = Rules.Launch(this);
-		System.out.println("Rules launched: " + this.valid);
 
 		if (this.valid) {
 			System.out.println("The syllogism is valid");
+			return true;
 		} else {
 			System.out.println("The syllogism is invalid");
+			return false;
 		}
 	}
 }

@@ -2,6 +2,7 @@ package app.controller;
 
 import app.StartApplication;
 import app.model.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
@@ -10,13 +11,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 
-import java.util.ArrayList;
+import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static app.StartApplication.scene;
 
@@ -29,6 +32,7 @@ public class GuidedController implements Resize {
     @FXML
     public Label oneplusLabel, oneminusLabel, twoplusLabel, twominusLabel, threeplusLabel, threeminusLabel;
     public Label label_conclusion;
+    public Pane resultSyllogism;
     @FXML
     private ImageView image_figure;
 
@@ -169,7 +173,8 @@ public class GuidedController implements Resize {
      * Validates and constructs the syllogism based on user input.
      */
     @FXML
-    private void validate(){
+    private void validate() throws URISyntaxException {
+        validate.setStyle("-fx-background-color: #9dff8c");
         try {
             Figure figure = switch (choix_figure.getSelectionModel().getSelectedItem()) {
                 case "ONE" -> Figure.UN;
@@ -197,8 +202,21 @@ public class GuidedController implements Resize {
             map.put(2, p2);
             map.put(3, p3);
             Syllogism s = new Syllogism(figure, map);
-            s.solve();
-
+            if (s.solve()){
+                Image gif = new Image(StartApplication.class.getResource("/app/image/feu_artifice.gif").toExternalForm());
+                ImageView img = new ImageView(gif);
+                img.setFitHeight(resultSyllogism.getHeight());
+                img.setFitWidth(resultSyllogism.getWidth());
+                resultSyllogism.getChildren().add(img);
+                Timer timer = new Timer();
+                // Planifie l'exécution de la tâche après 3 secondes
+                timer.schedule(new TimerTask() {
+                    @Override @FXML
+                    public void run() {
+                        Platform.runLater(() -> resultSyllogism.getChildren().clear());
+                    }
+                }, 1500);
+            }
         } catch (Exception e) {
             validate.setStyle("-fx-background-color: red");
         }
