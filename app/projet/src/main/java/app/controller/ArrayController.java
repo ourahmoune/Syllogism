@@ -1,17 +1,12 @@
 package app.controller;
 
-import app.StartApplication;
-import app.model.Proposition;
 import app.model.allSyllogism.Data;
 import app.model.allSyllogism.SyllogismAndRules;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import java.nio.file.Paths;
-
-
 import java.util.List;
-
 
 public class ArrayController {
 
@@ -60,17 +55,13 @@ public class ArrayController {
             for(int i=0; i<s.getAllRules().size(); i++){
                 if (i != s.getAllRules().size()-2){
                     addStyledCell(new Label(String.valueOf(s.getRules(i))), i + 4, idI, "table-cell");
-                    System.out.println("i : " + i);
-
                 }
                 if (i == 11){
                     addStyledCell(new Label(String.valueOf(s.getRules(i))), i+3, idI, "table-cell");
-                    System.out.println("i : " + i);
                 }
             }
             idI++;
         }
-
     }
 
     private void translateArray(){

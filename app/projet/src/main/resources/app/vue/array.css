@@ -9,9 +9,7 @@
     -fx-min-width: 50px;
     -fx-min-height: 25px;
     -fx-alignment: center;
-    -fx-border-color: black;
-    -fx-border-width: 1px;
-    -fx-background-color: #4AE2E2;
+    fx-background-color: #4AE2E2;
 }
 
 /* Style pour les en-têtes */
@@ -23,9 +21,13 @@
     -fx-padding: 5px;
     -fx-alignment: center;
 }
+
 #table {
     -fx-pref-width: 100%;
     -fx-pref-height: 100%;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+
 }
 #array_root {
     /*-fx-padding: ;*/
