@@ -1,0 +1,19 @@
+.subPane{
+    -fx-background-color: #4AE2E2;
+    -fx-border-color: transparent;
+}
+
+.qualityLabel {
+    -fx-alignment: center;
+    -fx-text-fill: #9dff8c;
+    -fx-text-alignment: center;
+}
+
+.qualityCircle {
+    -fx-fill: grey;
+    -fx-alignment: center;
+}
+
+.SCPQuantity {
+    -fx-background: #9dff8c;
+}
