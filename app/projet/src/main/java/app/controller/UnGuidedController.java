@@ -1,28 +1,36 @@
 package app.controller;
 
 import app.model.*;
-import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.util.StringConverter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class UnGuidedController {
+import static app.StartApplication.scene;
+
+public class UnGuidedController implements Resize{
+
+    @FXML
+    public TextField P3_1, P3_2, V3;
+    public Circle threeplus, threeminus, addPremice;
+    public Label label_conclusion, threeplusLabel, threeminusLabel, addPremiceLabel;
+    public Button validate, clear;
 
     @FXML
     VBox vboxPremice;
 
     @FXML
-    ComboBox<String> Q1, Q2, Q3;
+    ComboBox<String> Q3;
 
     @FXML
     public void initialize() {
@@ -81,46 +89,56 @@ public class UnGuidedController {
 
         // Ajout des TextField avec les styles
         TextField textField1 = new TextField();
-        textField1.setStyle("-fx-prompt-text-fill: #808080;");
         HBox.setHgrow(textField1, javafx.scene.layout.Priority.ALWAYS);
 
         TextField textField2 = new TextField();
-        textField2.setStyle("-fx-prompt-text-fill: #808080;");
         HBox.setHgrow(textField2, javafx.scene.layout.Priority.ALWAYS);
 
         TextField textField3 = new TextField();
-        textField3.setStyle("-fx-prompt-text-fill: #808080;");
         HBox.setHgrow(textField3, javafx.scene.layout.Priority.ALWAYS);
-// Bouton "+"
-        Button isAddButtonSelected = new Button("+");
-        isAddButtonSelected.setStyle("-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; " +
-                "-fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; " +
-                "-fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;");
-        HBox.setHgrow(isAddButtonSelected, javafx.scene.layout.Priority.ALWAYS);
+        // Bouton "+"
+        StackPane stackPanePlus = new StackPane();
+        HBox.setHgrow(stackPanePlus, javafx.scene.layout.Priority.ALWAYS);
+        Circle circlePlus = new Circle();
+        circlePlus.getStyleClass().add("qualityCircle");
+        HBox.setHgrow(circlePlus, javafx.scene.layout.Priority.ALWAYS);
+        stackPanePlus.getChildren().add(circlePlus);
+
+        Label labelPlus = new Label("+");
+        labelPlus.getStyleClass().add("qualityLabel");
+        HBox.setHgrow(labelPlus, javafx.scene.layout.Priority.ALWAYS);
+        stackPanePlus.getChildren().add(labelPlus);
 
         // Bouton "-"
-        Button isMinusButtonSelected = new Button("—");
-        isMinusButtonSelected.setStyle("-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; " +
-                "-fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; " +
-                "-fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;");
-        HBox.setHgrow(isMinusButtonSelected, javafx.scene.layout.Priority.ALWAYS);
+        StackPane stackPaneMinus = new StackPane();
+        HBox.setHgrow(stackPaneMinus, javafx.scene.layout.Priority.ALWAYS);
+        Circle circleMinus = new Circle();
+        circleMinus.getStyleClass().add("qualityCircle");
+        HBox.setHgrow(circleMinus, javafx.scene.layout.Priority.ALWAYS);
+        stackPaneMinus.getChildren().add(circleMinus);
 
-        isAddButtonSelected.setOnAction(event -> handleButtonSelection(isAddButtonSelected, isMinusButtonSelected));
-        isMinusButtonSelected.setOnAction(event -> handleButtonSelection(isMinusButtonSelected, isAddButtonSelected));
+        Label labelMinus = new Label("-");
+        labelMinus.getStyleClass().add("qualityLabel");
+        HBox.setHgrow(labelMinus, javafx.scene.layout.Priority.ALWAYS);
+        stackPaneMinus.getChildren().add(labelMinus);
+
+        //isAddButtonSelected.setOnAction(event -> handleButtonSelection(isAddButtonSelected, isMinusButtonSelected));
+        //isMinusButtonSelected.setOnAction(event -> handleButtonSelection(isMinusButtonSelected, isAddButtonSelected));
 
         // Attachez les propriétés de sélection aux boutons via l'HBox
-        hbox.getProperties().put("isAddButtonSelected", isAddButtonSelected);
-        hbox.getProperties().put("isMinusButtonSelected", isMinusButtonSelected);
+        hbox.getProperties().put("isAddButtonSelected", stackPanePlus);
+        hbox.getProperties().put("isMinusButtonSelected", labelMinus);
 
         // Ajout de tous les éléments à l'HBox
-        hbox.getChildren().addAll(comboBox, textField1, textField2, textField3, isAddButtonSelected, isMinusButtonSelected);
+        hbox.getChildren().addAll(comboBox, textField1, textField2, textField3, stackPanePlus, stackPaneMinus);
 
         // Ajout de l'HBox au conteneur VBox dans le ScrollPane
         vboxPremice.getChildren().add(hbox);
+        resize();
     }
 
     @FXML
-    public void addPremice(ActionEvent actionEvent) {
+    public void addPremice(MouseEvent actionEvent) {
         createPremice();
     }
 
@@ -216,5 +234,101 @@ public class UnGuidedController {
             System.out.println("Type: " + proposition.getType());
             System.out.println("----------------------------");
         }
+    }
+
+
+    /**
+     * Resizes font sizes of buttons and labels based on the current window width.
+     */
+    private void resizeFontSize() {
+        threeplusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        threeminusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        addPremiceLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        String style = "-fx-font-size :"+ scene.widthProperty().getValue() / 70;
+        P3_1.setFont(Font.font(scene.widthProperty().getValue() / 50));
+        P3_2.setFont(Font.font(scene.widthProperty().getValue() / 50));
+        V3.setFont(Font.font(scene.widthProperty().getValue() / 50));
+        validate.setFont(Font.font(scene.widthProperty().getValue() / 50));
+        clear.setFont(Font.font(scene.widthProperty().getValue() / 50));
+        label_conclusion.setFont(Font.font(scene.widthProperty().getValue() / 50));
+        Q3.setStyle(style);
+        for (Node node : vboxPremice.getChildren()) {
+            for (Node hboxChild : ((HBox)node).getChildren()) {
+                if (hboxChild instanceof ComboBox) {
+                    hboxChild.setStyle(style);
+                }
+                if (hboxChild instanceof StackPane) {
+                    ((Label)((StackPane) hboxChild).getChildren().get(1)).setFont(Font.font(scene.widthProperty().getValue() / 30));
+                }
+                if (hboxChild instanceof TextField) {
+                    ((TextField)hboxChild).setFont(Font.font(scene.widthProperty().getValue() / 50));
+                }
+            }
+        }
+    }
+
+    private void resizeButtons() {
+        P3_1.setMinWidth(scene.widthProperty().getValue() / 6);
+        P3_2.setMinWidth(scene.widthProperty().getValue() / 6);
+        V3.setMinWidth(scene.widthProperty().getValue() / 7);
+        Q3.setMinWidth(scene.widthProperty().getValue() / 6);
+        validate.setMinWidth(scene.widthProperty().getValue() / 6);
+        clear.setMinWidth(scene.widthProperty().getValue() / 6);
+        for (Node node : vboxPremice.getChildren()) {
+            for (Node hboxChild : ((HBox)node).getChildren()) {
+                if (hboxChild instanceof ComboBox || hboxChild instanceof TextField) {
+                    ((Control)hboxChild).setMinWidth(scene.widthProperty().getValue() / 6);
+                }
+                if (hboxChild instanceof StackPane) {
+                    ((Circle)((StackPane) hboxChild).getChildren().get(0)).setRadius(scene.widthProperty().getValue() / 60);
+                }
+            }
+        }
+
+
+        P3_1.setMinHeight(scene.heightProperty().getValue() / 10);
+        P3_2.setMinHeight(scene.heightProperty().getValue() / 10);
+        V3.setMinHeight(scene.heightProperty().getValue() / 10);
+        Q3.setMinHeight(scene.heightProperty().getValue() / 10);
+        for (Node node : vboxPremice.getChildren()) {
+            for (Node hboxChild : ((HBox)node).getChildren()) {
+                if (hboxChild instanceof ComboBox || hboxChild instanceof TextField) {
+                    ((Control)hboxChild).setMinHeight(scene.heightProperty().getValue() / 10);
+                }
+            }
+        }
+
+        addPremice.setRadius(scene.widthProperty().getValue() / 60);
+        threeminus.setRadius(scene.widthProperty().getValue() / 60);
+        threeplus.setRadius(scene.widthProperty().getValue() / 60);
+
+    }
+    @Override
+    public void resize() {
+        resizeButtons();
+        resizeFontSize();
+
+        scene.widthProperty().addListener((obs, oldVal, newVal) -> {
+            resizeButtons();
+            resizeFontSize();
+        });
+        scene.heightProperty().addListener((obs, oldVal, newVal) -> {
+            resizeButtons();
+        });
+    }
+
+    private void resetValidate() {
+        P3_1.setOnKeyTyped(event -> validate.setStyle("-fx-background-color: #9dff8c"));
+        P3_2.setOnKeyTyped(event -> validate.setStyle("-fx-background-color: #9dff8c"));
+        Q3.setOnAction(event -> validate.setStyle("-fx-background-color: #9dff8c"));
+    }
+
+    public void clear(ActionEvent actionEvent) {
+    }
+
+    public void negatif3(MouseEvent mouseEvent) {
+    }
+
+    public void affirmatif3(MouseEvent mouseEvent) {
     }
 }

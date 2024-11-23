@@ -32,3 +32,7 @@
     -fx-border-radius: 15 15 15 15;
     -fx-background-radius: 15 15 15 15;
 }
+
+.resultSyllogism {
+    -fx-background-color: transparent;
+}
