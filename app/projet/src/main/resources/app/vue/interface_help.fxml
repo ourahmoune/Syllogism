@@ -2,11 +2,10 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.shape.Polygon?>
-
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.text.Text?>
+
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="app.controller.HelpButtonController"
@@ -18,7 +17,6 @@
     <VBox fx:id="vbox1" style="-fx-background-color: grey; -fx-background-radius: 15" spacing="5" alignment="CENTER">
     <Text text="%TitleRule"/>
         <HBox alignment="CENTER">
-
 
             <HBox fx:id="RulesPrinter" alignment="CENTER" style="-fx-border-color: green; -fx-border-radius: 15" spacing="20">
                 <VBox alignment="CENTER">
@@ -35,12 +33,12 @@
                         <Label fx:id="stateLabel" style="-fx-text-fill: green"/>
                     </StackPane>
                     <StackPane>
+
                         <Polygon fx:id="polyDown" onMouseClicked="#countIncr" points="50,50,150,50,100,150" fill="blue" stroke="black" strokeWidth="2"/>
                         <Label mouseTransparent="true" fx:id="downLabel" style="-fx-text-fill: green"/>
                     </StackPane>
                 </VBox>
             </HBox>
-
 
         </HBox>
 

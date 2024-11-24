@@ -1,6 +1,8 @@
 package app.controller;
 
 import app.StartApplication;
+import app.model.QuantificatorList;
+import app.model.Quantity;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,7 +25,7 @@ import static app.StartApplication.scene;
 
 public class HelpButtonController implements Resize{
     @FXML
-    HBox rootHelp, RulesPrinter,Help1,Help2,Help3,Help4,Help5;
+    HBox rootHelp, RulesPrinter;
     @FXML
     VBox vbox1;
     @FXML
@@ -34,6 +36,7 @@ public class HelpButtonController implements Resize{
     Polygon polyDown,polyUp,polyState;
     @FXML
     ImageView imgFigure, imgQuant, imgVValidate, imgWValidate, imgQualite;
+
 
     Map<Integer, String> RulesContent_fr;
     Map<Integer, String> RulesContent_eng;
@@ -63,7 +66,7 @@ public class HelpButtonController implements Resize{
         imgVValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpVValidate.png"))));
         imgWValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpWValidate.png"))));
         imgQualite.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpQualite.png"))));
-        //rootHelp.setStyle("-fx-background-color: black");
+
 
         RulesContent_fr.put(0, "Deux prémisses affirmatives donnent une conclusion affirmative.");
         RulesContent_fr.put(1, "Un syllogisme est considéré comme inintéressant si sa conclusion est existentielle et peut être remplacée par une conclusion universelle plus forte.");
@@ -127,10 +130,7 @@ public class HelpButtonController implements Resize{
 
         // Empêche l'événement de se propager aux nœuds sous-jacents
         RulesPrinter.addEventHandler(MouseEvent.MOUSE_CLICKED, Event::consume);
-
         resize();
-
-
     }
 
     @FXML
@@ -227,36 +227,6 @@ public class HelpButtonController implements Resize{
         imgVValidate.setFitHeight((scene.heightProperty().getValue()/100)*((double) 20 /3));
         imgWValidate.setFitHeight((scene.heightProperty().getValue()/100)*6.32);
         imgQualite.setFitHeight((scene.heightProperty().getValue()/100)*(((double) 20 /3)*2));
-
-//
-//
-//
-//
-//        P1_1.setMinHeight(scene.heightProperty().getValue() / 10); // 10% of window height
-//        P1_2.setMinHeight(scene.heightProperty().getValue() / 10);
-//        V1.setMinHeight(scene.heightProperty().getValue() / 10);
-//        Q1.setMinHeight(scene.heightProperty().getValue() / 10);
-//        P2_1.setMinHeight(scene.heightProperty().getValue() / 10);
-//        P2_2.setMinHeight(scene.heightProperty().getValue() / 10);
-//        V2.setMinHeight(scene.heightProperty().getValue() / 10);
-//        Q2.setMinHeight(scene.heightProperty().getValue() / 10);
-//        P3_1.setMinHeight(scene.heightProperty().getValue() / 10);
-//        P3_2.setMinHeight(scene.heightProperty().getValue() / 10);
-//        V3.setMinHeight(scene.heightProperty().getValue() / 10);
-//        Q3.setMinHeight(scene.heightProperty().getValue() / 10);
-//        validate.setMinHeight(scene.heightProperty().getValue() / 10);
-//        clear.setMinHeight(scene.heightProperty().getValue() / 10);
-//        image_figure.setFitHeight(scene.heightProperty().getValue() / 10);
-//        choix_figure.setMinHeight(scene.heightProperty().getValue() / 10);
-//
-//
-//        oneplus.setRadius(scene.widthProperty().getValue() / 60); // 1.5% of window width
-//        oneminus.setRadius(scene.widthProperty().getValue() / 60);
-//        twoplus.setRadius(scene.widthProperty().getValue() / 60);
-//        twominus.setRadius(scene.widthProperty().getValue() / 60);
-//        threeminus.setRadius(scene.widthProperty().getValue() / 60);
-//        threeplus.setRadius(scene.widthProperty().getValue() / 60);
-
     }
 
     @Override
