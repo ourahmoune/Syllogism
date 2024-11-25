@@ -8,6 +8,7 @@ package app.model;
 public class Raa extends Rule {
 
 	private String Result;
+	static final String Name = "Raa Rule";
 
 	/**
 	 * Constructor for the `Raa` class.

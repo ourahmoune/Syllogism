@@ -3,21 +3,33 @@ package app.controller;
 import app.model.Quantificator;
 import app.model.QuantificatorList;
 import app.model.Quantity;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 
 import java.util.Optional;
+
+import static app.StartApplication.scene;
 
 /**
  * The ListQuantifierController class manages the display and modification
  * of quantificators in the user interface. It allows users to add and remove
  * quantificators for both universal and existential categories.
  */
-public class ListQuantifierController {
+public class ListQuantifierController implements Resize {
+
+    @FXML
+    public Circle minusUniv, plusUniv, minusExist, plusExist;
+    public Label plusUnivLabel, minusUnivLabel, plusExistLabel, minusExistLabel;
+    public Label Universal, Existential;
+    public ScrollPane SCPUniversal, SCPExistential;
+
 
     @FXML
     private VBox ListUniversal, ListExistential;
@@ -28,6 +40,9 @@ public class ListQuantifierController {
      */
     @FXML
     public void initialize() {
+        SCPUniversal.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Désactiver barre horizontale
+        SCPExistential.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
         for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
             HBox hbox = new HBox();
             hbox.setAlignment(Pos.CENTER);
@@ -51,12 +66,12 @@ public class ListQuantifierController {
     }
 
     public void addQuantificator(String word, Quantity quantity) {
-        Quantificator quantificator = new Quantificator(Quantity.Universal, word);
+        Quantificator quantificator = new Quantificator(quantity, word);
         QuantificatorList.getInstance().addQuantificator(quantificator);
     }
 
 
-    public void handleAddQuantificatorClickUniversal(ActionEvent actionEvent) {
+    public void handleAddQuantificatorClickUniversal(MouseEvent actionEvent) {
         TextInputDialog dialog = new TextInputDialog();
         if (SettingController.language.getObject("Language").equals("English  ")) {
             dialog.setTitle("Add a quantificator");
@@ -82,7 +97,7 @@ public class ListQuantifierController {
     /**
      * Handles the event to remove a universal quantificator.
      */
-    public void handleRemoveQuantificatorClickUniversal(ActionEvent actionEvent) {
+    public void handleRemoveQuantificatorClickUniversal(MouseEvent actionEvent) {
         Alert alert = createDeleteConfirmationDialog("Universal");
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -97,7 +112,7 @@ public class ListQuantifierController {
     /**
      * Handles the event to add a new existential quantificator.
      */
-    public void handleAddQuantificatorClickExistential(ActionEvent actionEvent) {
+    public void handleAddQuantificatorClickExistential(MouseEvent actionEvent) {
         TextInputDialog dialog = new TextInputDialog();
         if (SettingController.language.getObject("Language").equals("English  ")) {
             dialog.setTitle("Add a quantificator");
@@ -122,7 +137,7 @@ public class ListQuantifierController {
     /**
      * Handles the event to remove an existential quantificator.
      */
-    public void handleRemoveQuantificatorClickExistential(ActionEvent actionEvent) {
+    public void handleRemoveQuantificatorClickExistential(MouseEvent actionEvent) {
         Alert alert = createDeleteConfirmationDialog("Existential");
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -158,7 +173,7 @@ public class ListQuantifierController {
     private void printQuantificators() {
         System.out.println("List of all quantificators:");
         for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
-            System.out.println(quantificator.getName());
+            System.out.println("name : " + quantificator.getName() + " et quantity : " + quantificator.getQuantity());
         }
     }
 
@@ -208,5 +223,53 @@ public class ListQuantifierController {
                 node instanceof HBox && ((Label) ((HBox) node).getChildren().get(0)).getText().equals(name)
         );
         QuantificatorList.getInstance().removeQuantificator(name, type);
+    }
+
+    @Override
+    public void resize() {
+        resizeButtons();
+        resizeFontSize();
+
+        scene.widthProperty().addListener((obs, oldVal, newVal) -> {
+            resizeButtons();
+            resizeFontSize();
+        });
+        scene.heightProperty().addListener((obs, oldVal, newVal) -> {
+            resizeButtons();
+        });
+    }
+
+    private void resizeFontSize() {
+        plusUnivLabel.setFont(Font.font(scene.widthProperty().getValue() / 30)); // 1.8% of window width
+        minusUnivLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        plusExistLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        minusExistLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        Universal.setFont(Font.font(scene.widthProperty().getValue() / 56));
+        Existential.setFont(Font.font(scene.widthProperty().getValue() / 56));
+
+        String style = "-fx-font-size :"+ scene.widthProperty().getValue() / 60;
+        for (Node elt: ListUniversal.getChildren()){
+            ((HBox)elt).getChildren().get(0).setStyle(style);
+        }
+        for (Node elt: ListExistential.getChildren()){
+            ((HBox)elt).getChildren().get(0).setStyle(style);
+        }
+
+    }
+
+    private void resizeButtons() {
+        plusUniv.setRadius(scene.widthProperty().getValue() / 60); // 1.5% of window width
+        minusUniv.setRadius(scene.widthProperty().getValue() / 60);
+        plusExist.setRadius(scene.widthProperty().getValue() / 60);
+        minusExist.setRadius(scene.widthProperty().getValue() / 60);
+
+        ListUniversal.setMinWidth(scene.widthProperty().getValue() / 4);
+        ListExistential.setMinWidth(scene.widthProperty().getValue() / 4);
+
+        SCPUniversal.setMinWidth(scene.widthProperty().getValue() / 4);
+        SCPExistential.setMinWidth(scene.widthProperty().getValue() / 4);
+        SCPUniversal.setMinHeight(scene.heightProperty().getValue() / 1.5);
+        SCPExistential.setMinHeight(scene.heightProperty().getValue() / 1.5);
+
     }
 }

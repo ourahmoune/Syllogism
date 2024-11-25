@@ -4,13 +4,12 @@ import app.StartApplication;
 import app.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -26,7 +25,7 @@ import static app.StartApplication.scene;
  * MenuController manages the main menu interface of the application.
  * It handles navigation between different pages and the language settings.
  */
-public class MenuController {
+public class MenuController implements Resize{
     @FXML
     public Label language;
     @FXML
@@ -48,7 +47,13 @@ public class MenuController {
     @FXML
     public Text HelpButton;
     @FXML
-    Pane contentPane;
+    Pane contentPane; // Pane to load different interfaces
+    @FXML
+    Pane HelpPane; //Pane for the load of the help fxml
+    @FXML
+    StackPane stackroot;
+
+    private String subInterface;
 
     @FXML
     public void initialize(){
@@ -107,6 +112,11 @@ public class MenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("vue/menu.fxml"), SettingController.language);
         scene.setRoot(fxmlLoader.load());
         ((MenuController) fxmlLoader.getController()).resize();
+        try {
+            ((MenuController) fxmlLoader.getController()).loadInterface(subInterface);
+        } catch (Exception e) {
+            System.err.println("no subInterface");
+        }
     }
 
     /**
@@ -116,7 +126,7 @@ public class MenuController {
         GuidedPage.setFont(Font.font(scene.widthProperty().getValue() / 56)); // 1.8% of window width
         FreePage.setFont(Font.font(scene.widthProperty().getValue() / 56));
         ArrayPage.setFont(Font.font(scene.widthProperty().getValue() / 56));
-        ListQuantifiersPage.setFont(Font.font(scene.widthProperty().getValue() / 56));
+        ListQuantifiersPage.setFont(Font.font(scene.widthProperty().getValue() / 58));
         language.setFont(Font.font(scene.widthProperty().getValue() / 56));
         HelpButton.setFont(Font.font(scene.widthProperty().getValue() / 50)); // 2% of window width
     }
@@ -141,9 +151,7 @@ public class MenuController {
         language.setMinHeight(scene.heightProperty().getValue() / 12);
     }
 
-    /**
-     * Resizes font sizes and buttons whenever the scene dimensions change.
-     */
+    @Override
     public void resize() {
         resizeFontSize();
         resizeButtons();
@@ -182,6 +190,8 @@ public class MenuController {
         loadInterface("vue/interface_list.fxml");
     }
 
+    @FXML
+    private void HelpInterface() { loadInterface(stackroot, "vue/interface_help.fxml"); }
     /**
      * Loads the array Interface.
      */
@@ -195,7 +205,9 @@ public class MenuController {
      *
      * @param fxmlPath the path to the FXML file to load
      */
+
     public void loadInterface(String fxmlPath) {
+        this.subInterface = fxmlPath;
         try {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
             Pane paneloaded = loader.load();
@@ -204,6 +216,23 @@ public class MenuController {
             // Replace the content of contentPane with the newly loaded content
             contentPane.getChildren().clear();
             contentPane.getChildren().add(paneloaded);
+            if (loader.getController() instanceof Resize){
+                ((Resize) loader.getController()).resize();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+       }
+    }
+
+    public void loadInterface(StackPane target, String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.language);
+            Pane paneloaded = loader.load();
+
+            HelpButtonController helpController = loader.getController();
+            helpController.setMainController(this);
+
+            target.getChildren().add(paneloaded);
         } catch (IOException e) {
             e.printStackTrace();
         }
