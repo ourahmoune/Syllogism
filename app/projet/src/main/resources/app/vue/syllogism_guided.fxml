@@ -10,76 +10,78 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
-
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      stylesheets="@syllogism_guided.css"
-      fx:controller="app.controller.GuidedController"
-      styleClass="subPane">
-   <children>
-      <HBox alignment="CENTER" style="-fx-spacing: 10;">
-         <children>
-            <ComboBox fx:id="choix_figure" prefWidth="150.0" promptText="Figure:" HBox.hgrow="ALWAYS"/>
-            <ImageView fx:id="image_figure" fitHeight="40.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
-         <children>
-            <ComboBox fx:id="Q1" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
-            <TextField fx:id="P1_1" promptText="%birds" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="V1" promptText="%have" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="P1_2" promptText="%wings" HBox.hgrow="ALWAYS" />
-            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
-                  <Circle fx:id="oneplus" styleClass="qualityCircle"/>
-                  <Label fx:id="oneplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel" onMouseClicked="#affirmatif1" />
-            </StackPane>
-            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
-               <Circle fx:id="oneminus" styleClass="qualityCircle"/>
-               <Label fx:id="oneminusLabel" alignment="CENTER" text="-" styleClass="qualityLabel" onMouseClicked="#negatif1"/>
-            </StackPane>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
-         <children>
-            <ComboBox fx:id="Q2" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
-            <TextField fx:id="P2_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="V2" promptText="%are" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="P2_2"  promptText="%birds" HBox.hgrow="ALWAYS" />
-            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
-               <Circle fx:id="twoplus" styleClass="qualityCircle"/>
-               <Label fx:id="twoplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel" onMouseClicked="#affirmatif2" />
-            </StackPane>
-            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
-               <Circle fx:id="twominus" styleClass="qualityCircle"/>
-               <Label fx:id="twominusLabel" alignment="CENTER" text="-" styleClass="qualityLabel" onMouseClicked="#negatif2"/>
-            </StackPane>
-         </children>
-      </HBox>
-      <Label fx:id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
-         <children>
-            <ComboBox fx:id="Q3" prefWidth="150.0" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="P3_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="V3" promptText="%have" HBox.hgrow="ALWAYS" />
-            <TextField fx:id="P3_2" promptText="%wings" HBox.hgrow="ALWAYS" />
-            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
-               <Circle fx:id="threeplus" styleClass="qualityCircle"/>
-               <Label fx:id="threeplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel" onMouseClicked="#affirmatif3"/>
-            </StackPane>
-            <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
-               <Circle fx:id="threeminus" styleClass="qualityCircle"/>
-               <Label fx:id="threeminusLabel" alignment="CENTER" text="-" styleClass="qualityLabel" onMouseClicked="#negatif3"/>
-            </StackPane>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"  style="-fx-padding: 20; -fx-spacing: 20;">
-         <children>
-            <Button fx:id="validate" onAction="#validate" mnemonicParsing="false" text="%validate" styleClass="validate"/>
-            <Button fx:id="clear" onAction="#clear" mnemonicParsing="false" text="%clear" styleClass="clear" />
-         </children>
-      </HBox>
-   </children>
-</VBox>
+<?import javafx.scene.layout.Pane?>
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           stylesheets="@syllogism_guided.css"
+           fx:controller="app.controller.GuidedController">
+   <VBox styleClass="subPane">
+      <children>
+         <HBox alignment="CENTER" style="-fx-spacing: 10;">
+            <children>
+               <ComboBox fx:id="choix_figure" prefWidth="150.0" promptText="Figure:" HBox.hgrow="ALWAYS"/>
+               <ImageView fx:id="image_figure" fitHeight="40.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
+            <children>
+               <ComboBox fx:id="Q1" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+               <TextField fx:id="P1_1" promptText="%birds" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="V1" promptText="%have" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="P1_2" promptText="%wings" HBox.hgrow="ALWAYS" />
+               <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                     <Circle fx:id="oneplus" styleClass="qualityCircle"/>
+                     <Label fx:id="oneplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel" onMouseClicked="#affirmatif1" />
+               </StackPane>
+               <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                  <Circle fx:id="oneminus" styleClass="qualityCircle"/>
+                  <Label fx:id="oneminusLabel" alignment="CENTER" text="-" styleClass="qualityLabel" onMouseClicked="#negatif1"/>
+               </StackPane>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
+            <children>
+               <ComboBox fx:id="Q2" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+               <TextField fx:id="P2_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="V2" promptText="%are" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="P2_2"  promptText="%birds" HBox.hgrow="ALWAYS" />
+               <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                  <Circle fx:id="twoplus" styleClass="qualityCircle"/>
+                  <Label fx:id="twoplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel" onMouseClicked="#affirmatif2" />
+               </StackPane>
+               <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                  <Circle fx:id="twominus" styleClass="qualityCircle"/>
+                  <Label fx:id="twominusLabel" alignment="CENTER" text="-" styleClass="qualityLabel" onMouseClicked="#negatif2"/>
+               </StackPane>
+            </children>
+         </HBox>
+         <Label fx:id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
+            <children>
+               <ComboBox fx:id="Q3" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="P3_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="V3" promptText="%have" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="P3_2" promptText="%wings" HBox.hgrow="ALWAYS" />
+               <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                  <Circle fx:id="threeplus" styleClass="qualityCircle"/>
+                  <Label fx:id="threeplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel" onMouseClicked="#affirmatif3"/>
+               </StackPane>
+               <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                  <Circle fx:id="threeminus" styleClass="qualityCircle"/>
+                  <Label fx:id="threeminusLabel" alignment="CENTER" text="-" styleClass="qualityLabel" onMouseClicked="#negatif3"/>
+               </StackPane>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"  style="-fx-padding: 20; -fx-spacing: 20;">
+            <children>
+               <Button fx:id="validate" onAction="#validate" mnemonicParsing="false" text="%validate" styleClass="validate"/>
+               <Button fx:id="clear" onAction="#clear" mnemonicParsing="false" text="%clear" styleClass="clear" />
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+   <Pane fx:id="resultSyllogism" styleClass="resultSyllogism" mouseTransparent="true"/>
+</StackPane>
