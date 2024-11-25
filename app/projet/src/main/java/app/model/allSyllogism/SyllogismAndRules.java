@@ -57,4 +57,8 @@ public class SyllogismAndRules {
     public boolean getRules(int index) {
         return Rules.get(index);
     }
+
+    public List<Boolean> getAllRules() {
+        return Rules;
+    }
 }

@@ -48,7 +48,6 @@ public class GuidedController implements Resize {
     @FXML
     private Circle oneplus, oneminus, twoplus, twominus, threeplus, threeminus;
 
-    // Qualities of the propositions
     private String ql1, ql2, ql3;
 
     /**
@@ -104,7 +103,6 @@ public class GuidedController implements Resize {
             }
         });
 
-        // Populate quantificator options
         resetComboBoxQuanti();
 
         P1_1.setDisable(true);

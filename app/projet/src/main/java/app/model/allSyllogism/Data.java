@@ -59,6 +59,7 @@ public class Data {
             XSSFWorkbook workbook = new XSSFWorkbook(MyFile);
             XSSFSheet MySheet = workbook.getSheetAt(0);
 
+
             int line = 1;
             Type type = null;
             boolean ResultOfRule = false;

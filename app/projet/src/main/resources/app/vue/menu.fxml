@@ -17,7 +17,7 @@
                      <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
                      <Button mnemonicParsing="false" text="%FreePage" VBox.vgrow="ALWAYS" fx:id="FreePage" styleClass="FreePage" onAction="#UnguidedInterface" />
                      <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
-                     <Button mnemonicParsing="false" text="%ArrayPage" VBox.vgrow="ALWAYS" fx:id="ArrayPage" styleClass="ArrayPage"/>
+                     <Button mnemonicParsing="false" text="%ArrayPage" VBox.vgrow="ALWAYS" fx:id="ArrayPage" styleClass="ArrayPage" onAction="#ArrayInterface"/>
                      <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
                      <Button mnemonicParsing="false" text="%ListQuantifiersPage" VBox.vgrow="ALWAYS" fx:id="ListQuantifiersPage" styleClass="ListQuantifiersPage" onAction="#ListInterface"/>
                      <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />

@@ -1,0 +1,57 @@
+
+.scroll-pane {
+    -fx-background-color: #4AE2E2;
+    -fx-background: #4AE2E2;
+    -fx-control-inner-background: #4AE2E2;
+}
+.table-cell, .table-header {
+    -fx-border-color: grey;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+    -fx-background-color: #4AE2E2;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 40px;
+}
+
+.table-cell {
+    -fx-min-width: 50px;
+    -fx-min-height: 25px;
+}
+
+/* Style pour les en-têtes */
+.table-header {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: #9dff8c;
+}
+#table_menu{
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+#table {
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+
+}
+#array_root {
+    /*-fx-padding: ;*/
+    -fx-alignment: center;
+}
+#array_scroll {
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: false;
+}
+
+.even-row {
+    -fx-background-color: #32b71b;
+    -fx-alignment: center;
+    -fx-padding: 5px;
+}
+
+.odd-row {
+    -fx-background-color: #9dff8c;
+    -fx-alignment: center;
+    -fx-padding: 5px;
+}
