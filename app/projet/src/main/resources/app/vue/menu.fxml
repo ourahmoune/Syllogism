@@ -46,7 +46,7 @@
                      </StackPane>
                      <StackPane fx:id="ParamPage" styleClass="ParamPage">
                         <children>
-                           <Circle fx:id="ParamPageCircle" fill="transparent"/>
+                           <Circle fx:id="ParamPageCircle" fill="transparent" onMouseClicked="#handleSettings"/>
                         </children>
                      </StackPane>
                   </children>

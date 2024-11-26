@@ -1,20 +1,26 @@
 package app.controller;
 
+import app.StartApplication;
 import app.model.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
-import javafx.util.StringConverter;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static app.StartApplication.scene;
 
@@ -22,9 +28,11 @@ public class UnGuidedController implements Resize{
 
     @FXML
     public TextField P3_1, P3_2, V3;
-    public Circle threeplus, threeminus, addPremice;
-    public Label label_conclusion, threeplusLabel, threeminusLabel, addPremiceLabel;
+    public Circle threeplus, threeminus, addPremice, removePremice;
+    public Label label_conclusion, threeplusLabel, threeminusLabel, addPremiceLabel, removePremiceLabel;
     public Button validate, clear;
+    public Map<Integer,String> ql;
+    public Pane resultSyllogism;
 
     @FXML
     VBox vboxPremice;
@@ -34,58 +42,30 @@ public class UnGuidedController implements Resize{
 
     @FXML
     public void initialize() {
-
+        ql = new HashMap<>();
         createPremice();
         createPremice();
-
+        for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
+            Q3.getItems().add(quantificator.getName());
+        }
     }
 
     public void createPremice(){
         // Création de l'HBox
         HBox hbox = new HBox();
         hbox.setAlignment(javafx.geometry.Pos.CENTER);
+        VBox.setVgrow(hbox, javafx.scene.layout.Priority.ALWAYS);
         hbox.setSpacing(10);
 
         // Ajout du ComboBox
-        ComboBox<Quantificator> comboBox = new ComboBox<>();
-        //setComboBoxQuanti(comboBox);
-        comboBox.getItems().addAll(QuantificatorList.getInstance().getQuantificators());
+        ComboBox<String> comboBox = new ComboBox<>();
         comboBox.setPrefWidth(150);
         comboBox.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(comboBox, javafx.scene.layout.Priority.ALWAYS);
 
-        // Personnaliser l'affichage de la ComboBox avec un StringConverter
-        comboBox.setConverter(new StringConverter<Quantificator>() {
-
-            @Override
-            public String toString(Quantificator quantificator) {
-                return quantificator != null ? quantificator.getName() : "";
-            }
-
-            @Override
-            public Quantificator fromString(String string) {
-                // Ici vous pouvez gérer la conversion inverse si nécessaire
-                // Par exemple, vous pouvez chercher un Quantificator avec ce nom
-                for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
-                    if (quantificator.getName().equals(string)) {
-                        return quantificator;
-                    }
-                }
-                return null;  // Si pas trouvé
-            }
-        });
-
-        // Gestion de l'événement de sélection dans la ComboBox
-        comboBox.setOnAction(event -> {
-            Quantificator selectedQuantificator = comboBox.getValue();  // Récupérer l'objet Quantificator
-            if (selectedQuantificator != null) {
-                // Récupérer le nom du quantificateur
-                System.out.println("ComboBox Value: " + selectedQuantificator.getName());  // Affiche le nom
-                // Vous pouvez aussi récupérer d'autres propriétés si nécessaire
-                Quantity quantity = selectedQuantificator.getQuantity();  // Exemple d'accès à Quantity
-                System.out.println("Quantity Value: " + quantity);
-            }
-        });
+        for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
+            comboBox.getItems().add(quantificator.getName());
+        }
 
         // Ajout des TextField avec les styles
         TextField textField1 = new TextField();
@@ -122,13 +102,17 @@ public class UnGuidedController implements Resize{
         HBox.setHgrow(labelMinus, javafx.scene.layout.Priority.ALWAYS);
         stackPaneMinus.getChildren().add(labelMinus);
 
-        //isAddButtonSelected.setOnAction(event -> handleButtonSelection(isAddButtonSelected, isMinusButtonSelected));
-        //isMinusButtonSelected.setOnAction(event -> handleButtonSelection(isMinusButtonSelected, isAddButtonSelected));
+        int pos =  vboxPremice.getChildren().size()+1;
+        labelPlus.setOnMouseClicked(event -> handleButtonSelection(labelPlus, labelMinus, pos));
+        labelMinus.setOnMouseClicked(event -> handleButtonSelection(labelMinus, labelPlus, pos));
 
-        // Attachez les propriétés de sélection aux boutons via l'HBox
-        hbox.getProperties().put("isAddButtonSelected", stackPanePlus);
-        hbox.getProperties().put("isMinusButtonSelected", labelMinus);
-
+        if (SettingController.getLanguage().equals("english")){
+            comboBox.setPromptText("quantity");
+            textField2.setPromptText("verb");
+        }else{
+            comboBox.setPromptText("quantité");
+            textField2.setPromptText("verbe");
+        }
         // Ajout de tous les éléments à l'HBox
         hbox.getChildren().addAll(comboBox, textField1, textField2, textField3, stackPanePlus, stackPaneMinus);
 
@@ -141,27 +125,37 @@ public class UnGuidedController implements Resize{
     public void addPremice(MouseEvent actionEvent) {
         createPremice();
     }
-
-    private void handleButtonSelection(Button selectedButton, Button otherButton) {
+    @FXML
+    public void removePremice(MouseEvent actionEvent) {
+        if (vboxPremice.getChildren().size() != 2) {
+            vboxPremice.getChildren().remove(vboxPremice.getChildren().size() - 1);
+        }
+    }
+    @FXML
+    private void affirmatif3() {
+        handleButtonSelection(threeplusLabel, threeminusLabel, 0);
+    }
+    @FXML
+    private void negatif3() {
+        handleButtonSelection(threeminusLabel, threeplusLabel,0);
+    }
+    private void handleButtonSelection(Label selectedButton, Label otherButton, int proposition) {
         // Applique la couleur verte au bouton sélectionné
-        selectedButton.setStyle("-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; " +
-                "-fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; " +
-                "-fx-background-color: #37ff00; -fx-alignment: center; -fx-padding: 0;");
+        selectedButton.setStyle("-fx-text-fill: black");
 
         // Réinitialise le style de l'autre bouton à la couleur grise
-        otherButton.setStyle("-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; " +
-                "-fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; " +
-                "-fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;");
-    }
+        otherButton.setStyle("-fx-text-fill: #9dff8c");
 
-    private void setComboBoxQuanti(ComboBox<String> comboBox) {
-        for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
-            comboBox.getItems().add(quantificator.getName());
+        if (selectedButton.getText().equals("+")){
+           ql.put(proposition, "Affirmative");
+        }else{
+            ql.put(proposition, "Negative");
         }
     }
 
     @FXML
-    public void iterateOverVBox() {
+    public void validate() {
+        validate.setStyle("-fx-background-color: #9dff8c");
         Map<Integer, Proposition> resultat = new HashMap<>();
         int taille = 0;
         for (Node node : vboxPremice.getChildren()) {
@@ -181,9 +175,9 @@ public class UnGuidedController implements Resize{
                 // Itérer sur les enfants de l'HBox pour récupérer les valeurs
                 for (Node hboxChild : hbox.getChildren()) {
                     if (hboxChild instanceof ComboBox) {
-                        ComboBox<?> comboBox = (ComboBox<?>) hboxChild;
+                        ComboBox<String> comboBox = (ComboBox<String>) hboxChild;
                         if (comboBox.getValue() != null) {
-                            quantificator = new Quantificator(Quantity.Universal, comboBox.getValue().toString());
+                            quantificator = QuantificatorList.getInstance().getQuantificator(comboBox.getSelectionModel().getSelectedItem());
                         }
                     } else if (hboxChild instanceof TextField) {
                         textFieldCounter++;  // Incrémente le compteur de TextField
@@ -193,32 +187,66 @@ public class UnGuidedController implements Resize{
                         } else if (textFieldCounter == 3) {
                             predicat = ((TextField) hboxChild).getText();
                         }
-                    } else if (hboxChild instanceof Button) {
-                        Button button = (Button) hboxChild;
-
-                        // Vérifier la qualité en fonction du bouton sélectionné
-                        if (button.getText().equals("+") && button.getStyle().contains("background-color: #37ff00")) {
-                            quality = Quality.Affirmative;  // Exemple de valeur pour une qualité affirmative
-                        } else if (button.getText().equals("—") && button.getStyle().contains("background-color: #37ff00")) {
-                            quality = Quality.Negative;  // Exemple de valeur pour une qualité négative
-                        }
+                    } else if (hboxChild instanceof StackPane && ql.containsKey(taille)) {
+                        quality = Quality.valueOf(ql.get(taille));
                     }
                 }
 
                 // Création d'une Proposition et ajout à la Map si tous les champs sont présents
                 if (quantificator != null && subject != null && predicat != null && quality != null) {
                     Proposition proposition = new Proposition(quantificator, subject, predicat, quality);
-                    resultat.put(taille++, proposition);  // Utilise l'index comme clé, puis l'incrémente
+                    resultat.put(taille, proposition);  // Utilise l'index comme clé, puis l'incrémente
 
                     // Afficher ou utiliser les valeurs récupérées pour chaque HBox
                     afficherDonneesDeMap(resultat);
-
-                    //Apeller la fonction de Nadir
+                }else{
+                    resultat.put(taille, null);
                 }
             }
         }
+        try{
+            Quantificator quantificator3 = QuantificatorList.getInstance().getQuantificator(Q3.getSelectionModel().getSelectedItem());
+
+            String sujet3 = P3_1.getText();
+            String predicat3 = P3_2.getText();
+
+            Proposition p3 = new Proposition(quantificator3, sujet3, predicat3, Quality.valueOf(ql.get(0)));
+            resultat.put(resultat.size()+1, p3);
+
+            Syllogism s = getSyllogisme(resultat);
+            if (s == null) { //syllogisme invalide
+                validate.setStyle("-fx-background-color: red");
+            }else{
+                Image gif = new Image(StartApplication.class.getResource("/app/image/feu_artifice.gif").toExternalForm());
+                ImageView img = new ImageView(gif);
+                img.setFitHeight(resultSyllogism.getHeight());
+                img.setFitWidth(resultSyllogism.getWidth());
+                resultSyllogism.getChildren().add(img);
+                Timer timer = new Timer();
+                // Planifie l'exécution de la tâche après 3 secondes
+                timer.schedule(new TimerTask() {
+                    @Override @FXML
+                    public void run() {
+                        Platform.runLater(() -> resultSyllogism.getChildren().clear());
+                    }
+                }, 1500);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            validate.setStyle("-fx-background-color: red");
+        }
     }
 
+    public Syllogism getSyllogisme(Map<Integer, Proposition> propositions) throws Exception {
+        for (Figure f : Figure.values()){
+            Syllogism s = new Syllogism(f, propositions);
+            s.solve();
+            if(s.isValid()){
+                return s;
+            }
+        }
+        return null;
+    }
     public void afficherDonneesDeMap(Map<Integer, Proposition> map) {
         // Itérer sur les entrées de la Map
         for (Map.Entry<Integer, Proposition> entry : map.entrySet()) {
@@ -244,6 +272,7 @@ public class UnGuidedController implements Resize{
         threeplusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
         threeminusLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
         addPremiceLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        removePremiceLabel.setFont(Font.font(scene.widthProperty().getValue() / 30));
         String style = "-fx-font-size :"+ scene.widthProperty().getValue() / 70;
         P3_1.setFont(Font.font(scene.widthProperty().getValue() / 50));
         P3_2.setFont(Font.font(scene.widthProperty().getValue() / 50));
@@ -299,6 +328,7 @@ public class UnGuidedController implements Resize{
         }
 
         addPremice.setRadius(scene.widthProperty().getValue() / 60);
+        removePremice.setRadius(scene.widthProperty().getValue() / 60);
         threeminus.setRadius(scene.widthProperty().getValue() / 60);
         threeplus.setRadius(scene.widthProperty().getValue() / 60);
 
@@ -324,11 +354,7 @@ public class UnGuidedController implements Resize{
     }
 
     public void clear(ActionEvent actionEvent) {
+        System.out.println(ql);
     }
 
-    public void negatif3(MouseEvent mouseEvent) {
-    }
-
-    public void affirmatif3(MouseEvent mouseEvent) {
-    }
 }
