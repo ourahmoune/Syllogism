@@ -98,4 +98,5 @@ public class Proposition {
 		}
 		return result;
 	}
+	
 }

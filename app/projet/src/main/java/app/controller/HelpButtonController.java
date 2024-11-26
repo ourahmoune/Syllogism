@@ -9,26 +9,34 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Scale;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 
-public class HelpButtonController {
+import static app.StartApplication.scene;
+
+public class HelpButtonController implements Resize{
     @FXML
     HBox rootHelp, RulesPrinter;
+    @FXML
+    VBox vbox1;
     @FXML
     Text  rulePrinter, NameRule;
     @FXML
     Label upLabel, downLabel, stateLabel;
     @FXML
-    Polygon polyUp;
+    Polygon polyDown,polyUp,polyState;
     @FXML
-    Polygon polyDown;
-    @FXML
-    ImageView imgFigure, imgQuant, imgVValidate, imgWValidate;
+    ImageView imgFigure, imgQuant, imgVValidate, imgWValidate, imgQualite;
+
 
     Map<Integer, String> RulesContent_fr;
     Map<Integer, String> RulesContent_eng;
@@ -57,8 +65,8 @@ public class HelpButtonController {
 
         imgVValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpVValidate.png"))));
         imgWValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpWValidate.png"))));
-        imgFigure.setFitHeight(ImgSize);
-        imgQuant.setFitHeight(ImgSize);
+        imgQualite.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpQualite.png"))));
+
 
         RulesContent_fr.put(0, "Deux prémisses affirmatives donnent une conclusion affirmative.");
         RulesContent_fr.put(1, "Un syllogisme est considéré comme inintéressant si sa conclusion est existentielle et peut être remplacée par une conclusion universelle plus forte.");
@@ -122,6 +130,7 @@ public class HelpButtonController {
 
         // Empêche l'événement de se propager aux nœuds sous-jacents
         RulesPrinter.addEventHandler(MouseEvent.MOUSE_CLICKED, Event::consume);
+        resize();
     }
 
     @FXML
@@ -165,5 +174,72 @@ public class HelpButtonController {
 
     public void setMainController(MenuController mainController){
         menuController = mainController;
+    }
+
+    private void resizeFontSize() {
+        vbox1.setPrefWidth(scene.widthProperty().getValue()*0.80);
+        vbox1.setPrefHeight(scene.heightProperty().getValue());
+        /// ////////////
+        //SCALE POLYGONE
+        /// ////////////
+        double targetWidth = scene.widthProperty().getValue() * (125.0 / 16 / 100); // 125/16% de la largeur
+        double targetHeight = scene.heightProperty().getValue() * (125.0 / 9 / 100); // 125/9% de la hauteur
+
+        // Définir les proportions initiales du triangle
+        double baseWidth = 100.0; // Largeur initiale de la base
+        double baseHeight = 100.0; // Hauteur initiale du triangle
+
+        // Facteurs d'échelle
+        double scaleFactorX = targetWidth / baseWidth;
+        double scaleFactorY = targetHeight / baseHeight;
+
+        // Recalculer les points du triangle
+        polyUp.getPoints().clear(); // Efface les anciens points
+        polyUp.getPoints().addAll(
+                100.0 * scaleFactorX, 150.0 * scaleFactorY,   // Bas gauche
+                200.0 * scaleFactorX, 150.0 * scaleFactorY,   // Bas droit
+                150.0 * scaleFactorX, 50.0 * scaleFactorY
+        );
+
+        polyDown.getPoints().clear();
+        polyDown.getPoints().addAll(
+                50.0 * scaleFactorX, 50.0 * scaleFactorY,   // Point 1 (coin gauche-bas)
+                150.0 * scaleFactorX, 50.0 * scaleFactorY,  // Point 2 (coin droite-bas)
+                100.0 * scaleFactorX, 150.0 * scaleFactorY  // Point 3 (sommet haut)
+        );
+
+        polyState.getPoints().clear();
+        polyState.getPoints().addAll(
+                50.0 * scaleFactorX, 50.0 * scaleFactorY,   // Point 1 (coin haut-gauche)
+                150.0 * scaleFactorX, 50.0 * scaleFactorY,  // Point 2 (coin haut-droit)
+                150.0 * scaleFactorX, 75.0 * scaleFactorY,  // Point 3 (coin bas-droit)
+                50.0 * scaleFactorX, 75.0 * scaleFactorY    // Point 4 (coin bas-gauche)
+        );
+
+    }
+
+    /**
+     * Resizes buttons and circles based on the current window dimensions.
+     */
+    private void resizeButtons() {
+        imgFigure.setFitHeight((scene.heightProperty().getValue()/100)*35.61);
+        imgQuant.setFitHeight((scene.heightProperty().getValue()/100)*35.61);
+        imgVValidate.setFitHeight((scene.heightProperty().getValue()/100)*((double) 20 /3));
+        imgWValidate.setFitHeight((scene.heightProperty().getValue()/100)*6.32);
+        imgQualite.setFitHeight((scene.heightProperty().getValue()/100)*(((double) 20 /3)*2));
+    }
+
+    @Override
+    public void resize() {
+        resizeButtons();
+        resizeFontSize();
+
+        scene.widthProperty().addListener((obs, oldVal, newVal) -> {
+            resizeButtons();
+            resizeFontSize();
+        });
+        scene.heightProperty().addListener((obs, oldVal, newVal) -> {
+            resizeButtons();
+        });
     }
 }
