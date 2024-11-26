@@ -10,7 +10,7 @@
    <left>
       <VBox>
          <children>
-            <VBox>
+            <VBox style="-fx-border-width: 0 40 0 0; -fx-border-color: transparent">
                <children>
                   <Region minHeight="2.0" prefHeight="1000.0" VBox.vgrow="ALWAYS" />
                   <Button mnemonicParsing="false" text="%GuidedPage" VBox.vgrow="ALWAYS" fx:id="GuidedPage" styleClass="GuidedPage" onAction="#GuidedInterface"/>
@@ -44,7 +44,7 @@
                   <StackPane styleClass="language" maxWidth="75" >
                         <Label text="%Language" fx:id="language" alignment="CENTER_RIGHT" onMousePressed="#changeLanguage"/>
                   </StackPane>
-                  <StackPane fx:id="ParamPage" styleClass="ParamPage">
+                  <StackPane fx:id="ParamPage" styleClass="ParamPage" onMouseClicked="#handleSettings">
                      <children>
                         <Circle fx:id="ParamPageCircle" fill="transparent"/>
                      </children>

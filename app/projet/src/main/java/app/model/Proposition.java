@@ -83,6 +83,15 @@ public class Proposition {
 		return type;
 	}
 
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public String getPredicat() {
+		return predicat;
+	}
+
 	/**
 	 * Determines the type of the proposition based on its quantificator and quality.
 	 * Universal affirmatives are Type A, universal negatives are Type E, existential affirmatives
