@@ -85,3 +85,4 @@
    </VBox>
    <Pane fx:id="resultSyllogism" styleClass="resultSyllogism" mouseTransparent="true"/>
 </StackPane>
+

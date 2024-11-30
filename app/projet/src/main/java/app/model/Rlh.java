@@ -1,5 +1,10 @@
 package app.model;
 
+import app.model.polysyllogismes.Polysyllogisme;
+
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * The Rlh class represents the "latius hos" Rule.
  * Rlh: the quantity of a term in the conclusion can only be universal if it is so in the premise containing that term.
@@ -13,67 +18,46 @@ public class Rlh extends Rule {
     private String Result;
 
     /**
-     * Main method to evaluate the validity of a syllogism.
+     * Main method to evaluate the validity of a polysyllogisme.
      * <p>
-     * This method determines whether the syllogism is valid based on its premises (modeP1 and modeP2),
+     * This method determines whether the polysyllogisme is valid based on its premises (modeP1 and modeP2),
      * its conclusion (modeC), and its figure.
      * </p>
      *
-     * @param syllogism The `Syllogism` object to evaluate, containing the propositions (premises and conclusion) as well as the figure.
-     * @return A boolean `true` if the syllogism is valid according to the defined rules, `false` otherwise.
-     * @throws UnsupportedOperationException if the proposition type or the figure of the syllogism is not supported.
+     * @param polysyllogisme The `Syllogism` object to evaluate, containing the propositions (premises and conclusion) as well as the figure.
+     * @return A boolean `true` if the polysyllogisme is valid according to the defined rules, `false` otherwise.
+     * @throws UnsupportedOperationException if the proposition type or the figure of the polysyllogisme is not supported.
      */
-    public Boolean Launch(Syllogism syllogism) {
-        Boolean result = false;
-
-        Type modeP1 = syllogism.getProposition().get(1).getType();  // Type of the first premise
-        Type modeP2 = syllogism.getProposition().get(2).getType();  // Type of the second premise
-        Type modeC = syllogism.getProposition().get(3).getType();   // Type of the conclusion
-
-        switch (syllogism.getFigure()) {
-            case UN:
-                result = switch (modeC) {
-                    case A -> modeP2 == Type.A || modeP2 == Type.E;
-                    case E -> (modeP2 == Type.A || modeP2 == Type.E) && (modeP1 == Type.E || modeP1 == Type.O);
-                    case O -> modeP1 == Type.E || modeP1 == Type.O;
-                    case I -> true;
-                    default -> throw new UnsupportedOperationException(modeC + " : Type not supported");
-                };
-                break;
-
-            case DEUX:
-                result = switch (modeC) {
-                    case A -> modeP2 == Type.A || modeP2 == Type.E;
-                    case E -> (modeP2 == Type.A || modeP2 == Type.E) && (modeP1 == Type.A || modeP1 == Type.E);
-                    case O -> modeP1 == Type.E || modeP1 == Type.A;
-                    case I -> true;
-                    default -> throw new UnsupportedOperationException(modeC + " : Type not supported");
-                };
-                break;
-
-            case TROIS:
-                result = switch (modeC) {
-                    case A -> modeP2 == Type.O || modeP2 == Type.E;
-                    case E -> (modeP2 == Type.O || modeP2 == Type.E) && (modeP1 == Type.O || modeP1 == Type.E);
-                    case O -> modeP1 == Type.O || modeP1 == Type.E;
-                    case I -> true;
-                    default -> throw new UnsupportedOperationException(modeC + " : Type not supported");
-                };
-                break;
-
-            case QUATRE:
-                result = switch (modeC) {
-                    case A -> modeP2 == Type.O || modeP2 == Type.E;
-                    case E -> (modeP2 == Type.O || modeP2 == Type.E) && (modeP1 == Type.A || modeP1 == Type.E);
-                    case O -> modeP1 == Type.A || modeP1 == Type.E;
-                    case I -> true;
-                    default -> throw new UnsupportedOperationException(modeC + " : Type not supported");
-                };
-                break;
-
-            default:
-                throw new UnsupportedOperationException(syllogism.getFigure() + " : Figure not supported");
+    public Boolean Launch(Polysyllogisme polysyllogisme) {
+        boolean result1 = true;
+        boolean result2 = true;
+        String SujetConc , PredicatConc = null ;
+        Proposition p1 = polysyllogisme.getProposition().get(1);
+        Proposition p2 = polysyllogisme.getProposition().get(2);
+        Proposition C = polysyllogisme.getProposition().get(polysyllogisme.getTaille());
+        Map<String,String> FistSecondCommun = polysyllogisme.CheckTwoPremise(p1, p2);
+        if(FistSecondCommun !=null){
+            if(C.getQuality() == Quality.Negative){
+                if(p1.getSubject().equals( FistSecondCommun.get("FirstIsole"))){
+                    result1 = p1.getQuantity() ==  Quantity.Universal ;
+                }else{
+                    result1 = p1.getQuality() == Quality.Negative ;
+                }
+            }
         }
-        return result;
+        p1 = polysyllogisme.getProposition().get(polysyllogisme.getTaille()-2);
+        p2 = polysyllogisme.getProposition().get(polysyllogisme.getTaille()-1);
+        FistSecondCommun = polysyllogisme.CheckTwoPremise(p1, p2);
+        if(FistSecondCommun !=null){
+
+            if(C.getQuantity() == Quantity.Universal ){
+                if(Objects.equals(p2.getSubject(), FistSecondCommun.get("SecondIsole"))){
+                    result2 = p2.getQuantity() ==  Quantity.Universal ;
+                }else{
+                    result2 = p2.getQuality() == Quality.Negative ;
+                }
+            }
+        }
+        return result1&result2;
     }
 }

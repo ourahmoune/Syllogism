@@ -4,6 +4,7 @@ module projet.projet {
     requires junit;
     requires org.apache.poi.ooxml;
     requires java.desktop;
+    requires java.sql;
 
     opens app to javafx.fxml;
     opens app.controller to javafx.fxml;
