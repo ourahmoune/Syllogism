@@ -58,13 +58,18 @@ public class HelpButtonController implements Resize{
         if (SettingController.getLanguage().equals("english")){
             imgFigure.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpFigureImage_eng.png"))));
             imgQuant.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpQuantifierImage_eng.png"))));
+
+            imgVValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpVValidateEn.png"))));
+            imgWValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpWValidateEn.png"))));
         }else{
             imgFigure.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpFigureImage_fr.png"))));
             imgQuant.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpQuantifierImage_fr.png"))));
+
+            imgVValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpVValidateFr.png"))));
+            imgWValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpWValidateFr.png"))));
         }
 
-        imgVValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpVValidate.png"))));
-        imgWValidate.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpWValidate.png"))));
+
         imgQualite.setImage(new Image(String.valueOf(StartApplication.class.getResource("/app/image/HelpQualite.png"))));
 
 
@@ -74,7 +79,7 @@ public class HelpButtonController implements Resize{
         RulesContent_fr.put(3, "La quantité de M doit être universelle dans l’une des prémisses au moins.");
         RulesContent_fr.put(4, "Si une prémisse est négative, la conclusion est négative.");
         RulesContent_fr.put(5, "Deux prémisses négatives ne donnent pas de conclusion.");
-        RulesContent_fr.put(6, "Si une prémisse est particulière la conclusion est particulière.");
+        RulesContent_fr.put(6, "Si une prémisse est particulière, la conclusion est particulière.");
         RulesContent_fr.put(7, "Deux prémisses particulières ne donnent pas de conclusion.");
         RulesContent_fr.put(8, "Deux prémisses universelles ne conduisent pas à une conclusion particulière.");
 
@@ -224,7 +229,7 @@ public class HelpButtonController implements Resize{
     private void resizeButtons() {
         imgFigure.setFitHeight((scene.heightProperty().getValue()/100)*35.61);
         imgQuant.setFitHeight((scene.heightProperty().getValue()/100)*35.61);
-        imgVValidate.setFitHeight((scene.heightProperty().getValue()/100)*((double) 20 /3));
+        imgVValidate.setFitHeight((scene.heightProperty().getValue()/100)*6.32);
         imgWValidate.setFitHeight((scene.heightProperty().getValue()/100)*6.32);
         imgQualite.setFitHeight((scene.heightProperty().getValue()/100)*(((double) 20 /3)*2));
     }
