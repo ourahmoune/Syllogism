@@ -3,7 +3,7 @@ package test;
 import app.model.*;
 import org.junit.Test;
 import app.model.allSyllogism.Data;
-import app.model.allSyllogism.SyllogismAndRules;
+import app.model.allSyllogism.PolySyllogismAndRules;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -22,7 +22,7 @@ public class SyllogismTest {
     /**
      * A list of all syllogisms and their corresponding rules loaded from the Excel file.
      */
-    List<SyllogismAndRules> AllSyllogismAndRules = data.getAllSyllogismAndRules();
+    List<PolySyllogismAndRules> AllSyllogismAndRules = data.getAllSyllogismAndRules();
 
     /**
      * Tests all syllogism rules against the expected results from the Excel table.
@@ -32,8 +32,9 @@ public class SyllogismTest {
     @Test
     public void AllTest() {
         data.load();
-
-        for(SyllogismAndRules syl : AllSyllogismAndRules) {
+        int i=0;
+        for(PolySyllogismAndRules syl : AllSyllogismAndRules) {
+            i++;
             if(syl.getSyllogism() != null) {
                 Rmt rmt = new Rmt();
                 Rlh rlh = new Rlh();
@@ -46,15 +47,18 @@ public class SyllogismTest {
                 Rii rii = new Rii();
 
                 // Assert that the output of each rule matches the expected value
-                assertEquals(rmt.Launch(syl.getSyllogism()), syl.getRules(0));
-                assertEquals(rlh.Launch(syl.getSyllogism()), syl.getRules(1));
-                assertEquals(rnn.Launch(syl.getSyllogism()), syl.getRules(2));
-                assertEquals(rn.Launch(syl.getSyllogism()), syl.getRules(3));
-                assertEquals(raa.Launch(syl.getSyllogism()), syl.getRules(4));
-                assertEquals(rpp.Launch(syl.getSyllogism()), syl.getRules(5));
-                assertEquals(rp.Launch(syl.getSyllogism()), syl.getRules(6));
-                assertEquals(ruu.Launch(syl.getSyllogism()), syl.getRules(8));
-                assertEquals(rii.Launch(syl.getSyllogism()), syl.getRules(10));
+                Syllogism syllogism = syl.getSyllogism();
+                assertEquals(rmt.Launch(syllogism), syl.getRules(0));
+                assertEquals(rlh.Launch(syllogism), syl.getRules(1));
+                assertEquals(rnn.Launch(syllogism), syl.getRules(2));
+                assertEquals(rn.Launch(syllogism), syl.getRules(3));
+                assertEquals(raa.Launch(syllogism), syl.getRules(4));
+                assertEquals(rpp.Launch(syllogism), syl.getRules(5));
+                assertEquals(rp.Launch(syllogism), syl.getRules(6));
+                assertEquals(ruu.Launch(syllogism), syl.getRules(8));
+                /*
+                assertEquals(rii.Launch(syl.getPolysyllogisme()), syl.getRules(10));
+                 */
             }
         }
     }

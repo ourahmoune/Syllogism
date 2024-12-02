@@ -42,9 +42,14 @@ public class Proposition {
 	 */
 	public Proposition(Type type) {
 		this.type = type;
+		if(type ==  Type.A || type ==   Type.E){
+			this.quantificator= new Quantificator(Quantity.Universal, "");
+		}
+		if(type ==  Type.I || type ==   Type.O){
+			this.quantificator= new Quantificator(Quantity.Exisential, "");
+		}
 		this.quality = (type == Type.E || type == Type.O) ? Quality.Negative : Quality.Affirmative;
 	}
-
 	/**
 	 * Retrieves the quality of the proposition.
 	 *
@@ -53,7 +58,13 @@ public class Proposition {
 	public Quality getQuality() {
 		return quality;
 	}
-
+	public Quantity getQuantity() {
+		return quantificator.getQuantity();
+	}
+	public String getSubject() {return subject;}
+	public String getPredicat() {return predicat;}
+	public void setSubject(String subject) {this.subject = subject;}
+	public void setPredicat(String predicat) {this.predicat = predicat;}
 	/**
 	 * Retrieves the quantificator of the proposition.
 	 *
@@ -70,15 +81,6 @@ public class Proposition {
 	 */
 	public Type getType() {
 		return type;
-	}
-
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public String getPredicat() {
-		return predicat;
 	}
 
 	/**

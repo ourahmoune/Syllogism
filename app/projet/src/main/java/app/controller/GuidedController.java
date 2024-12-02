@@ -2,6 +2,7 @@ package app.controller;
 
 import app.StartApplication;
 import app.model.*;
+import app.model.polysyllogismes.Polysyllogisme;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 
@@ -24,6 +25,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -209,7 +211,7 @@ public class GuidedController implements Resize {
             map.put(1, p1);
             map.put(2, p2);
             map.put(3, p3);
-            Syllogism s = new Syllogism(figure, map);
+            Polysyllogisme s = new Polysyllogisme(map, map.size());
             if (s.solve()){
                 Image gif = new Image(StartApplication.class.getResource("/app/image/feu_artifice.gif").toExternalForm());
                 ImageView img = new ImageView(gif);

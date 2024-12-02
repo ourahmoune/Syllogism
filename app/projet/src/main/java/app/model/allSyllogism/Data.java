@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class Data {
     final private String PathFile;
-    final private List<SyllogismAndRules> AllSyllogismAndRules = new ArrayList<>();
+    final private List<PolySyllogismAndRules> AllSyllogismAndRules = new ArrayList<>();
 
     public Data(String PF) {
         this.PathFile = PF;
@@ -68,7 +68,7 @@ public class Data {
 
             for (Row row : MySheet) {
                 Map<Integer, Proposition> PropositionMap = new HashMap<>();
-                SyllogismAndRules syllogismAndRules = new SyllogismAndRules();
+                PolySyllogismAndRules syllogismAndRules = new PolySyllogismAndRules();
                 System.out.print(" " + line + " ");
                 line++;
                 cell = 0;
@@ -103,7 +103,10 @@ public class Data {
                         System.out.print(type + " ");
                     }
                     if (cell == 4) {
-                        syllogismAndRules.setSyllogism(new Syllogism(figure, PropositionMap));
+                        Syllogism syllogism = new Syllogism(figure, PropositionMap);
+                        assert figure != null;
+                        syllogism.setprposition(figure);
+                        syllogismAndRules.setSyllogism(syllogism);
                         System.out.print(figure + " ");
                     }
                     if ((cell >= 5) && (cell <= 14)) {
@@ -127,7 +130,7 @@ public class Data {
         }
     }
 
-    public List<SyllogismAndRules> getAllSyllogismAndRules() {
+    public List<PolySyllogismAndRules> getAllSyllogismAndRules() {
         return AllSyllogismAndRules;
     }
 }

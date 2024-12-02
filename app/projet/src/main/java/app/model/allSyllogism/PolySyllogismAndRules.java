@@ -1,6 +1,7 @@
 package app.model.allSyllogism;
 
 import app.model.Syllogism;
+import app.model.polysyllogismes.Polysyllogisme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,14 @@ import java.util.List;
  * It holds a reference to a Syllogism object and a list of boolean values representing
  * the results of the rules applied to that syllogism.
  */
-public class SyllogismAndRules {
+public class PolySyllogismAndRules {
     private Syllogism syllogism;
-    private List<Boolean> Rules = new ArrayList<>();
+    private List<Boolean> rules = new ArrayList<>();
 
     /**
      * Default constructor initializes the syllogism to null.
      */
-    public SyllogismAndRules() {
+    public PolySyllogismAndRules() {
         syllogism = null;
     }
 
@@ -45,7 +46,7 @@ public class SyllogismAndRules {
      * @param Rule The boolean result of a rule evaluation.
      */
     public void setRules(boolean Rule) {
-        Rules.add(Rule);
+        rules.add(Rule);
     }
 
     /**
@@ -55,10 +56,10 @@ public class SyllogismAndRules {
      * @return The boolean result of the rule evaluation.
      */
     public boolean getRules(int index) {
-        return Rules.get(index);
+        return rules.get(index);
     }
 
     public List<Boolean> getAllRules() {
-        return Rules;
+        return rules;
     }
 }

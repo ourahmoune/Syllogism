@@ -1,7 +1,7 @@
 package app.controller;
 
 import app.model.allSyllogism.Data;
-import app.model.allSyllogism.SyllogismAndRules;
+import app.model.allSyllogism.PolySyllogismAndRules;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
@@ -11,7 +11,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -34,7 +36,21 @@ public class ArrayController {
             return;
         }
 
-        String absolutePath = Paths.get(resourceUrl.getPath()).toAbsolutePath().toString();
+        String decodedPath;
+        // Décoder le chemin pour éviter les caractères encodés
+        try {
+            decodedPath = URLDecoder.decode(resourceUrl.getPath(), "UTF-8");
+            // Ajuster pour retirer le "/" initial si nécessaire
+            if (decodedPath.startsWith("/") && decodedPath.charAt(2) == ':') {
+                decodedPath = decodedPath.substring(1);
+            }
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+        String absolutePath = Paths.get(decodedPath).toAbsolutePath().toString();
         System.out.println("Correct File path is: " + absolutePath);
 
         data = new Data(absolutePath);
@@ -45,7 +61,7 @@ public class ArrayController {
     
     private void readData(){
 
-        List<SyllogismAndRules> sar = data.getAllSyllogismAndRules();
+        List<PolySyllogismAndRules> sar = data.getAllSyllogismAndRules();
         String[] headers = {
                 "Figure", "Proposition 1", "Proposition 2", "Conclusion",
                 "Rmt", "Rlh", "Rnn", "Rn", "Raa", "Rpp", "Rp",
@@ -70,7 +86,7 @@ public class ArrayController {
 
         int idI=1;
 
-        for(SyllogismAndRules s : sar){
+        for(PolySyllogismAndRules s : sar){
             addStyledCell(table,new Label(s.getSyllogism().getFigure().toString()), 0, idI, "table-cell");
             addStyledCell(table,new Label(s.getSyllogism().getProposition().get(1).getType().toString()), 1, idI, "table-cell");
             addStyledCell(table,new Label(s.getSyllogism().getProposition().get(2).getType().toString()), 2, idI, "table-cell");

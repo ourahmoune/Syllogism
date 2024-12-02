@@ -99,7 +99,6 @@ public class ListQuantifierController implements Resize {
      */
     public void handleRemoveQuantificatorClickUniversal(MouseEvent actionEvent) {
         Alert alert = createDeleteConfirmationDialog("Universal");
-
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             String selectedQuantificatorName = getSelectedQuantificatorName(alert);
