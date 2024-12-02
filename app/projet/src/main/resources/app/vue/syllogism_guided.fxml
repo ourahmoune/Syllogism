@@ -53,11 +53,7 @@
                </StackPane>
             </children>
          </HBox>
-         <Label fx:id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:">
-            <font>
-               <Font size="14.0" />
-            </font>
-         </Label>
+         <Label fx:id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:"/>
          <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
             <children>
                <ComboBox fx:id="Q3" prefWidth="150.0" HBox.hgrow="ALWAYS" />
