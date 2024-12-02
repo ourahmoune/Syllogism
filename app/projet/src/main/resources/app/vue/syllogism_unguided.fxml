@@ -42,7 +42,7 @@
          <Label fx:id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:" />
          <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
             <children>
-               <ComboBox fx:id="Q3" promptText="%quantity" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+               <ComboBox fx:id="Q3" promptText="%quantity" prefWidth="150.0" HBox.hgrow="ALWAYS" styleClass="quantifier"/>
                <TextField fx:id="P3_1" HBox.hgrow="ALWAYS" />
                <TextField fx:id="V3" promptText="%verbe" HBox.hgrow="ALWAYS" />
                <TextField fx:id="P3_2" HBox.hgrow="ALWAYS" />

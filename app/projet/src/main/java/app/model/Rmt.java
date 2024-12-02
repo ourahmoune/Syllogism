@@ -1,5 +1,6 @@
 package app.model;
 
+import app.controller.SettingController;
 import app.model.polysyllogismes.Polysyllogisme;
 
 import java.sql.SQLOutput;
@@ -52,5 +53,14 @@ public class Rmt extends Rule {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public String toString() {
+		if (SettingController.getLanguage().equals("english")){
+			return "The quantity of M must be universal in at least one of the premises.";
+		}else{
+			return "La quantité de M doit être universelle dans l’une des prémisses au moins.";
+		}
 	}
 }

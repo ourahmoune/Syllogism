@@ -28,6 +28,11 @@
     -fx-alignment: center;
 }
 
+.quantifier{
+    -fx-border-radius: 0 15 0 15;
+    -fx-background-radius: 0 15 0 15;
+}
+
 .validate, .clear{
     -fx-border-radius: 15 15 15 15;
     -fx-background-radius: 15 15 15 15;

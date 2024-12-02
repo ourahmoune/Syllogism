@@ -2,20 +2,20 @@ package app.controller;
 
 import app.StartApplication;
 import app.model.*;
+import app.model.polysyllogismes.Polysyllogisme;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,6 +61,7 @@ public class UnGuidedController implements Resize{
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.setPrefWidth(150);
         comboBox.setMaxWidth(Double.MAX_VALUE);
+        comboBox.getStyleClass().add("quantifier");
         HBox.setHgrow(comboBox, javafx.scene.layout.Priority.ALWAYS);
 
         for (Quantificator quantificator : QuantificatorList.getInstance().getQuantificators()) {
@@ -204,19 +205,19 @@ public class UnGuidedController implements Resize{
                 }
             }
         }
-        try{
+        try {
             Quantificator quantificator3 = QuantificatorList.getInstance().getQuantificator(Q3.getSelectionModel().getSelectedItem());
 
             String sujet3 = P3_1.getText();
             String predicat3 = P3_2.getText();
 
             Proposition p3 = new Proposition(quantificator3, sujet3, predicat3, Quality.valueOf(ql.get(0)));
-            resultat.put(resultat.size()+1, p3);
+            resultat.put(resultat.size() + 1, p3);
 
-            Syllogism s = getSyllogisme(resultat);
-            if (s == null) { //syllogisme invalide
-                validate.setStyle("-fx-background-color: red");
-            }else{
+            System.out.println(resultat.size());
+            Polysyllogisme poly = new Polysyllogisme(resultat, resultat.size());
+            poly.Reordonne();
+            if (poly.solve()) {
                 Image gif = new Image(StartApplication.class.getResource("/app/image/feu_artifice.gif").toExternalForm());
                 ImageView img = new ImageView(gif);
                 img.setFitHeight(resultSyllogism.getHeight());
@@ -225,28 +226,56 @@ public class UnGuidedController implements Resize{
                 Timer timer = new Timer();
                 // Planifie l'exécution de la tâche après 3 secondes
                 timer.schedule(new TimerTask() {
-                    @Override @FXML
+                    @Override
+                    @FXML
                     public void run() {
                         Platform.runLater(() -> resultSyllogism.getChildren().clear());
                     }
                 }, 1500);
+            } else {
+                sylloInvalideShowRules(poly);
             }
+
+        }catch (NullPointerException e){
+            HBox pane = new HBox();
+            pane.setMinHeight(resultSyllogism.getHeight());
+            pane.setMinWidth(resultSyllogism.getWidth());
+            pane.setOnMouseClicked(event -> {
+                resultSyllogism.getChildren().clear();
+                resultSyllogism.setMouseTransparent(true);
+            });
+            VBox v1 = new VBox();
+            Region r = new Region();
+            VBox.setVgrow(r, javafx.scene.layout.Priority.ALWAYS);
+            HBox h = new HBox();
+            Region r11= new Region();
+            HBox.setHgrow(r11, javafx.scene.layout.Priority.ALWAYS);
+            Region r12 = new Region();
+            HBox.setHgrow(r12, javafx.scene.layout.Priority.ALWAYS);
+            Label title = new Label();
+            title.setStyle("-fx-background-color: #9dff8c; -fx-padding: 50; -fx-border-radius: 15 15 15 15; -fx-background-radius: 15 15 15 15;");
+            if (SettingController.getLanguage().equals("english")) {
+                title.setText("Shape not valid");
+            } else {
+                title.setText("forme invalide");
+            }
+            title.setTextAlignment(TextAlignment.CENTER);
+            title.setFont(Font.font(scene.widthProperty().getValue() / 30));
+            Region r2 = new Region();
+            VBox.setVgrow(r2, javafx.scene.layout.Priority.ALWAYS);
+
+            h.getChildren().addAll(r11, title, r12);
+            v1.getChildren().addAll(r, h, r2);
+            pane.getChildren().add(v1);
+            resultSyllogism.setMouseTransparent(false);
+            resultSyllogism.getChildren().add(pane);
+
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             validate.setStyle("-fx-background-color: red");
         }
     }
 
-    public Syllogism getSyllogisme(Map<Integer, Proposition> propositions) throws Exception {
-        for (Figure f : Figure.values()){
-            Syllogism s = new Syllogism(f, propositions);
-            s.solve();
-            if(s.isValid()){
-                return s;
-            }
-        }
-        return null;
-    }
     public void afficherDonneesDeMap(Map<Integer, Proposition> map) {
         // Itérer sur les entrées de la Map
         for (Map.Entry<Integer, Proposition> entry : map.entrySet()) {
@@ -264,7 +293,57 @@ public class UnGuidedController implements Resize{
         }
     }
 
+    public void sylloInvalideShowRules(Polysyllogisme poly) {
+        HBox pane = new HBox();
+        pane.setMinHeight(resultSyllogism.getHeight());
+        pane.setMinWidth(resultSyllogism.getWidth());
+        VBox v1 = new VBox();
+        Region r = new Region();
+        VBox.setVgrow(r, javafx.scene.layout.Priority.ALWAYS);
+        v1.getChildren().add(r);
+        pane.setOnMouseClicked(event -> {
+            resultSyllogism.getChildren().clear();
+            resultSyllogism.setMouseTransparent(true);
+        });
+        pane.setAlignment(Pos.CENTER);
+        VBox v2 = new VBox();
+        v2.setStyle("-fx-background-color: #9dff8c; -fx-padding: 50; -fx-border-radius: 15 15 15 15; -fx-background-radius: 15 15 15 15;");
+        Label title = new Label();
+        if (SettingController.getLanguage().equals("english")) {
+            title.setText("Rules not valid");
+        } else {
+            title.setText("Regle invalide");
+        }
+        title.setTextAlignment(TextAlignment.CENTER);
+        title.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        v2.getChildren().add(title);
+        for (Map.Entry<String, String> rule : poly.getNotValidRule().entrySet()) {
 
+            HBox hbox = new HBox();
+            Label labelName = new Label(rule.getKey() + ": ");
+            HBox.setHgrow(labelName, javafx.scene.layout.Priority.ALWAYS);
+            labelName.setFont(Font.font(scene.widthProperty().getValue() / 40));
+            labelName.setStyle("-fx-font-weight: bold");
+
+            Label labelDescription = new Label(rule.getValue());
+            HBox.setHgrow(labelDescription, javafx.scene.layout.Priority.ALWAYS);
+            labelDescription.setFont(Font.font(scene.widthProperty().getValue() / 40));
+
+            hbox.getChildren().addAll(labelName, labelDescription);
+            v2.getChildren().add(hbox);
+        }
+        ScrollPane scrollPane = new ScrollPane(v2);
+        scrollPane.setStyle("-fx-background-color: #9dff8c");
+        scrollPane.setMaxWidth(vboxPremice.getWidth());
+        scrollPane.setMouseTransparent(false);
+        v1.getChildren().add(scrollPane);
+        Region r2 = new Region();
+        VBox.setVgrow(r2, javafx.scene.layout.Priority.ALWAYS);
+        v1.getChildren().add(r2);
+        pane.getChildren().add(v1);
+        resultSyllogism.setMouseTransparent(false);
+        resultSyllogism.getChildren().add(pane);
+    }
     /**
      * Resizes font sizes of buttons and labels based on the current window width.
      */
@@ -354,7 +433,16 @@ public class UnGuidedController implements Resize{
     }
 
     public void clear(ActionEvent actionEvent) {
-        System.out.println(ql);
+        vboxPremice.getChildren().clear();
+        createPremice();
+        createPremice();
+        P3_1.clear();
+        P3_2.clear();
+        V3.clear();
+        ql.clear();
+        addPremiceLabel.setStyle("-fx-text-fill: #9dff8c");
+        removePremiceLabel.setStyle("-fx-text-fill: #9dff8c");
+        Q3.getSelectionModel().clearSelection();
     }
 
 }

@@ -7,7 +7,6 @@ import app.model.polysyllogismes.Polysyllogisme;
  */
 public abstract class Rule {
 
-	private String result;
 
 	/**
 	 * Launches the evaluation of the rule based on the given syllogism.

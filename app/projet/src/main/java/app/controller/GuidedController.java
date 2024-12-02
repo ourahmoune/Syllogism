@@ -6,23 +6,18 @@ import app.model.polysyllogismes.Polysyllogisme;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -178,7 +173,57 @@ public class GuidedController implements Resize {
         V2.setText("");
         V3.setText("");
     }
+    public void sylloInvalideShowRules(Polysyllogisme poly) {
+        HBox pane = new HBox();
+        pane.setMinHeight(resultSyllogism.getHeight());
+        pane.setMinWidth(resultSyllogism.getWidth());
+        VBox v1 = new VBox();
+        Region r = new Region();
+        VBox.setVgrow(r, javafx.scene.layout.Priority.ALWAYS);
+        v1.getChildren().add(r);
+        pane.setOnMouseClicked(event -> {
+            resultSyllogism.getChildren().clear();
+            resultSyllogism.setMouseTransparent(true);
+        });
+        pane.setAlignment(Pos.CENTER);
+        VBox v2 = new VBox();
+        v2.setStyle("-fx-background-color: #9dff8c; -fx-padding: 50; -fx-border-radius: 15 15 15 15; -fx-background-radius: 15 15 15 15;");
+        Label title = new Label();
+        if (SettingController.getLanguage().equals("english")) {
+            title.setText("Rules not valid");
+        } else {
+            title.setText("Regle invalide");
+        }
+        title.setTextAlignment(TextAlignment.CENTER);
+        title.setFont(Font.font(scene.widthProperty().getValue() / 30));
+        v2.getChildren().add(title);
+        for (Map.Entry<String, String> rule : poly.getNotValidRule().entrySet()) {
 
+            HBox hbox = new HBox();
+            Label labelName = new Label(rule.getKey() + ": ");
+            HBox.setHgrow(labelName, javafx.scene.layout.Priority.ALWAYS);
+            labelName.setFont(Font.font(scene.widthProperty().getValue() / 40));
+            labelName.setStyle("-fx-font-weight: bold");
+
+            Label labelDescription = new Label(rule.getValue());
+            HBox.setHgrow(labelDescription, javafx.scene.layout.Priority.ALWAYS);
+            labelDescription.setFont(Font.font(scene.widthProperty().getValue() / 40));
+
+            hbox.getChildren().addAll(labelName, labelDescription);
+            v2.getChildren().add(hbox);
+        }
+        ScrollPane scrollPane = new ScrollPane(v2);
+        scrollPane.setStyle("-fx-background-color: #9dff8c");
+        scrollPane.setMaxWidth(resultSyllogism.getWidth());
+        scrollPane.setMouseTransparent(false);
+        v1.getChildren().add(scrollPane);
+        Region r2 = new Region();
+        VBox.setVgrow(r2, javafx.scene.layout.Priority.ALWAYS);
+        v1.getChildren().add(r2);
+        pane.getChildren().add(v1);
+        resultSyllogism.setMouseTransparent(false);
+        resultSyllogism.getChildren().add(pane);
+    }
     /**
      * Validates and constructs the syllogism based on user input.
      */
@@ -226,6 +271,8 @@ public class GuidedController implements Resize {
                         Platform.runLater(() -> resultSyllogism.getChildren().clear());
                     }
                 }, 1500);
+            }else{
+                sylloInvalideShowRules(s);
             }
         } catch (Exception e) {
             validate.setStyle("-fx-background-color: red");
@@ -337,9 +384,6 @@ public class GuidedController implements Resize {
         clear.setMinWidth(scene.widthProperty().getValue() / 6);
         image_figure.setFitWidth(scene.widthProperty().getValue() / 5);
         choix_figure.setMinWidth(scene.widthProperty().getValue() / 7);
-
-
-
 
         P1_1.setMinHeight(scene.heightProperty().getValue() / 10); // 10% of window height
         P1_2.setMinHeight(scene.heightProperty().getValue() / 10);

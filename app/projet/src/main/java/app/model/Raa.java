@@ -1,24 +1,15 @@
 package app.model;
 
+import app.controller.SettingController;
 import app.model.polysyllogismes.Polysyllogisme;
 
 /**
  * The Raa class represents the syllogistic rule stating that two affirmative premises
  * must yield an affirmative conclusion. It inherits from the `Rule` class and contains
- * a descriptive message (`Result`) explaining this rule.
+ * toString : descriptive message explaining this rule.
  */
 public class Raa extends Rule {
 
-	private String Result;
-	static final String Name = "Raa Rule";
-
-	/**
-	 * Constructor for the `Raa` class.
-	 * Initializes the `Result` attribute with a message explaining the rule.
-	 */
-	public Raa() {
-		this.Result = "Two affirmative premises yield an affirmative conclusion.";
-	}
 
 	/**
 	 * Evaluates the validity of a polysyllogisme based on the quality (affirmative or negative)
@@ -44,5 +35,14 @@ public class Raa extends Rule {
 			}
 		}
 		return result ;
+	}
+
+	@Override
+	public String toString() {
+		if (SettingController.getLanguage().equals("english")){
+			return "Two affirmative premises yield an affirmative conclusion.";
+		}else{
+			return "Deux prémisses affirmatives donnent une conclusion affirmative.";
+		}
 	}
 }
