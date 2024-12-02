@@ -1,5 +1,7 @@
 package app.model;
 
+import app.model.polysyllogismes.Polysyllogisme;
+
 /**
  * Ruu is a subclass of Rule that evaluates a syllogism based on the types of its propositions.
  */
@@ -10,17 +12,26 @@ public class Ruu extends Rule {
 	/**
 	 * Launches the rule based on the given syllogism.
 	 *
-	 * @param syllogism the syllogism to evaluate
+	 * @param polysyllogism the syllogism to evaluate
 	 * @return true if the rule is satisfied, false otherwise
 	 */
-	public Boolean Launch(Syllogism syllogism) {
-		Type modeP1 = syllogism.getProposition().get(1).getType();
-		Type modeP2 = syllogism.getProposition().get(2).getType();
-		Type modeC = syllogism.getProposition().get(3).getType();
-		if ((modeP1 == Type.A || modeP1 == Type.E) && (modeP2 == Type.A || modeP2 == Type.E)) {
-			return modeC != Type.I && modeC != Type.O;
-		} else {
-			return true;
+	public Boolean Launch(Polysyllogisme polysyllogism) {boolean result = true ;
+		int compter = 0;
+		int taille = polysyllogism.getTaille();
+		Proposition p , c= null ;
+		c = polysyllogism.getProposition().get(taille);
+		for (int i = 1; i < taille; i++) {
+			if(c.getQuantity() ==  Quantity.Exisential){
+				p = polysyllogism.getProposition().get(i);
+				if(p.getQuantity() ==  Quantity.Universal){
+					compter++;
+					if(compter == 2){
+						return  false;
+					}
+				}
+			}
+
 		}
+		return result ;
 	}
 }

@@ -1,5 +1,11 @@
 package app.model;
 
+import app.model.polysyllogismes.Polysyllogisme;
+
+import java.sql.SQLOutput;
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * The Rmt class represents the Middle Term Rule.
  * Rmt: the quantity of M must be universal in at least one of the premises.
@@ -11,24 +17,40 @@ public class Rmt extends Rule {
 	private String Result;
 
 	/**
-	 * Evaluates the validity of a syllogism based on its premise types and figure.
+	 * Evaluates the validity of a polysyllogisme based on its premise types and figure.
 	 *
-	 * @param syllogism The `Syllogism` object to evaluate, containing the types of propositions and the figure.
-	 * @return A boolean indicating whether the syllogism is valid according to the defined rules.
-	 * @throws UnsupportedOperationException if the figure of the syllogism is not supported.
+	 * @param polysyllogisme The `Syllogism` object to evaluate, containing the types of propositions and the figure.
+	 * @return A boolean indicating whether the polysyllogisme is valid according to the defined rules.
+	 * @throws UnsupportedOperationException if the figure of the polysyllogisme is not supported.
 	 */
-	public Boolean Launch(Syllogism syllogism) {
-		Type modeP1 = syllogism.getProposition().get(1).getType();
-		Type modeP2 = syllogism.getProposition().get(2).getType();
-
-		Boolean result = switch (syllogism.getFigure()) {
-			case UN -> modeP1 == Type.A || modeP1 == Type.E || modeP2 == Type.E || modeP2 == Type.O;
-			case DEUX -> modeP1 == Type.O || modeP1 == Type.E || modeP2 == Type.O || modeP2 == Type.E;
-			case TROIS -> modeP1 == Type.A || modeP1 == Type.E || modeP2 == Type.A || modeP2 == Type.E;
-			case QUATRE -> modeP1 == Type.O || modeP1 == Type.E || modeP2 == Type.A || modeP2 == Type.E;
-			default -> throw new UnsupportedOperationException(syllogism.getFigure() + " : Figure not supported");
-		};
-
+	public Boolean Launch(Polysyllogisme polysyllogisme) {
+		boolean result = true;
+		int taille  = polysyllogisme.getTaille();
+		Map<String , String> FistSecondCommun = null ;
+		Proposition p1 = null ;
+		Proposition p2 = null ;
+		for (int i = 1 ; i<taille -1  ; i++){
+			p1=polysyllogisme.getProposition().get(i);
+			p2=polysyllogisme.getProposition().get(i+1);
+			FistSecondCommun = polysyllogisme.CheckTwoPremise(p1,p2);
+			String MoyenTerme = FistSecondCommun.get("Commun");
+			if(MoyenTerme.equals( p1.getSubject())){
+				if(MoyenTerme.equals( p2.getSubject())){
+					result =  p1.getType()== Type.A || p1.getType() == Type.E || p2.getType() == Type.A || p2.getType() == Type.E;
+				}else{
+					result = p1.getType() == Type.A || p1.getType() == Type.E || p2.getType() == Type.E || p2.getType() == Type.O;
+				}
+			}else{
+				if(MoyenTerme.equals( p2.getSubject())){
+					result =  p1.getType()== Type.O || p1.getType() == Type.E || p2.getType() == Type.A || p2.getType() == Type.E;
+				}else{
+					result = p1.getType() == Type.O || p1.getType() == Type.E || p2.getType() == Type.E || p2.getType() == Type.O;
+				}
+			}
+			if(!result){
+				return   false;
+			}
+		}
 		return result;
 	}
 }

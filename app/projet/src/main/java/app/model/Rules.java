@@ -2,6 +2,9 @@ package app.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import app.model.polysyllogismes.Polysyllogisme;
+import app.model.Rule;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,18 +17,24 @@ public class Rules {
 	/**
 	 * Evaluates all rules against the given syllogism.
 	 *
-	 * @param syllogism the syllogism to evaluate
+	 * @param polysyllogisme the polysyllogisme to evaluate
 	 * @return a string result of the evaluation (not yet implemented)
 	 * @throws UnsupportedOperationException if not implemented
 	 */
-	public String AllRules(Syllogism syllogism) {
+	public String AllRules(Polysyllogisme polysyllogisme) {
 		// TODO - implement Rules.AllRules
 		throw new UnsupportedOperationException();
 	}
-	public static Boolean Launch(Syllogism syllogism) {
+	/**
+	 * Launches the evaluation of all rules against the given syllogism.
+	 *
+	 * @param polysyllogisme the polysyllogisme to evaluate
+	 * @return true if all rules are satisfied, false otherwise
+	 */
+	public static Boolean Launch(Polysyllogisme polysyllogisme) {
 		for (Map.Entry<Rule, Boolean> entry : listRules.entrySet()) {
 			if (entry.getValue()) {
-				if (!entry.getKey().Launch(syllogism)) {
+				if (!entry.getKey().Launch(polysyllogisme)) {
 					return false;
 				}
 			}
