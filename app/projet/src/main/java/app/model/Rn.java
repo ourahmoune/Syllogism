@@ -1,5 +1,6 @@
 package app.model;
 
+import app.controller.SettingController;
 import app.model.polysyllogismes.Polysyllogisme;
 
 /**
@@ -27,5 +28,14 @@ public class Rn extends Rule {
 			}
 		}
 		return result ;
+	}
+
+	@Override
+	public String toString() {
+		if (SettingController.getLanguage().equals("english")){
+			return "If a premise is negative, the conclusion is negative.";
+		}else{
+			return "Si une prémisse est négative, la conclusion est négative.";
+		}
 	}
 }

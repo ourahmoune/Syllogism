@@ -1,5 +1,6 @@
 package app.model;
 
+import app.controller.SettingController;
 import app.model.polysyllogismes.Polysyllogisme;
 
 /**
@@ -33,5 +34,14 @@ public class Ruu extends Rule {
 
 		}
 		return result ;
+	}
+
+	@Override
+	public String toString() {
+		if (SettingController.getLanguage().equals("english")){
+			return "Two universal premises do not lead to a particular conclusion.";
+		}else{
+			return "Deux prémisses universelles ne conduisent pas à une conclusion particulière.";
+		}
 	}
 }

@@ -10,5 +10,7 @@ module projet.projet {
     opens app.controller to javafx.fxml;
     exports test to junit;
     exports app;
+    exports app.model.polysyllogismes;
+    exports app.model;
     exports app.controller;
 }

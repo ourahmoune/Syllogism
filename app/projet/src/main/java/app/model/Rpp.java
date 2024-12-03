@@ -1,5 +1,6 @@
 package app.model;
 
+import app.controller.SettingController;
 import app.model.polysyllogismes.Polysyllogisme;
 
 /**
@@ -30,5 +31,14 @@ public class Rpp extends Rule {
 			}
 		}
 		return result ;
+	}
+
+	@Override
+	public String toString() {
+		if (SettingController.getLanguage().equals("english")){
+			return "Two particular premises do not give a conclusion.";
+		}else{
+			return "Deux prémisses particulières ne donnent pas de conclusion.";
+		}
 	}
 }

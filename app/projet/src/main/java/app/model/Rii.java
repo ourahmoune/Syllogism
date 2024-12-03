@@ -1,5 +1,6 @@
 package app.model;
 
+import app.controller.SettingController;
 import app.model.polysyllogismes.Polysyllogisme;
 
 import java.util.ArrayList;
@@ -58,5 +59,14 @@ public class Rii extends Rule {
 
          */
         return false;
+    }
+
+    @Override
+    public String toString() {
+        if (SettingController.getLanguage().equals("english")){
+            return "A syllogism is considered uninteresting if its conclusion is existential and can be replaced by a stronger universal conclusion.";
+        }else{
+            return "Un syllogisme est considéré comme inintéressant si sa conclusion est existentielle et peut être remplacée par une conclusion universelle plus forte.";
+        }
     }
 }

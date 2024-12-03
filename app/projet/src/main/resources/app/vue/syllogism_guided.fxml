@@ -7,7 +7,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.layout.Pane?>
@@ -18,13 +17,13 @@
       <children>
          <HBox alignment="CENTER" style="-fx-spacing: 10;">
             <children>
-               <ComboBox fx:id="choix_figure" prefWidth="150.0" promptText="Figure:" HBox.hgrow="ALWAYS"/>
+               <ComboBox fx:id="choix_figure" prefWidth="150.0" promptText="Figure:" HBox.hgrow="ALWAYS" styleClass="quantifier"/>
                <ImageView fx:id="image_figure" fitHeight="40.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
             </children>
          </HBox>
          <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
             <children>
-               <ComboBox fx:id="Q1" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+               <ComboBox fx:id="Q1" prefWidth="150.0" HBox.hgrow="ALWAYS" styleClass="quantifier"/>
                <TextField fx:id="P1_1" promptText="%birds" HBox.hgrow="ALWAYS" />
                <TextField fx:id="V1" promptText="%have" HBox.hgrow="ALWAYS" />
                <TextField fx:id="P1_2" promptText="%wings" HBox.hgrow="ALWAYS" />
@@ -40,7 +39,7 @@
          </HBox>
          <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
             <children>
-               <ComboBox fx:id="Q2" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+               <ComboBox fx:id="Q2" prefWidth="150.0" HBox.hgrow="ALWAYS" styleClass="quantifier"/>
                <TextField fx:id="P2_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
                <TextField fx:id="V2" promptText="%are" HBox.hgrow="ALWAYS" />
                <TextField fx:id="P2_2"  promptText="%birds" HBox.hgrow="ALWAYS" />
@@ -54,14 +53,10 @@
                </StackPane>
             </children>
          </HBox>
-         <Label fx:id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:">
-            <font>
-               <Font size="14.0" />
-            </font>
-         </Label>
+         <Label fx:id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:"/>
          <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
             <children>
-               <ComboBox fx:id="Q3" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+               <ComboBox fx:id="Q3" prefWidth="150.0" HBox.hgrow="ALWAYS" styleClass="quantifier"/>
                <TextField fx:id="P3_1"  promptText="%animals" HBox.hgrow="ALWAYS" />
                <TextField fx:id="V3" promptText="%have" HBox.hgrow="ALWAYS" />
                <TextField fx:id="P3_2" promptText="%wings" HBox.hgrow="ALWAYS" />

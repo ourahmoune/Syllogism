@@ -37,7 +37,7 @@
          </VBox>
       </left>
       <center>
-         <VBox>
+         <VBox style="-fx-padding: 12.5;" >
             <children>
                <HBox alignment="TOP_RIGHT" style="-fx-padding: 12.5; -fx-spacing: 25;">
                   <children>
@@ -46,12 +46,12 @@
                      </StackPane>
                      <StackPane fx:id="ParamPage" styleClass="ParamPage" onMouseClicked="#handleSettings">
                         <children>
-                           <Circle fx:id="ParamPageCircle" fill="transparent"/>
+                           <Circle fx:id="ParamPageCircle" fill="transparent" onMouseClicked="#handleSettings"/>
                         </children>
                      </StackPane>
                   </children>
                </HBox>
-               <Pane fx:id="contentPane" prefHeight="1200.0" prefWidth="1200.0"/>
+               <Pane fx:id="contentPane"/>
             </children>
          </VBox>
       </center>

@@ -1,5 +1,6 @@
 package app.model;
 
+import app.controller.SettingController;
 import app.model.polysyllogismes.Polysyllogisme;
 
 /**
@@ -28,5 +29,13 @@ public class Rp extends Rule {
 		}
 		return result ;
 
+	}
+	@Override
+	public String toString() {
+		if (SettingController.getLanguage().equals("english")){
+			return "If a premise is particular, the conclusion is particular.";
+		}else{
+			return "Si une prémisse est particulière la conclusion est particulière.";
+		}
 	}
 }

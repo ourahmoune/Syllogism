@@ -141,6 +141,9 @@ public class MenuController implements Resize{
         ListQuantifiersPage.setMinWidth(scene.widthProperty().getValue() / 5);
         language.setMinWidth(scene.widthProperty().getValue() / 9);
 
+        contentPane.setMinWidth(scene.widthProperty().getValue() / 1.25);
+
+
         ParamPageCircle.setRadius(scene.widthProperty().getValue() / 40); // 2.5% of window width
         HelpPageCircle.setRadius(scene.widthProperty().getValue() / 40);
 
@@ -149,6 +152,8 @@ public class MenuController implements Resize{
         ArrayPage.setMinHeight(scene.heightProperty().getValue() / 10);
         ListQuantifiersPage.setMinHeight(scene.heightProperty().getValue() / 10);
         language.setMinHeight(scene.heightProperty().getValue() / 12);
+
+        contentPane.setMinHeight(scene.heightProperty().getValue() / 1.25);
     }
 
     @Override

@@ -27,7 +27,6 @@ public class ArrayController {
 
     @FXML
     public void initialize() {
-        System.out.println("URL : " + Paths.get("Syllogism/app/projet/src/main/resources/app/Tableur.xlsx").toAbsolutePath().toString());
 
         URL resourceUrl = getClass().getResource("/app/Tableur.xlsx");
 
@@ -51,7 +50,6 @@ public class ArrayController {
 
 
         String absolutePath = Paths.get(decodedPath).toAbsolutePath().toString();
-        System.out.println("Correct File path is: " + absolutePath);
 
         data = new Data(absolutePath);
         data.load();
@@ -92,16 +90,12 @@ public class ArrayController {
             addStyledCell(table,new Label(s.getSyllogism().getProposition().get(2).getType().toString()), 2, idI, "table-cell");
             addStyledCell(table,new Label(s.getSyllogism().getProposition().get(3).getType().toString()), 3, idI, "table-cell");
 
-            System.out.println("Size : " + s.getAllRules().size());
-
             for(int i=0; i<s.getAllRules().size(); i++){
                 if (i == 10){
                    addStyledCell(table,new Label(String.valueOf(s.getRules(i))), i+3, idI, "table-cell");
-                    System.out.println("i : " + i);
                 }
                 else if (i != s.getAllRules().size()-2){
                    addStyledCell(table,new Label(String.valueOf(s.getRules(i))), i + 4, idI, "table-cell");
-                    System.out.println("i : " + i);
                 }
 
             }

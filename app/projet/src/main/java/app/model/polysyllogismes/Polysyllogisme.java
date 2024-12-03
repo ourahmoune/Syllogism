@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 public class Polysyllogisme{
     protected int taille;
-    protected Figure figure = null  ;
-    protected Map<Integer, Proposition> proposition; ;;
-    protected Rules rules;
+    protected Figure figure = null;
+    protected Map<Integer, Proposition> proposition;
     protected boolean valid;
+
     public Polysyllogisme() {}
     public Polysyllogisme(Map<Integer,Proposition> propositions, int taille) {
         this.proposition = propositions;
@@ -108,10 +108,6 @@ public class Polysyllogisme{
         }else{
             result = false ;
         }
-
-
-
-
         return result ;
     }
     public void  Reordonne(){
@@ -150,5 +146,7 @@ public class Polysyllogisme{
         }
     }
 
-
+    public HashMap<String, String> getNotValidRule(){
+        return Rules.AllRules(this);
+    }
 }

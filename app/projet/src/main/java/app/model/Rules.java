@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Rules {
 
-	private static Map<Rule, Boolean> listRules =new HashMap<>();
+	private static Map<Rule, Boolean> listRules = new HashMap<>();
 	/**
 	 * Evaluates all rules against the given syllogism.
 	 *
@@ -21,9 +21,16 @@ public class Rules {
 	 * @return a string result of the evaluation (not yet implemented)
 	 * @throws UnsupportedOperationException if not implemented
 	 */
-	public String AllRules(Polysyllogisme polysyllogisme) {
-		// TODO - implement Rules.AllRules
-		throw new UnsupportedOperationException();
+	public static HashMap<String, String> AllRules(Polysyllogisme polysyllogisme) {
+		HashMap<String, String> res = new HashMap<String, String>();
+		for (Map.Entry<Rule, Boolean> entry : listRules.entrySet()) {
+			if (entry.getValue()) {
+				if (!entry.getKey().Launch(polysyllogisme)) {
+					res.put(entry.getKey().getClass().getSimpleName(), entry.getKey().toString());
+				}
+			}
+		}
+		return res;
 	}
 	/**
 	 * Launches the evaluation of all rules against the given syllogism.

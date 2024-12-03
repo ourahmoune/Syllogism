@@ -1,5 +1,6 @@
 package app.model;
 
+import app.controller.SettingController;
 import app.model.polysyllogismes.Polysyllogisme;
 
 import java.util.Map;
@@ -59,5 +60,14 @@ public class Rlh extends Rule {
             }
         }
         return result1&result2;
+    }
+
+    @Override
+    public String toString() {
+        if (SettingController.getLanguage().equals("english")){
+            return "The quantity of a term in the conclusion can only be universal if it is universal in the premise containing that term.";
+        }else{
+            return "La quantité d’un terme de la conclusion ne peut être universelle que si elle l’est dans la prémisse contenant ce terme.";
+        }
     }
 }

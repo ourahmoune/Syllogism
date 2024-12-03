@@ -16,7 +16,7 @@ public class Syllogism extends Polysyllogisme {
 	 * @param proposition the propositions of the syllogism
 	 */
 	public Syllogism(Figure figure, Map<Integer, Proposition> proposition) {
-		this.taille =3;
+		this.taille = 3;
 		this.figure = figure;
 		this.proposition = proposition;
 	}
@@ -37,9 +37,7 @@ public class Syllogism extends Polysyllogisme {
 	public void setProposition(Map<Integer, Proposition> proposition) {
 		this.proposition = proposition;
 	}
-	public void setRules(Rules rules) {
-		this.rules = rules;
-	}
+
 	/**
 	 * Returns the result of the syllogism evaluation (not yet implemented).
 	 *

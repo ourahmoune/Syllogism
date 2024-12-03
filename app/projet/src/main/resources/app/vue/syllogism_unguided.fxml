@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,65 +7,62 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 
-<VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AE2E2;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.UnGuidedController">
-   <children>
-      <VBox VBox.vgrow="ALWAYS">
-         <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #4AE2E2;" VBox.vgrow="ALWAYS">
-               <content>
-                  <VBox fx:id="vboxPremice" style="-fx-background-color: #4AE2E2;">
-                  </VBox>
-               </content>
-            </ScrollPane>
-            <Button onAction="#addPremice" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
-      <VBox VBox.vgrow="ALWAYS">
-         <children>
-            <Label id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" style="-fx-spacing: 10;">
-               <children>
-                  <ComboBox fx:id="Q3" maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS" />
-                  <TextField editable="false" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                  <TextField style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                  <TextField editable="false" maxWidth="1.7976931348623157E308" style="-fx-prompt-text-fill: #808080;" HBox.hgrow="ALWAYS" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 20; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0;" text="+" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="37.0" minWidth="82.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="41.0" style="-fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-max-height: 30; -fx-max-width: 30; -fx-font-size: 15; -fx-text-fill: #32b71b; -fx-background-color: lightgrey; -fx-alignment: center; -fx-padding: 0; -fx-font-weight: bold;" text="—" textAlignment="CENTER" textFill="#32b71b" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: #9dff8c; -fx-text-fill: black;" text="Validate" onAction="#iterateOverVBox" />
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32b71b; -fx-text-fill: black;" text="Clear">
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </children>
-</VBox>
+<?import javafx.scene.layout.Region?>
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           stylesheets="@syllogism_guided.css"
+           fx:controller="app.controller.UnGuidedController">
+   <VBox styleClass="subPane">
+      <children>
+         <VBox VBox.vgrow="ALWAYS">
+            <children>
+               <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #4AE2E2;" VBox.vgrow="ALWAYS">
+                  <content>
+                     <VBox fx:id="vboxPremice"/>
+                  </content>
+               </ScrollPane>
+               <HBox>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                     <Circle fx:id="addPremice" styleClass="qualityCircle"/>
+                     <Label fx:id="addPremiceLabel" alignment="CENTER" text="+" styleClass="qualityLabel" onMouseClicked="#addPremice"/>
+                  </StackPane>
+                  <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                     <Circle fx:id="removePremice" styleClass="qualityCircle"/>
+                     <Label fx:id="removePremiceLabel" alignment="CENTER" text="-" styleClass="qualityLabel" onMouseClicked="#removePremice"/>
+                  </StackPane>
+                  <Region HBox.hgrow="ALWAYS" />
+               </HBox>
+            </children>
+         </VBox>
+         <Label fx:id="label_conclusion" prefHeight="18.0" prefWidth="540.0" text="Conclusion:" />
+         <HBox alignment="CENTER" style="-fx-spacing: 10;" VBox.vgrow="ALWAYS">
+            <children>
+               <ComboBox fx:id="Q3" promptText="%quantity" prefWidth="150.0" HBox.hgrow="ALWAYS" styleClass="quantifier"/>
+               <TextField fx:id="P3_1" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="V3" promptText="%verbe" HBox.hgrow="ALWAYS" />
+               <TextField fx:id="P3_2" HBox.hgrow="ALWAYS" />
+               <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                  <Circle fx:id="threeplus" styleClass="qualityCircle"/>
+                  <Label fx:id="threeplusLabel" alignment="CENTER" text="+" styleClass="qualityLabel" onMouseClicked="#affirmatif3"/>
+               </StackPane>
+               <StackPane HBox.hgrow="ALWAYS" styleClass="quality" >
+                  <Circle fx:id="threeminus" styleClass="qualityCircle"/>
+                  <Label fx:id="threeminusLabel" alignment="CENTER" text="-" styleClass="qualityLabel" onMouseClicked="#negatif3"/>
+               </StackPane>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"  style="-fx-padding: 20; -fx-spacing: 20;">
+            <children>
+               <Button fx:id="validate" onAction="#validate" mnemonicParsing="false" text="%validate" styleClass="validate"/>
+               <Button fx:id="clear" onAction="#clear" mnemonicParsing="false" text="%clear" styleClass="clear" />
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+   <Pane fx:id="resultSyllogism" styleClass="resultSyllogism" mouseTransparent="true"/>
+</StackPane>
