@@ -33,7 +33,9 @@ public class Rules {
 	 */
 	public static Boolean Launch(Polysyllogisme polysyllogisme) {
 		for (Map.Entry<Rule, Boolean> entry : listRules.entrySet()) {
+
 			if (entry.getValue()) {
+				System.out.println(	entry.getKey());
 				if (!entry.getKey().Launch(polysyllogisme)) {
 					return false;
 				}

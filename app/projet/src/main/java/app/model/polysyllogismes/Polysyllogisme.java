@@ -72,24 +72,19 @@ public class Polysyllogisme{
         }
         return result ;
     }
-    private void swap(int indice1 , int indice2){
-        Proposition p1 = proposition.get(indice1);
-        Proposition p2 = proposition.get(indice2);
-        proposition.remove(indice1);
-        proposition.remove(indice2);
-        proposition.put(indice2, p1);
-        proposition.put(indice1, p2);
-    }
     public boolean HasValideForm(){
+        if(taille<3){
+            return false ;
+        }
         boolean result = true ;
         Map<String , String> FistSecondCommun = null ;
         for(int i=1;i<taille ;i++){
             FistSecondCommun = CheckTwoPremise(proposition.get(i),proposition.get(i+1));
-            if(FistSecondCommun == null){
-                result = false ;
-                break ;
+            if(FistSecondCommun == null  ){
+                return false;
             }
         }
+
         String IsoleFirst , IsoleLast , Terme1Conclusion , Terme2Conclusion = null ;
         FistSecondCommun = CheckTwoPremise(proposition.get(1),proposition.get(2));
         if(FistSecondCommun != null){
@@ -99,9 +94,9 @@ public class Polysyllogisme{
                 IsoleLast = FistSecondCommun.get("SecondIsole");
                 Terme1Conclusion = proposition.get(taille).getSubject();
                 Terme2Conclusion = proposition.get(taille).getPredicat();
-                result =(  (  IsoleFirst.equals(Terme1Conclusion ) || IsoleFirst.equals(Terme2Conclusion)   )
+                result =(  (  IsoleFirst.equals(Terme2Conclusion)   )
                         &&
-                        (IsoleLast.equals(Terme1Conclusion) || IsoleLast.equals( Terme2Conclusion)));
+                        (IsoleLast.equals(Terme1Conclusion) ));
             }else{
                 result = false ;
             }
@@ -148,6 +143,9 @@ public class Polysyllogisme{
             System.out.println("le syllogism est invalid");
             return false;
         }
+    }
+    public Figure getFigure() {
+        return this.figure;
     }
 
 

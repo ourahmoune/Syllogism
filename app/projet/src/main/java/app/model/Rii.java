@@ -22,41 +22,83 @@ public class Rii extends Rule {
      * Utilizes a list of rules (`ruleList`) and modified syllogisms to check validity
      * according to specific conditions.
      *
-     * @param polysyllogisme The `Syllogism` object to evaluate, containing the types of propositions and the figure.
+     * @param syllogism The `Syllogism` object to evaluate, containing the types of propositions and the figure.
      * @return A boolean indicating whether the polysyllogisme is valid according to the defined rules.
      */
 
-    public Boolean Launch(Polysyllogisme polysyllogisme) {
-        Type modeP1 = polysyllogisme.getProposition().get(1).getType();
-        Type modeP2 = polysyllogisme.getProposition().get(2).getType();
-        Type modeC = polysyllogisme.getProposition().get(3).getType();
+    public Boolean Launch(Polysyllogisme syllogism) {
 
-        Rules rules = new Rules();
-        /*
-        if ((modeP1 == Type.A || modeP1 == Type.E) &&
+        Type modeP1 = syllogism.getProposition().get(1).getType();
+        Type modeP2 = syllogism.getProposition().get(2).getType();
+        Type modeC = syllogism.getProposition().get(3).getType();
+
+        Rmt rmt = new Rmt();
+        Rlh rlh = new Rlh();
+        Raa raa = new Raa();
+        Rpp rpp = new Rpp();
+        Rp rp = new Rp();
+        Rnn rnn = new Rnn();
+        Rn rn = new Rn();
+
+        List<Rule> rules = new ArrayList<>();
+        rules.add(rmt);
+        rules.add(rlh);
+        rules.add(raa);
+        rules.add(rpp);
+        rules.add(rp);
+        rules.add(rn);
+        rules.add(rnn);
+
+        boolean conclusionresul=true;
+
+        for(Rule rule:rules ){
+            conclusionresul =rule.Launch(syllogism) ;
+            if(!conclusionresul){
+                break;
+            }
+        }
+
+
+        if (
+                (modeP1 == Type.A || modeP1 == Type.E) &&
                 (modeP2 == Type.A || modeP2 == Type.E) &&
                 (modeC == Type.I || modeC == Type.O) &&
-                rules.Launch(polysyllogisme)) {
+                (conclusionresul)
+        )
+        {
+
 
             Map<Integer, Proposition> propositionA = new HashMap<>();
             propositionA.put(1, new Proposition(modeP1));
             propositionA.put(2, new Proposition(modeP2));
             propositionA.put(3, new Proposition(Type.A));
-            Syllogism syllogismA = new Syllogism(polysyllogisme.getFigure(), propositionA);
+            Figure figure=syllogism.getFigure();
+            Syllogism syllogismA = new Syllogism(figure, propositionA);
+            syllogismA.setprposition(figure);
 
             Map<Integer, Proposition> propositionE = new HashMap<>();
             propositionE.put(1, new Proposition(modeP1));
             propositionE.put(2, new Proposition(modeP2));
             propositionE.put(3, new Proposition(Type.E));
-            Syllogism syllogismE = new Syllogism(polysyllogisme.getFigure(), propositionE);
+            Syllogism syllogismE = new Syllogism(figure, propositionE);
+            syllogismE.setprposition(figure);
 
-            boolean validA = rules.Launch(syllogismA);
-            boolean validE = rules.Launch(syllogismE);
-
+            boolean validA = true ; //Rules.Launch(syllogismA);
+            boolean validE = true ; // Rules.Launch(syllogismE);
+            for(Rule rule:rules ){
+                validE =rule.Launch(syllogismE) ;
+                if(!validE){
+                    break;
+                }
+            }
+            for(Rule rule:rules ){
+                validA =rule.Launch(syllogismA) ;
+                if(!validA){
+                    break;
+                }
+            }
             return validA || validE;
         }
-
-         */
         return false;
     }
 }

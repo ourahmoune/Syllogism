@@ -77,4 +77,5 @@ public class CheckTwoPropositionTest {
         assert (result != null);
         System.out.println("test8"+result);
     }
+
 }

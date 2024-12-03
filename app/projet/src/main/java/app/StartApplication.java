@@ -2,6 +2,7 @@ package app;
 
 import app.controller.MenuController;
 import app.controller.SettingController;
+import app.model.Rules;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +17,7 @@ public class StartApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException
     {
+        System.out.println(Rules.getListRules());
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("vue/menu.fxml"), SettingController.language);
         scene = new Scene(fxmlLoader.load(), 1280, 720);
         if (fxmlLoader.getController() instanceof MenuController) {
