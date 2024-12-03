@@ -123,11 +123,11 @@ public class MenuController implements Resize{
      * Resizes font sizes of buttons and labels based on the current window width.
      */
     private void resizeFontSize() {
-        GuidedPage.setFont(Font.font(scene.widthProperty().getValue() / 56)); // 1.8% of window width
-        FreePage.setFont(Font.font(scene.widthProperty().getValue() / 56));
-        ArrayPage.setFont(Font.font(scene.widthProperty().getValue() / 56));
-        ListQuantifiersPage.setFont(Font.font(scene.widthProperty().getValue() / 58));
-        language.setFont(Font.font(scene.widthProperty().getValue() / 56));
+        GuidedPage.setFont(Font.font(scene.widthProperty().getValue() / 65)); // 1.8% of window width
+        FreePage.setFont(Font.font(scene.widthProperty().getValue() / 65));
+        ArrayPage.setFont(Font.font(scene.widthProperty().getValue() / 65));
+        ListQuantifiersPage.setFont(Font.font(scene.widthProperty().getValue() / 65));
+        language.setFont(Font.font(scene.widthProperty().getValue() / 65));
         HelpButton.setFont(Font.font(scene.widthProperty().getValue() / 50)); // 2% of window width
     }
 

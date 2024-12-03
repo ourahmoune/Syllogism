@@ -14,7 +14,7 @@
       alignment="CENTER"
       stylesheets="@syllogism_guided.css" onMouseClicked="#close">
 
-    <VBox fx:id="vbox1" style="-fx-background-color: grey; -fx-background-radius: 15" spacing="5" alignment="CENTER">
+    <VBox fx:id="vbox1" style="-fx-background-color: lightgreen; -fx-background-radius: 15" spacing="5" alignment="CENTER">
     <Text text="%TitleRule"/>
         <HBox alignment="CENTER">
 
@@ -25,17 +25,17 @@
                 </VBox>
                 <VBox alignment="CENTER">
                     <StackPane>
-                        <Polygon fx:id="polyUp" onMouseClicked="#countDecr" points="100.0, 150.0, 200.0, 150.0, 150.0, 50.0" fill="blue" stroke="black" strokeWidth="2"/>
-                        <Label mouseTransparent="true" fx:id="upLabel" style="-fx-text-fill: green; -fx-font-weight: bold; -fx-font-size: 20"/>
+                        <Polygon fx:id="polyUp" onMouseClicked="#countDecr" points="100.0, 150.0, 200.0, 150.0, 150.0, 50.0" fill="#9dff8c" stroke="black" strokeWidth="2"/>
+                        <Label mouseTransparent="true" fx:id="upLabel" style="-fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 20"/>
                     </StackPane>
                     <StackPane>
-                        <Polygon fx:id="polyState" onMouseClicked="#countDecr" points="50,50,150,50,150,75,50,75" fill="blue" stroke="black" strokeWidth="2"/>
-                        <Label fx:id="stateLabel" style="-fx-text-fill: green; -fx-font-weight: bold; -fx-font-size: 20"/>
+                        <Polygon fx:id="polyState" onMouseClicked="#countDecr" points="50,50,150,50,150,75,50,75" fill="#9dff8c" stroke="black" strokeWidth="2"/>
+                        <Label fx:id="stateLabel" style="-fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 20"/>
                     </StackPane>
                     <StackPane>
 
-                        <Polygon fx:id="polyDown" onMouseClicked="#countIncr" points="50,50,150,50,100,150" fill="blue" stroke="black" strokeWidth="2"/>
-                        <Label mouseTransparent="true" fx:id="downLabel" style="-fx-text-fill: green; -fx-font-weight: bold; -fx-font-size: 20"/>
+                        <Polygon fx:id="polyDown" onMouseClicked="#countIncr" points="50,50,150,50,100,150" fill="#9dff8c" stroke="black" strokeWidth="2"/>
+                        <Label mouseTransparent="true" fx:id="downLabel" style="-fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 20"/>
                     </StackPane>
                 </VBox>
             </HBox>
