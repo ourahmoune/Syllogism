@@ -24,7 +24,6 @@ public class StartApplication extends Application {
             MenuController controller = fxmlLoader.getController();
             controller.resize();
         }
-        
         StartApplication.stage = stage;
         StartApplication.stage.setTitle("Hello!");
         StartApplication.stage.setScene(scene);

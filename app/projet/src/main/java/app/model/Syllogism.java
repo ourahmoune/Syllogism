@@ -8,7 +8,7 @@ import java.util.Map;
  * Class representing a syllogism consisting of a figure, propositions, and associated rules.
  */
 public class Syllogism extends Polysyllogisme {
-
+	protected Figure figure = null;
 	/**
 	 * Constructs a Syllogism with the specified figure and propositions.
 	 *

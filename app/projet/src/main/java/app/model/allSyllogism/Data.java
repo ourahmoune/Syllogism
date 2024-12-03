@@ -109,11 +109,11 @@ public class Data {
                         syllogismAndRules.setSyllogism(syllogism);
                         System.out.print(figure + " ");
                     }
-                    if ((cell >= 5) && (cell <= 14)) {
+                    if ((cell >= 5) && (cell <= 15)) {
                         syllogismAndRules.setRules(ResultOfRule);
                         System.out.print(ResultOfRule + " ");
                     }
-                    if (cell == 15) {
+                    if (cell == 16) {
                         syllogismAndRules.setRules(ResultOfRule);
                         System.out.print(ResultOfRule + " ");
                         AllSyllogismAndRules.add(syllogismAndRules);

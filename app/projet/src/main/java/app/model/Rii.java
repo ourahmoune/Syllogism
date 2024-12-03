@@ -14,6 +14,7 @@ import java.util.Map;
  * could have been replaced with a stronger universal conclusion.
  * This class evaluates a syllogism based on its types of propositions and its figure.
  */
+
 public class Rii extends Rule {
 
     private String Result;
@@ -23,12 +24,12 @@ public class Rii extends Rule {
      * Utilizes a list of rules (`ruleList`) and modified syllogisms to check validity
      * according to specific conditions.
      *
-     * @param syllogism The `Syllogism` object to evaluate, containing the types of propositions and the figure.
+     * @param ploy The `Syllogism` object to evaluate, containing the types of propositions and the figure.
      * @return A boolean indicating whether the polysyllogisme is valid according to the defined rules.
      */
 
-    public Boolean Launch(Polysyllogisme syllogism) {
-
+    public Boolean Launch(Polysyllogisme ploy) {
+        Syllogism syllogism = (Syllogism) ploy;
         Type modeP1 = syllogism.getProposition().get(1).getType();
         Type modeP2 = syllogism.getProposition().get(2).getType();
         Type modeC = syllogism.getProposition().get(3).getType();
@@ -50,11 +51,11 @@ public class Rii extends Rule {
         rules.add(rn);
         rules.add(rnn);
 
-        boolean conclusionresul=true;
-
+        boolean resultsyllogism=true;
+        boolean inintirissant = false ;
         for(Rule rule:rules ){
-            conclusionresul =rule.Launch(syllogism) ;
-            if(!conclusionresul){
+            resultsyllogism =rule.Launch(syllogism) ;
+            if(!resultsyllogism){
                 break;
             }
         }
@@ -64,11 +65,9 @@ public class Rii extends Rule {
                 (modeP1 == Type.A || modeP1 == Type.E) &&
                 (modeP2 == Type.A || modeP2 == Type.E) &&
                 (modeC == Type.I || modeC == Type.O) &&
-                (conclusionresul)
+                (resultsyllogism)
         )
         {
-
-
             Map<Integer, Proposition> propositionA = new HashMap<>();
             propositionA.put(1, new Proposition(modeP1));
             propositionA.put(2, new Proposition(modeP2));
@@ -76,7 +75,6 @@ public class Rii extends Rule {
             Figure figure=syllogism.getFigure();
             Syllogism syllogismA = new Syllogism(figure, propositionA);
             syllogismA.setprposition(figure);
-
             Map<Integer, Proposition> propositionE = new HashMap<>();
             propositionE.put(1, new Proposition(modeP1));
             propositionE.put(2, new Proposition(modeP2));
@@ -98,9 +96,9 @@ public class Rii extends Rule {
                     break;
                 }
             }
-            return validA || validE;
+            inintirissant=  (validA || validE);
         }
-        return false;
+        return resultsyllogism && !inintirissant;
     }
 
     @Override

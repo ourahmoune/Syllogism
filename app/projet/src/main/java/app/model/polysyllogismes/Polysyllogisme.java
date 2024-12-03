@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 public class Polysyllogisme{
     protected int taille;
-    protected Figure figure = null;
     protected Map<Integer, Proposition> proposition;
     protected boolean valid;
 
@@ -106,6 +105,7 @@ public class Polysyllogisme{
         return result ;
     }
     public void  Reordonne(){
+        System.out.println("start Resordonne");
         String terme = proposition.get(taille).getPredicat();
         Map<Integer, Proposition> newproposition = new HashMap<>();
         for(int i =1 ; i<taille ; i++){
@@ -131,6 +131,10 @@ public class Polysyllogisme{
 
     public boolean solve() {
         System.out.println("Solving syllogism...");
+        boolean valideforme = this.HasValideForm() ;
+        if(!valideforme){
+            this.Reordonne();
+        }
         this.valid=Rules.Launch(this);
         if(this.valid) {
             System.out.println("le syllogism est valid");
@@ -139,9 +143,6 @@ public class Polysyllogisme{
             System.out.println("le syllogism est invalid");
             return false;
         }
-    }
-    public Figure getFigure() {
-        return this.figure;
     }
 
     public HashMap<String, String> getNotValidRule(){
