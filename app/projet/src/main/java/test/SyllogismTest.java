@@ -45,7 +45,7 @@ public class SyllogismTest {
                 Rn rn = new Rn();
                 Ruu ruu = new Ruu();
                 Rii rii = new Rii();
-
+                System.out.println(Rules.getListRules());
                 // Assert that the output of each rule matches the expected value
                 Syllogism syllogism = syl.getSyllogism();
                 assertEquals(rmt.Launch(syllogism), syl.getRules(0));
@@ -56,9 +56,7 @@ public class SyllogismTest {
                 assertEquals(rpp.Launch(syllogism), syl.getRules(5));
                 assertEquals(rp.Launch(syllogism), syl.getRules(6));
                 assertEquals(ruu.Launch(syllogism), syl.getRules(8));
-                /*
-                assertEquals(rii.Launch(syl.getPolysyllogisme()), syl.getRules(10));
-                 */
+                assertEquals(rii.Launch(syllogism), syl.getRules(10));
             }
         }
     }
