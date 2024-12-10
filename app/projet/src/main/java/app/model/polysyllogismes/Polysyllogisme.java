@@ -15,8 +15,9 @@ public class Polysyllogisme{
     public Polysyllogisme(Map<Integer,Proposition> propositions, int taille) {
         this.proposition = propositions;
         this.taille = taille ;
+        assert taille == propositions.size();
     }
-    private Proposition SearchProposition(String terme){
+    public Proposition SearchProposition(String terme){
         Proposition propositionresult = null;
         for( int i = 1 ; i<taille ; i++){
             Proposition p = proposition.get(i);
@@ -73,8 +74,8 @@ public class Polysyllogisme{
         return result ;
     }
     public boolean HasValideForm(){
-        if(taille<3){
-            return false ;
+        if(taille<2){
+            return true ;
         }
         boolean result = true ;
         Map<String , String> FistSecondCommun = null ;
@@ -106,20 +107,27 @@ public class Polysyllogisme{
         return result ;
     }
     public void  Reordonne(){
-        String terme = proposition.get(taille).getPredicat();
-        Map<Integer, Proposition> newproposition = new HashMap<>();
-        for(int i =1 ; i<taille ; i++){
-            Proposition p = SearchProposition(terme) ;
-            newproposition.put(i, p);
-            if(terme.equals(p.getPredicat()) ){
-                terme = p.getSubject();
-            }else{
-                terme = p.getPredicat();
+        if(taille>1){
+            String terme = proposition.get(taille).getPredicat();
+            Map<Integer, Proposition> newproposition = new HashMap<>();
+            for(int i =1 ; i<taille ; i++){
+                Proposition p = SearchProposition(terme) ;
+                if(p != null){
+                    newproposition.put(i, p);
+                    if(terme.equals(p.getPredicat()) ){
+                        terme = p.getSubject();
+                    }else{
+                        terme = p.getPredicat();
+                    }
+                }
+
             }
+
+            Proposition conclusion = new Proposition(proposition.get(taille).getQuantificator() , proposition.get(taille).getSubject() , proposition.get(taille).getPredicat() , proposition.get(taille).getQuality() );
+            proposition = newproposition ;
+            proposition.put(taille,conclusion);
         }
-        Proposition conclusion = new Proposition(proposition.get(taille).getQuantificator() , proposition.get(taille).getSubject() , proposition.get(taille).getPredicat() , proposition.get(taille).getQuality() );
-        proposition = newproposition ;
-        proposition.put(taille,conclusion);
+
     }
 
     /**

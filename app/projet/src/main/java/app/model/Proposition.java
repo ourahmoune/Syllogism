@@ -100,5 +100,13 @@ public class Proposition {
 		}
 		return result;
 	}
+	@Override
+	public String toString() {
+		if(this != null){
+			return  quantificator.toString() +" "+ subject +" "+ predicat   ;
+
+		}
+		return null ;
+	}
 	
 }
