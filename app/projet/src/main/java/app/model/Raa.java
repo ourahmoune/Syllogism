@@ -21,20 +21,16 @@ public class Raa extends Rule {
 	 */
 	public Boolean Launch(Polysyllogisme polysyllogisme) {
 		boolean result = true ;
-		int compter = 0;
+
 		int taille = polysyllogisme.getTaille();
 		Proposition p= null ;
 		for (int i = 1; i < taille; i++) {
 			p = polysyllogisme.getProposition().get(i);
-			if(p.getQuality() ==  Quality.Affirmative){
-				compter++;
-				if(compter == 2){
-					p=polysyllogisme.getProposition().get(taille);
-					return p.getQuality() == Quality.Affirmative;
-				}
+			if(p.getQuality() !=  Quality.Affirmative){
+				return true;
 			}
 		}
-		return result ;
+		return polysyllogisme.getProposition().get(taille).getQuality() == Quality.Affirmative ;
 	}
 
 	@Override
