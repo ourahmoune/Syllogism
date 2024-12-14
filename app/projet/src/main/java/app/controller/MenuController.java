@@ -175,7 +175,7 @@ public class MenuController implements Resize{
      * Loads the guided interface.
      */
     @FXML
-    private void GuidedInterface() {
+    public void GuidedInterface() {
         loadInterface("vue/syllogism_guided.fxml");
     }
 
@@ -183,7 +183,7 @@ public class MenuController implements Resize{
      * Loads the unguided interface.
      */
     @FXML
-    private void UnguidedInterface() {
+    public void UnguidedInterface() {
         loadInterface("vue/syllogism_unguided.fxml");
     }
 
@@ -191,17 +191,17 @@ public class MenuController implements Resize{
      * Loads the list interface.
      */
     @FXML
-    private void ListInterface() {
+    public void ListInterface() {
         loadInterface("vue/interface_list.fxml");
     }
 
     @FXML
-    private void HelpInterface() { loadInterface(stackroot, "vue/interface_help.fxml"); }
+    public void HelpInterface() { loadInterface(stackroot, "vue/interface_help.fxml"); }
     /**
      * Loads the array Interface.
      */
     @FXML
-    private void ArrayInterface(){
+    public void ArrayInterface(){
         loadInterface("vue/interface_array.fxml");
     }
 
@@ -210,8 +210,7 @@ public class MenuController implements Resize{
      *
      * @param fxmlPath the path to the FXML file to load
      */
-
-    public void loadInterface(String fxmlPath) {
+    private void loadInterface(String fxmlPath) {
         this.subInterface = fxmlPath;
         try {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.subMenu);
@@ -229,7 +228,7 @@ public class MenuController implements Resize{
        }
     }
 
-    public void loadInterface(StackPane target, String fxmlPath) {
+    private void loadInterface(StackPane target, String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource(fxmlPath), SettingController.language);
             Pane paneloaded = loader.load();

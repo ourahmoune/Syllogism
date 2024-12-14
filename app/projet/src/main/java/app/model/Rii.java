@@ -98,9 +98,9 @@ public class Rii extends Rule {
                     break;
                 }
             }
-            return validA || validE;
+            return !(validA || validE);
         }
-        return false;
+        return true;
     }
 
     @Override

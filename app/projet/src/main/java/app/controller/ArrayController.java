@@ -1,8 +1,10 @@
 package app.controller;
 
+import app.StartApplication;
 import app.model.allSyllogism.Data;
 import app.model.allSyllogism.PolySyllogismAndRules;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -10,24 +12,35 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class ArrayController {
+import static app.StartApplication.scene;
 
+public class ArrayController implements Resize{
+
+    @FXML
+    private Text nbValide;
     @FXML
     private GridPane table;
     @FXML
     private GridPane table_menu;
     private Data data;
 
+    private boolean all;
+
+
     @FXML
     public void initialize() {
 
+        all = true;
         URL resourceUrl = getClass().getResource("/app/Tableur.xlsx");
 
         if (resourceUrl == null) {
@@ -47,8 +60,6 @@ public class ArrayController {
             throw new RuntimeException(e);
         }
 
-
-
         String absolutePath = Paths.get(decodedPath).toAbsolutePath().toString();
 
         data = new Data(absolutePath);
@@ -63,48 +74,50 @@ public class ArrayController {
         String[] headers = {
                 "Figure", "Proposition 1", "Proposition 2", "Conclusion",
                 "Rmt", "Rlh", "Rnn", "Rn", "Raa", "Rpp", "Rp",
-                SettingController.getLanguage().equals("english") ? "Valid" : "Valide",
+                SettingController.getLanguage().equals("english") ? "Syllo_VaLid" : "Syllo_Valide",
                 "Ruu", "Rii"
         };
         for (int i = 0; i < headers.length; i++) {
             ColumnConstraints column = new ColumnConstraints();
-            column.setPercentWidth(100.0 / headers.length);
+            column.setPercentWidth(100.0 / (headers.length-1));
             table_menu.getColumnConstraints().add(column);
 
         }
         RowConstraints rowConstraints = new RowConstraints();
 
-        rowConstraints.setPrefHeight(40);
-        rowConstraints.setMaxHeight(40);
         table_menu.getRowConstraints().add(rowConstraints);
+        System.out.println(all);
 
         for (int col = 0; col < headers.length; col++) {
             addStyledCell(table_menu,new Label(headers[col]), col, 0, "table-header");
         }
 
         int idI=1;
-
         for(PolySyllogismAndRules s : sar){
-            addStyledCell(table,new Label(s.getSyllogism().getFigure().toString()), 0, idI, "table-cell");
-            addStyledCell(table,new Label(s.getSyllogism().getProposition().get(1).getType().toString()), 1, idI, "table-cell");
-            addStyledCell(table,new Label(s.getSyllogism().getProposition().get(2).getType().toString()), 2, idI, "table-cell");
-            addStyledCell(table,new Label(s.getSyllogism().getProposition().get(3).getType().toString()), 3, idI, "table-cell");
+           if (all || s.getSyllogism().solve()) {
+                addStyledCell(table, new Label(s.getSyllogism().getFigure().toString()), 0, idI, "table-cell");
+                addStyledCell(table, new Label(s.getSyllogism().getProposition().get(1).getType().toString()), 1, idI, "table-cell");
+                addStyledCell(table, new Label(s.getSyllogism().getProposition().get(2).getType().toString()), 2, idI, "table-cell");
+                addStyledCell(table, new Label(s.getSyllogism().getProposition().get(3).getType().toString()), 3, idI, "table-cell");
 
-            for(int i=0; i<s.getAllRules().size(); i++){
-                if (i == 10){
-                   addStyledCell(table,new Label(String.valueOf(s.getRules(i))), i+3, idI, "table-cell");
+                for (int i = 0; i < s.getAllRules().size(); i++) {
+                    if (i == 10) {
+                        addStyledCell(table, new Label(String.valueOf(!s.getRules(i))), i + 3, idI, "table-cell");
+                    } else if (i != s.getAllRules().size() - 2) {
+                        addStyledCell(table, new Label(String.valueOf(s.getRules(i))), i + 4, idI, "table-cell");
+                    }
                 }
-                else if (i != s.getAllRules().size()-2){
-                   addStyledCell(table,new Label(String.valueOf(s.getRules(i))), i + 4, idI, "table-cell");
-                }
-
+                idI++;
             }
-
-            idI++;
         }
+        nbValide.setText(String.valueOf((idI-1)));
+        nbValide.setFont(Font.font(scene.widthProperty().getValue() / 65));
         table.setMinHeight(Region.USE_COMPUTED_SIZE);
         table.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        table.setMaxHeight(Double.MAX_VALUE);
+        
+        table_menu.setMinHeight(Region.USE_COMPUTED_SIZE);
+        table_menu.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        //table.setMaxHeight(Double.MAX_VALUE);
 
     }
     private void printGridContent() {
@@ -124,15 +137,13 @@ public class ArrayController {
         }
     }
 
-    private void translateArray(){
-        if (SettingController.getLanguage().equals("english")) {
-
-        }
-    }
     private void addStyledCell(GridPane table,Label label, int col, int row, String styleClass) {
        label.getStyleClass().add(styleClass);
-        table.add(label, col, row);
+       table.add(label, col, row);
        label.getStyleClass().add(row % 2 == 0 ? "even-row" : "odd-row");
+       if (label.getText().equals("false")){
+           label.setStyle("-fx-background-color: #ff3800");
+       }
 
     }
     private void setupColumnConstraints(int numCols) {
@@ -148,5 +159,45 @@ public class ArrayController {
         }
     }
 
+    @FXML
+    public void showAll() {
+        all = !all;
+        table.getChildren().clear();
+        table_menu.getChildren().clear();
+        readData();
+        setupColumnConstraints(14);
+    }
+
+    @Override
+    public void resize() {
+        resizeFontSize();
+        resizeCell();
+
+        scene.widthProperty().addListener((obs, oldVal, newVal) -> {
+            resizeCell();
+            resizeFontSize();
+        });
+        scene.heightProperty().addListener((obs, oldVal, newVal) -> {
+            resizeCell();
+        });
+    }
+
+    private void resizeCell() {
+        for (Node node : table_menu.getChildren()) {
+            if (node instanceof Label){
+                ((Label) node).setMinWidth(scene.widthProperty().getValue()/60);
+                ((Label) node).setMinHeight(scene.heightProperty().getValue()/60);
+            }
+        }
+    }
+
+    private void resizeFontSize() {
+        for(Node e : table.getChildren()){
+            if (e instanceof Label){
+                ((Label) e).setFont(Font.font(scene.widthProperty().getValue() *0.01)); // 1% of window width
+            }
+
+        }
+    }
 }
 

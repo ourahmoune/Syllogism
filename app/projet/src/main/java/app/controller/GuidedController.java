@@ -256,7 +256,7 @@ public class GuidedController implements Resize {
             map.put(1, p1);
             map.put(2, p2);
             map.put(3, p3);
-            Polysyllogisme s = new Polysyllogisme(map, map.size());
+            Syllogism s = new Syllogism(figure, map);
             if (s.solve()){
                 Image gif = new Image(StartApplication.class.getResource("/app/image/feu_artifice.gif").toExternalForm());
                 ImageView img = new ImageView(gif);
@@ -272,10 +272,12 @@ public class GuidedController implements Resize {
                     }
                 }, 1500);
             }else{
+                System.err.println("sylo invalide");
                 sylloInvalideShowRules(s);
             }
         } catch (Exception e) {
             validate.setStyle("-fx-background-color: red");
+            System.err.println(e.getClass() + "  " + e.getMessage());
         }
     }
 

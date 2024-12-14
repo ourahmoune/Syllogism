@@ -69,7 +69,6 @@ public class Data {
             for (Row row : MySheet) {
                 Map<Integer, Proposition> PropositionMap = new HashMap<>();
                 PolySyllogismAndRules syllogismAndRules = new PolySyllogismAndRules();
-                System.out.print(" " + line + " ");
                 line++;
                 cell = 0;
 
@@ -86,40 +85,40 @@ public class Data {
                             figure = MySwitchCase((int) cellular.getNumericCellValue());
                             break;
                         default:
-                            System.out.print("Unknown type\t");
+                            System.err.println("Unknown type\t");
                             break;
                     }
 
                     if (cell == 1) {
                         PropositionMap.put(1, new Proposition(type));
-                        System.out.print(type + " ");
+                        //System.out.print(type + " ");
                     }
                     if (cell == 2) {
                         PropositionMap.put(2, new Proposition(type));
-                        System.out.print(type + " ");
+                        //System.out.print(type + " ");
                     }
                     if (cell == 3) {
                         PropositionMap.put(3, new Proposition(type));
-                        System.out.print(type + " ");
+                        //System.out.print(type + " ");
                     }
                     if (cell == 4) {
                         Syllogism syllogism = new Syllogism(figure, PropositionMap);
                         assert figure != null;
                         syllogism.setprposition(figure);
                         syllogismAndRules.setSyllogism(syllogism);
-                        System.out.print(figure + " ");
+                        //System.out.print(figure + " ");
                     }
                     if ((cell >= 5) && (cell <= 14)) {
                         syllogismAndRules.setRules(ResultOfRule);
-                        System.out.print(ResultOfRule + " ");
+                        //System.out.print(ResultOfRule + " ");
                     }
                     if (cell == 15) {
                         syllogismAndRules.setRules(ResultOfRule);
-                        System.out.print(ResultOfRule + " ");
+                        //System.out.print(ResultOfRule + " ");
                         AllSyllogismAndRules.add(syllogismAndRules);
                     }
                 }
-                System.out.println();
+                //System.out.println();
             }
 
             workbook.close();
