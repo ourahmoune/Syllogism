@@ -32,32 +32,13 @@ public class Rii extends Rule {
         Type modeP1 = syllogism.getProposition().get(1).getType();
         Type modeP2 = syllogism.getProposition().get(2).getType();
         Type modeC = syllogism.getProposition().get(3).getType();
+        Rules.initialize();
 
-        Rmt rmt = new Rmt();
-        Rlh rlh = new Rlh();
-        Raa raa = new Raa();
-        Rpp rpp = new Rpp();
-        Rp rp = new Rp();
-        Rnn rnn = new Rnn();
-        Rn rn = new Rn();
 
-        List<Rule> rules = new ArrayList<>();
-        rules.add(rmt);
-        rules.add(rlh);
-        rules.add(raa);
-        rules.add(rpp);
-        rules.add(rp);
-        rules.add(rn);
-        rules.add(rnn);
 
-        boolean conclusionresul=true;
+        boolean conclusionresul=syllogism.solve();
 
-        for(Rule rule:rules ){
-            conclusionresul =rule.Launch(syllogism) ;
-            if(!conclusionresul){
-                break;
-            }
-        }
+
 
 
         if (

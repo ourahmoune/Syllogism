@@ -39,6 +39,8 @@ public class Rules {
 
 			if (entry.getValue()) {
 				if (!entry.getKey().Launch(polysyllogisme)) {
+					System.out.println(	entry.getKey());
+
 					return false;
 				}
 			}
@@ -49,10 +51,19 @@ public class Rules {
 	public static Map<Rule, Boolean> getListRules() {
 		return listRules;
 	}
-
 	public static void updateRule(Rule rule, Boolean value) {
 		listRules.put(rule, value);
 	}
-
+public static  void initialize(){
+	listRules.put(new Rmt(), true);
+	listRules.put(new Raa(), true);
+	listRules.put(new Rii(), false);
+	listRules.put(new Rlh(), true);
+	listRules.put(new Rnn(), true);
+	listRules.put(new Rn(), true);
+	listRules.put(new Rp(), true);
+	listRules.put(new Rpp(), true);
+	listRules.put(new Ruu(), false);
+}
 
 }

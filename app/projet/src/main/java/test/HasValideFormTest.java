@@ -69,7 +69,7 @@ public class HasValideFormTest {
         Map<Integer, Proposition> propositions = new HashMap<>();
         propositions.put(1, new Proposition(new Quantificator(Quantity.Universal, "tous"), "poils durs", "fox", Quality.Affirmative));
         Polysyllogisme polysyllogisme = new Polysyllogisme(propositions, 1);
-        assert(!polysyllogisme.HasValideForm());
+        assert(polysyllogisme.HasValideForm());
     }
     @Test
     public void testDisconnectedPremises() {

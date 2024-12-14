@@ -160,17 +160,7 @@ public class SettingsController {
         updateToggle(toggleBall8, on8, off8, Rules.getListRules().get(rii));
         System.out.println("Toggle Switch 9 is " + (!isOn ? "ON" : "OFF"));
     }
-    public static void initializeDefaultRules() {
-        Rules.updateRule(new Rmt(), Rules.getListRules().getOrDefault(new Rmt(), true));
-        Rules.updateRule(new Raa(), Rules.getListRules().getOrDefault(new Raa(), true));
-        Rules.updateRule(new Rii(), Rules.getListRules().getOrDefault(new Rii(), true));
-        Rules.updateRule(new Rlh(), Rules.getListRules().getOrDefault(new Rlh(), true));
-        Rules.updateRule(new Rnn(), Rules.getListRules().getOrDefault(new Rnn(), true));
-        Rules.updateRule(new Rn(), Rules.getListRules().getOrDefault(new Rn(), true));
-        Rules.updateRule(new Rp(), Rules.getListRules().getOrDefault(new Rp(), true));
-        Rules.updateRule(new Rpp(), Rules.getListRules().getOrDefault(new Rpp(), true));
-        Rules.updateRule(new Ruu(), Rules.getListRules().getOrDefault(new Ruu(), true));
-    }
+
     private void updateToggle(Circle knob, Label labelOn, Label labelOff, boolean isOn) {
         if (isOn) {
             knob.setTranslateX(-20); // Move to the "On" position

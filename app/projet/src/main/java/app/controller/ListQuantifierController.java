@@ -52,7 +52,6 @@ public class ListQuantifierController implements Resize {
             // Create a label for the quantificator
             Label label = new Label(quantificator.getName());
             label.setAlignment(Pos.TOP_CENTER);
-
             // Add the label to the HBox
             hbox.getChildren().add(label);
 
@@ -159,8 +158,8 @@ public class ListQuantifierController implements Resize {
         hbox.setAlignment(Pos.CENTER);
         hbox.setPrefHeight(30.0);
         hbox.setPrefWidth(110.0);
-
         Label label = new Label(word);
+        label.setStyle("-fx-font-size: 21,5px");
         label.setAlignment(Pos.TOP_CENTER);
         hbox.getChildren().add(label);
         return hbox;

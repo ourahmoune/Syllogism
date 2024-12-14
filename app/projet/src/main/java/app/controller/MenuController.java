@@ -58,15 +58,7 @@ public class MenuController implements Resize{
     @FXML
     public void initialize(){
         //GuidedInterface();
-        Rules.getListRules().put(new Rmt(), true);
-        Rules.getListRules().put(new Raa(), true);
-        Rules.getListRules().put(new Rii(), true);
-        Rules.getListRules().put(new Rlh(), true);
-        Rules.getListRules().put(new Rnn(), true);
-        Rules.getListRules().put(new Rn(), true);
-        Rules.getListRules().put(new Rp(), true);
-        Rules.getListRules().put(new Rpp(), true);
-        Rules.getListRules().put(new Ruu(), true);
+        Rules.initialize();
 
         if (SettingController.getLanguage().equals("english")){
             QuantificatorList.getInstance().getQuantificators().clear();
