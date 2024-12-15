@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -27,6 +28,9 @@ import static app.StartApplication.scene;
 public class ArrayController implements Resize{
 
     @FXML
+    public Button allButton;
+    public Text txt_nbValide;
+    @FXML
     private Text nbValide;
     @FXML
     private GridPane table;
@@ -41,6 +45,7 @@ public class ArrayController implements Resize{
     public void initialize() {
 
         all = true;
+        setTextBUtton();
         URL resourceUrl = getClass().getResource("/app/Tableur.xlsx");
 
         if (resourceUrl == null) {
@@ -66,6 +71,7 @@ public class ArrayController implements Resize{
         data.load();
         readData();
         setupColumnConstraints(14); // headers.length = nombre de colonnes
+        resize();
     }
     
     private void readData(){
@@ -86,7 +92,6 @@ public class ArrayController implements Resize{
         RowConstraints rowConstraints = new RowConstraints();
 
         table_menu.getRowConstraints().add(rowConstraints);
-        System.out.println(all);
 
         for (int col = 0; col < headers.length; col++) {
             addStyledCell(table_menu,new Label(headers[col]), col, 0, "table-header");
@@ -111,7 +116,6 @@ public class ArrayController implements Resize{
             }
         }
         nbValide.setText(String.valueOf((idI-1)));
-        nbValide.setFont(Font.font(scene.widthProperty().getValue() / 65));
         table.setMinHeight(Region.USE_COMPUTED_SIZE);
         table.setPrefHeight(Region.USE_COMPUTED_SIZE);
         
@@ -153,19 +157,36 @@ public class ArrayController implements Resize{
         for (int i = 0; i < numCols; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(100.0 / numCols);
+            //column.setPercentWidth(Region.USE_COMPUTED_SIZE);
             column.setHalignment(HPos.CENTER);
             table.getColumnConstraints().add(column);
             table_menu.getColumnConstraints().add(column);
         }
     }
 
+    private void setTextBUtton(){
+        if (all){
+            if (SettingController.getLanguage().equals("english")) {
+                allButton.setText("Valid");
+            }else{
+                allButton.setText("Valide");
+            }
+        }else{
+            if (SettingController.getLanguage().equals("english")) {
+                allButton.setText("all");
+            }else{
+                allButton.setText("tous");
+            }
+        }
+    }
     @FXML
     public void showAll() {
         all = !all;
+        setTextBUtton();
         table.getChildren().clear();
         table_menu.getChildren().clear();
         readData();
-        setupColumnConstraints(14);
+        resize();
     }
 
     @Override
@@ -183,12 +204,22 @@ public class ArrayController implements Resize{
     }
 
     private void resizeCell() {
+        table_menu.setMinWidth(scene.widthProperty().getValue()*0.8);
         for (Node node : table_menu.getChildren()) {
             if (node instanceof Label){
-                ((Label) node).setMinWidth(scene.widthProperty().getValue()/60);
-                ((Label) node).setMinHeight(scene.heightProperty().getValue()/60);
+                ((Label) node).setMinWidth(scene.widthProperty().getValue()*0.06);
+                ((Label) node).setMinHeight(scene.heightProperty().getValue()*0.045);
             }
         }
+        for (Node node : table.getChildren()) {
+            if (node instanceof Label){
+                ((Label) node).setMinWidth(scene.widthProperty().getValue()*0.06);
+                ((Label) node).setMinHeight(scene.heightProperty().getValue()*0.06);
+            }
+        }
+        setupColumnConstraints(14);
+        allButton.setMinWidth(scene.widthProperty().getValue()*0.05);
+        allButton.setMinHeight(scene.heightProperty().getValue()*0.05);
     }
 
     private void resizeFontSize() {
@@ -196,8 +227,11 @@ public class ArrayController implements Resize{
             if (e instanceof Label){
                 ((Label) e).setFont(Font.font(scene.widthProperty().getValue() *0.01)); // 1% of window width
             }
-
         }
+        allButton.setFont(Font.font(scene.widthProperty().getValue() / 65));
+
+        nbValide.setFont(Font.font(scene.widthProperty().getValue() / 65));
+        txt_nbValide.setFont(Font.font(scene.widthProperty().getValue() / 65));
     }
 }
 
