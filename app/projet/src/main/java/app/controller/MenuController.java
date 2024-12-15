@@ -237,7 +237,9 @@ public class MenuController implements Resize{
 
     @FXML
     private void handleSettings(){
+        System.out.println("before-TRY-settings");
         try {
+            System.out.println("TRY-settings");
             // Load the FXML file for the settings pop-up
             FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("vue/Settings.fxml"), SettingController.subMenu);
             Pane root = loader.load();
