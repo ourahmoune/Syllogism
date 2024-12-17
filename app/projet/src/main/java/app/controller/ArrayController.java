@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -24,10 +25,8 @@ public class ArrayController {
     @FXML
     private GridPane table_menu;
     private Data data;
-
     @FXML
     public void initialize() {
-
         URL resourceUrl = getClass().getResource("/app/Tableur.xlsx");
 
         if (resourceUrl == null) {

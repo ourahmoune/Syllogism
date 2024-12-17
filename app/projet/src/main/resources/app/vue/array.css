@@ -15,7 +15,7 @@
 
 .table-cell {
     -fx-min-width: 50px;
-    -fx-min-height: 25px;
+    -fx-min-height: 30px;
 }
 
 /* Style pour les en-têtes */
