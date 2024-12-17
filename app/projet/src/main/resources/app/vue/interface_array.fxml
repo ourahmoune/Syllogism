@@ -8,11 +8,20 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:id="vbox_root"
       fx:controller="app.controller.ArrayController"
       prefHeight="400.0" prefWidth="600.0" stylesheets="@array.css">
+    <HBox>
+        <Text fx:id="txt_nbValide" text="%nbValide" />
+        <Text fx:id="nbValide" />
+        <HBox style="-fx-padding: 0 0 12.5 25; -fx-spacing: 25">
+            <Button fx:id="allButton" text="%showAll" onAction="#showAll" styleClass="showAll"/>
+        </HBox>
+    </HBox>
    <HBox>
     <GridPane fx:id="table_menu" VBox.vgrow="ALWAYS" minHeight="25" minWidth="600">
         <rowConstraints>
@@ -23,11 +32,9 @@
 
        </Region>
    </HBox>
-    <ScrollPane fitToWidth="true">
-        <VBox>
-            <GridPane fx:id="table" VBox.vgrow="ALWAYS" minHeight="400" minWidth="600">
-
-            </GridPane>
+    <ScrollPane  fx:id="array_scroll" fitToWidth="true" >
+        <VBox fx:id="array_root">
+            <GridPane fx:id="table" VBox.vgrow="ALWAYS" minHeight="400" minWidth="600" />
         </VBox>
     </ScrollPane>
 </VBox>

@@ -13,11 +13,6 @@
     -fx-pref-height: 40px;
 }
 
-.table-cell {
-    -fx-min-width: 50px;
-    -fx-min-height: 30px;
-}
-
 /* Style pour les en-têtes */
 .table-header {
     -fx-text-fill: white;
@@ -54,4 +49,10 @@
     -fx-background-color: #9dff8c;
     -fx-alignment: center;
     -fx-padding: 5px;
+}
+
+.showAll {
+    -fx-background-color: #9dff8c;
+    -fx-border-radius: 15 15 15 15;
+    -fx-background-radius: 15 15 15 15;
 }

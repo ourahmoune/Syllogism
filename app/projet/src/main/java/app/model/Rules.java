@@ -3,10 +3,6 @@ package app.model;
 import java.util.HashMap;
 import java.util.Map;
 import app.model.polysyllogismes.Polysyllogisme;
-import app.model.Rule;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class representing a collection of rules for evaluating syllogisms.
@@ -21,7 +17,7 @@ public class Rules {
 	 * @return a string result of the evaluation (not yet implemented)
 	 * @throws UnsupportedOperationException if not implemented
 	 */
-	public static HashMap<String, String> AllRules(Polysyllogisme polysyllogisme) {
+	public static HashMap<String, String> AllRulesInvalide(Polysyllogisme polysyllogisme) {
 		HashMap<String, String> res = new HashMap<String, String>();
 		for (Map.Entry<Rule, Boolean> entry : listRules.entrySet()) {
 			if (entry.getValue()) {

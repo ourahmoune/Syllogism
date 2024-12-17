@@ -71,7 +71,7 @@ public class Rii extends Rule {
             validA  = syllogismA.solve();
             return validA || validE;
         }
-        return false;
+        return true;
     }
 
     @Override

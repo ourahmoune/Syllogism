@@ -138,13 +138,12 @@ public class Polysyllogisme{
      */
 
     public boolean solve() {
-        System.out.println("Solving syllogism...");
         this.valid=Rules.Launch(this);
         if(this.valid) {
-            System.out.println("le syllogism est valid");
+            //System.out.println("le syllogism est valid");
             return true;
         }else{
-            System.out.println("le syllogism est invalid");
+            //System.out.println("le syllogism est invalid");
             return false;
         }
     }
@@ -153,6 +152,6 @@ public class Polysyllogisme{
     }
 
     public HashMap<String, String> getNotValidRule(){
-        return Rules.AllRules(this);
+        return Rules.AllRulesInvalide(this);
     }
 }
