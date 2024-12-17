@@ -32,14 +32,23 @@ public class Rii extends Rule {
         Type modeP1 = syllogism.getProposition().get(1).getType();
         Type modeP2 = syllogism.getProposition().get(2).getType();
         Type modeC = syllogism.getProposition().get(3).getType();
-        Rules.initialize();
+        List<Rule> ruleList = new ArrayList<>();
 
+        Rmt rmt = new Rmt();ruleList.add(rmt);
+        Rlh rlh = new Rlh();ruleList.add(rlh);
+        Raa raa = new Raa();ruleList.add(raa);
+        Rpp rpp = new Rpp();ruleList.add(rpp);
+        Rp rp = new Rp();ruleList.add(rp);
+        Rnn rnn = new Rnn();ruleList.add(rnn);
+        Rn rn = new Rn();ruleList.add(rn);
 
-
-        boolean conclusionresul=syllogism.solve();
-
-
-
+        boolean conclusionresul=true ;
+        for(Rule  rule : ruleList){
+            if(!rule.Launch(syllogism)){
+                conclusionresul=false;
+                break;
+            }
+        }
 
         if (
                 (modeP1 == Type.A || modeP1 == Type.E) &&
@@ -48,8 +57,6 @@ public class Rii extends Rule {
                 (conclusionresul)
         )
         {
-
-
             Map<Integer, Proposition> propositionA = new HashMap<>();
             propositionA.put(1, new Proposition(modeP1));
             propositionA.put(2, new Proposition(modeP2));
@@ -65,13 +72,31 @@ public class Rii extends Rule {
             Syllogism syllogismE = new Syllogism(figure, propositionE);
             syllogismE.setprposition(figure);
 
-            boolean validA = true ; //Rules.Launch(syllogismA);
-            boolean validE = true ; // Rules.Launch(syllogismE);
-            validE = syllogismE.solve();
-            validA  = syllogismA.solve();
-            return validA || validE;
+
+
+            boolean validE=true ;
+            for(Rule  rule : ruleList){
+                if(!rule.Launch(syllogismE)){
+                    validE=false;
+                    break;
+                }
+            }
+
+            boolean validA=true ;
+            for(Rule  rule : ruleList){
+                if(!rule.Launch(syllogismA)){
+                    validA=false;
+                    break;
+                }
+            }
+
+            if(!validA && !validE){
+                return true ;
+            }else{
+                return false;
+            }
         }
-        return true;
+        return conclusionresul & true;
     }
 
     @Override

@@ -7,7 +7,7 @@ import app.model.polysyllogismes.Polysyllogisme;
 /**
  * Class representing a collection of rules for evaluating syllogisms.
  */
-public class Rules {
+public  class  Rules {
 
 	private static Map<Rule, Boolean> listRules = new HashMap<>();
 	/**
