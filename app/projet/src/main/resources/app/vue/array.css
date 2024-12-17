@@ -13,11 +13,6 @@
     -fx-pref-height: 40px;
 }
 
-.table-cell {
-    -fx-min-width: 50px;
-    -fx-min-height: 25px;
-}
-
 /* Style pour les en-têtes */
 .table-header {
     -fx-text-fill: white;
