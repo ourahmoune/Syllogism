@@ -94,6 +94,7 @@ public class ReordonneTest {
     }
     @Test
     public void test4() {
+        System.out.println("test4");
         Map<Integer, Proposition> propositions = new HashMap<Integer, Proposition>();
         propositions.put(7, new Proposition(new Quantificator(Quantity.Universal ,"tous"), "mammifere", "animal" , Quality.Affirmative));
         propositions.put(6, new Proposition(new Quantificator(Quantity.Universal ,"tous"), "poils durs", "fox" , Quality.Affirmative));
@@ -149,5 +150,11 @@ public class ReordonneTest {
         }
         assert !polysyllogisme.HasValideForm();
 
+    }
+    @Test
+    public void test7() {
+        Map<Integer, Proposition> propositions = new HashMap<Integer, Proposition>();
+        Polysyllogisme polysyllogisme = new Polysyllogisme(propositions, 0);
+        polysyllogisme.Reordonne() ;
     }
 }
